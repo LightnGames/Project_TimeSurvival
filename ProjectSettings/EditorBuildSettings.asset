@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scene/ResidentScene.unity
+    guid: c5a19caad08e8124dac11b322f615ad2
+  m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 8218a002a0f109c4a96c6885ce359049, type: 2}
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: aedb3d1825399cb4280aa0da54714528, type: 2}
+  m_UseUCBPForAssetBundles: 0
