@@ -7,8 +7,9 @@ UnityGenerated/
 Library/
 Logs/
 .vs/
+.utmp/
 [Uu]ser[Ss]ettings/
-Game_BurstDebugInformation_DoNotShip/
+*_DoNotShip/
 *.dwlt
 *.log
 
@@ -26,6 +27,7 @@ ExportedObj/
 *.unityproj
 *.booproj
 *.apk
+*.aab
 
 # ============ #
 # OS generated #
