@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 659f7332038f98048bc5505b2be0a9c7
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 165152
+  packageName: ZOMBIE Fat Butcher
+  packageVersion: 1.0
+  assetPath: Assets/Knife/ZombieButcher/Materials/ZombieButcher Glass.mat
+  uploadId: 370779
