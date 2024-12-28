@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Windows;
 
 public class XrHandController : MonoBehaviour
 {
@@ -15,9 +16,11 @@ public class XrHandController : MonoBehaviour
 
     private readonly int GrabHash = Animator.StringToHash("Grab");
     private readonly int TriggerHash = Animator.StringToHash("Trigger");
+    private readonly int GrabItemIndexHash = Animator.StringToHash("GrabItemIndex");
     private LinkedList<GrabableItem> _catchableItems;
     private GrabableItem _catchingItem;
     private Coroutine _catchTransformAnimationCoroutine = null;
+    private float _lastIndexTriggeredTime = 0.0f;
 
     private void Awake()
     {
@@ -30,9 +33,12 @@ public class XrHandController : MonoBehaviour
         var indexTriggerTarget = _handType == HandType.Left ? OVRInput.RawAxis1D.LIndexTrigger : OVRInput.RawAxis1D.RIndexTrigger;
         float grabAmount = OVRInput.Get(handTriggerTarget);
         float grabIndexAmount = OVRInput.Get(indexTriggerTarget);
-        _xrHand.HandAnimator.SetFloat(GrabHash, grabAmount, 0.1f, Time.deltaTime);
-        _xrHand.HandAnimator.SetFloat(TriggerHash, grabAmount, 0.1f, Time.deltaTime);
 
+        GrabableItem.GrabableItemInputData _grabableItemInput = new GrabableItem.GrabableItemInputData();
+        _grabableItemInput._indexTrigger = grabIndexAmount;
+
+        _xrHand.HandAnimator.SetFloat(GrabHash, grabAmount, 0.1f, Time.deltaTime);
+        _xrHand.HandAnimator.SetFloat(TriggerHash, grabIndexAmount);
 
         const float GrabThrehold = 0.7f;
         if (grabAmount > GrabThrehold)
@@ -42,6 +48,19 @@ public class XrHandController : MonoBehaviour
         else
         {
             TryToReleaseItem();
+        }
+
+        if(_catchingItem != null)
+        {
+            const float GrabIndexThreshold = 0.9f;
+            const float GrabIndexPrepeatTime = 0.3f;
+            if (grabIndexAmount > GrabIndexThreshold && Time.time - _lastIndexTriggeredTime > GrabIndexPrepeatTime)
+            {
+                _catchingItem.OnIndexTriggered();
+                _lastIndexTriggeredTime = Time.time;
+            }
+
+            _catchingItem.CatchedUpdate(_grabableItemInput);
         }
     }
 
@@ -79,6 +98,7 @@ public class XrHandController : MonoBehaviour
         {
             StopCoroutine(_catchTransformAnimationCoroutine);
         }
+        _xrHand.HandAnimator.SetInteger(GrabItemIndexHash, _catchingItem.GrabItemIndex);
         _catchingItem.transform.parent = _xrHand.HandTransformAncher;
         _catchTransformAnimationCoroutine = StartCoroutine(PlayCatchTransformAnimation());
         _catchingItem.Catched();
@@ -91,6 +111,7 @@ public class XrHandController : MonoBehaviour
             return;
         }
 
+        _xrHand.HandAnimator.SetInteger(GrabItemIndexHash, 0);
         _catchingItem.transform.parent = null;
         _catchingItem.Released();
         _catchingItem = null;
@@ -101,17 +122,18 @@ public class XrHandController : MonoBehaviour
         Transform itemTransform = _catchingItem.transform;
         Vector3 startPosition = itemTransform.localPosition;
         Quaternion startRotation = itemTransform.rotation;
+        Vector3 endPosition = _catchingItem.CatchAncherTransform.localPosition;
         const float AnimationLength = 0.1f;
         float animationTime = 0.0f;
         while (animationTime < 1.0f)
         {
-            Vector3 position = Vector3.Lerp(startPosition, Vector3.zero, animationTime);
+            Vector3 position = Vector3.Lerp(startPosition, endPosition, animationTime);
             Quaternion rotation = Quaternion.Lerp(startRotation, Quaternion.identity, animationTime);
             itemTransform.SetLocalPositionAndRotation(position, rotation);
             animationTime += Time.deltaTime / AnimationLength;
             yield return null;
         }
-        itemTransform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+        itemTransform.SetLocalPositionAndRotation(endPosition, Quaternion.identity);
         _catchTransformAnimationCoroutine = null;
     }
 

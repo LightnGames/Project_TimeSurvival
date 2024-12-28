@@ -2,13 +2,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private Texture _globalBentNormalTexture;
     private CharacterController _characterController;
 
     private void Awake()
     {
         _characterController = GetComponent<CharacterController>();
-        Shader.SetGlobalTexture("_GlobalBentNormalMap", _globalBentNormalTexture);
     }
 
     private void Update()

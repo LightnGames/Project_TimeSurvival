@@ -2077,7 +2077,7 @@
     "m_Title": "perceptualRoughness",
     "m_Position": {
         "x": -951.9999389648438,
-        "y": -672.0
+        "y": -671.9998779296875
     }
 }
 
@@ -2226,8 +2226,8 @@
     "m_ObjectId": "5853fb714e0e40acb9c24110e5a0c819",
     "m_Title": "Roughness2",
     "m_Position": {
-        "x": -889.0000610351563,
-        "y": -224.00003051757813
+        "x": -888.9999389648438,
+        "y": -223.99993896484376
     }
 }
 
@@ -2475,8 +2475,8 @@
     "m_ObjectId": "69fe9e1a45fa4d5f8469c946808c9996",
     "m_Title": "grazingTerm",
     "m_Position": {
-        "x": 435.9998779296875,
-        "y": 140.0
+        "x": 436.0,
+        "y": 140.0001220703125
     }
 }
 
@@ -3641,8 +3641,8 @@
     "m_ObjectId": "b707bede7d944262870d8a55ddade634",
     "m_Title": "surfaceReduction",
     "m_Position": {
-        "x": -496.0,
-        "y": -324.9999694824219
+        "x": -495.99993896484377,
+        "y": -325.0
     }
 }
 
@@ -3779,8 +3779,8 @@
     "m_ObjectId": "bdc8db14645f4e2daf5da41361001677",
     "m_Title": "mip",
     "m_Position": {
-        "x": -653.0,
-        "y": -672.0
+        "x": -652.9998779296875,
+        "y": -671.9998779296875
     }
 }
 
@@ -3790,8 +3790,8 @@
     "m_ObjectId": "bf50514c3a834d8d8198803000b4cd11",
     "m_Title": "Smoothness",
     "m_Position": {
-        "x": -1325.9998779296875,
-        "y": -459.0
+        "x": -1326.0,
+        "y": -458.99993896484377
     }
 }
 
@@ -4755,8 +4755,8 @@
     "m_ObjectId": "eff10b83e2364bce96b169dbc2dc7b26",
     "m_Title": "Reflectivity",
     "m_Position": {
-        "x": 203.0,
-        "y": 122.0
+        "x": 203.0001220703125,
+        "y": 122.00000762939453
     }
 }
 
@@ -4911,7 +4911,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "Power",
     "m_StageCapability": 3,
-    "m_Value": 8.0,
+    "m_Value": 4.0,
     "m_DefaultValue": 1.0,
     "m_Labels": [
         "X"

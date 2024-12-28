@@ -25,4 +25,14 @@ void AdaptiveProbeVolumeSample_float(in float3 ViewDirWS, in float3 NormalWS, in
 #endif
 }
 
+// https://www.cnblogs.com/hont/p/15221001.html
+void SpecularOcclusionFromBentNormal_half(in float EffectScale, in float3 ViewDirWS, in float3 NormalWS, in float3 BentNormalWS, out float Out)
+{
+    float3 reflectVector = reflect(-ViewDirWS, NormalWS);
+    float bentNormalIntensity = 1.0 - saturate(dot(NormalWS, BentNormalWS));
+    float weight = max(dot(BentNormalWS, reflectVector), 0.0);
+    //Out = weight;
+    Out = saturate(lerp(1.0, weight, EffectScale * bentNormalIntensity));
+}
+
 #endif
