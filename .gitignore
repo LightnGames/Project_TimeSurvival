@@ -12,6 +12,7 @@ Logs/
 *_DoNotShip/
 *.dwlt
 *.log
+.mayaSwatches/
 
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
