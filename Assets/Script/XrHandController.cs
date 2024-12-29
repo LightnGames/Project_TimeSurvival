@@ -20,7 +20,7 @@ public class XrHandController : MonoBehaviour
     private LinkedList<GrabableItem> _catchableItems;
     private GrabableItem _catchingItem;
     private Coroutine _catchTransformAnimationCoroutine = null;
-    private float _lastIndexTriggeredTime = 0.0f;
+    private float _prevIndexTriggerAmount = 0.0f;
 
     private void Awake()
     {
@@ -53,14 +53,13 @@ public class XrHandController : MonoBehaviour
         if(_catchingItem != null)
         {
             const float GrabIndexThreshold = 0.9f;
-            const float GrabIndexPrepeatTime = 0.3f;
-            if (grabIndexAmount > GrabIndexThreshold && Time.time - _lastIndexTriggeredTime > GrabIndexPrepeatTime)
+            if (grabIndexAmount > GrabIndexThreshold && _prevIndexTriggerAmount < GrabIndexThreshold)
             {
                 _catchingItem.OnIndexTriggered();
-                _lastIndexTriggeredTime = Time.time;
             }
 
             _catchingItem.CatchedUpdate(_grabableItemInput);
+            _prevIndexTriggerAmount = grabIndexAmount;
         }
     }
 
@@ -101,7 +100,7 @@ public class XrHandController : MonoBehaviour
         _xrHand.HandAnimator.SetInteger(GrabItemIndexHash, _catchingItem.GrabItemIndex);
         _catchingItem.transform.parent = _xrHand.HandTransformAncher;
         _catchTransformAnimationCoroutine = StartCoroutine(PlayCatchTransformAnimation());
-        _catchingItem.Catched();
+        _catchingItem.Catched(OnVibrate);
     }
 
     private void TryToReleaseItem()
@@ -147,5 +146,18 @@ public class XrHandController : MonoBehaviour
         {
             _catchableItems.Remove(item);
         }
+    }
+
+    private void OnVibrate(float frequency, float amplitude, float duration)
+    {
+        OVRInput.Controller controller = _handType == HandType.Left ? OVRInput.Controller.LTouch : OVRInput.Controller.RTouch;
+        StartCoroutine(Vibrate(frequency, amplitude, duration, controller));
+    }
+
+    private IEnumerator Vibrate(float frequency, float amplitude, float duration, OVRInput.Controller controller)
+    {
+        OVRInput.SetControllerVibration(frequency, amplitude, controller);
+        yield return new WaitForSeconds(duration);
+        OVRInput.SetControllerVibration(0, 0, controller);
     }
 }
