@@ -833,6 +833,21 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "4fe5e339afa7462a8da80b3925140b74",
+    "m_Id": 1008117658,
+    "m_DisplayName": "SpecularAO",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "_SpecularAO",
+    "m_StageCapability": 3,
+    "m_Value": 1.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Texture2DMaterialSlot",
     "m_ObjectId": "54b6deaf042b428ab9abb730b09642a9",
     "m_Id": 0,
@@ -909,6 +924,9 @@
             "m_Id": "59d1077c87864f63bc69b2c02118a987"
         },
         {
+            "m_Id": "4fe5e339afa7462a8da80b3925140b74"
+        },
+        {
             "m_Id": "80b93b12992d4582942350f6f6855cad"
         },
         {
@@ -941,14 +959,16 @@
         "9283644a-2c2c-4fa3-b460-e46b972f1b68",
         "4499707e-a69d-41b3-af3f-0a69f924e948",
         "30d831a9-388c-4f44-81f5-c2cc5d1a2c73",
-        "6d764821-7bbc-47da-9317-28ad25f95684"
+        "6d764821-7bbc-47da-9317-28ad25f95684",
+        "7e6bfa2e-4976-4499-b279-63f8706d87fe"
     ],
     "m_PropertyIds": [
         670703018,
         -555808955,
         617205173,
         -1066211591,
-        64150827
+        64150827,
+        1008117658
     ],
     "m_Dropdowns": [],
     "m_DropdownSelectedEntries": []
