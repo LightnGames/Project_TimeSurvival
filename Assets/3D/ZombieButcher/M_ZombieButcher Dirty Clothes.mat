@@ -28,6 +28,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 5eb83bd50cdfbf54c8e9fff9af4c1fcd, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _BentMap:
+        m_Texture: {fileID: 2800000, guid: 23dbb74cb9990be4eae7f40325588850, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 2800000, guid: 83bbcaf907c32114f88d4c376db9b86d, type: 3}
         m_Scale: {x: 1, y: 1}
