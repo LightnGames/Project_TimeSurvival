@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b20c7f5bf6869438d00f5efbf7129d, type: 3}
   m_Name: Weapon Scriptable Object
   m_EditorClassIdentifier: 
+  _maxAmmo: 0
+  _muzzleFlashParticle: {fileID: 1003230792439982313, guid: 1a8963a7db1f2df4998eff72a00ee843, type: 3}
