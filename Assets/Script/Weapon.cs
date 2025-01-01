@@ -30,8 +30,18 @@ public class Weapon : GrabableItem
     public override void OnIndexTriggered() 
     {
         _animator.SetTrigger(ShotHash);
-        ParticleSystem particleSystem = Instantiate(_weaponScriptableObject.muzzleFlashParticle, _muzzleFlashAncher.transform.position, _muzzleFlashAncher.transform.rotation);
-        Destroy(particleSystem.gameObject, 3.0f);
+        ParticleSystem muzzleFlashParticle = Instantiate(_weaponScriptableObject.MuzzleFlashParticlePrefab, _muzzleFlashAncher.transform.position, _muzzleFlashAncher.transform.rotation);
+        Destroy(muzzleFlashParticle.gameObject, 3.0f);
         Vibrate(0, 1, 0.1f);
+
+        const float MaxRayLength = 30.0f;
+        RaycastHit hit;
+        Vector3 p1 = _muzzleFlashAncher.position;
+        Vector3 p2 = p1 + _muzzleFlashAncher.forward * MaxRayLength;
+        if (Physics.CapsuleCast(p1, p2, 0.05f, transform.forward, out hit))
+        {
+            ParticleSystem impactParticle = Instantiate(_weaponScriptableObject.ImpactParticlePrefab, hit.point, Quaternion.LookRotation(hit.normal));
+            Destroy(impactParticle.gameObject, 10.0f);
+        }
     }
 }

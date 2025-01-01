@@ -134,6 +134,8 @@ public class XrHandController : MonoBehaviour
         }
         itemTransform.SetLocalPositionAndRotation(endPosition, Quaternion.identity);
         _catchTransformAnimationCoroutine = null;
+
+        OnVibrate(0.5f, 0.3f, 0.1f);
     }
 
     private void OnTriggerEnterEvent(GrabableItem item, bool enter)

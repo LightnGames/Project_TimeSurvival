@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxAmmo: 0
   _muzzleFlashParticle: {fileID: 1003230792439982313, guid: 1a8963a7db1f2df4998eff72a00ee843, type: 3}
+  _impactParticle: {fileID: 5542739345599769195, guid: 1131ce0157cbb68448710c7103565bdb, type: 3}
