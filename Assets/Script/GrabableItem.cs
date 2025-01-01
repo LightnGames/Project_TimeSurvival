@@ -13,7 +13,9 @@ public abstract class GrabableItem : MonoBehaviour
     }
 
     public delegate void VibrateEvent(float frequency, float amplitude, float duration);
+    public delegate void XrHandTransformEvent(Vector3 localPosition, Quaternion localRotation);
     private event VibrateEvent _vibrationEvent = null;
+    private event XrHandTransformEvent _xrHandTransformEvent = null;
     public int GrabItemIndex { get { return _grabItemIndex; } }
     public Transform CatchAncherTransform { get { return _catchAncherTransform; } }
     public bool IsCatched { get { return _rigidbody.isKinematic; } }
@@ -29,20 +31,27 @@ public abstract class GrabableItem : MonoBehaviour
 
     public virtual void OnIndexTriggered() { }
 
-    public virtual void Catched(VibrateEvent vibrateEvent)
+    public virtual void Catched(VibrateEvent vibrateEvent, XrHandTransformEvent transformEvent)
     {
         _rigidbody.isKinematic = true;
         _vibrationEvent = vibrateEvent;
+        _xrHandTransformEvent = transformEvent;
     }
 
     public virtual void Released()
     {
         _rigidbody.isKinematic = false;
         _vibrationEvent = null;
+        _xrHandTransformEvent = null;
     }
 
-    protected void Vibrate(float frequency, float amplitude, float duration)
+    protected void VibrateXrHand(float frequency, float amplitude, float duration)
     {
         _vibrationEvent(frequency, amplitude, duration);
+    }
+
+    protected void AnimateXrHandTransform(Vector3 localPosition, Quaternion localRotation)
+    {
+        _xrHandTransformEvent(localPosition, localRotation);
     }
 }

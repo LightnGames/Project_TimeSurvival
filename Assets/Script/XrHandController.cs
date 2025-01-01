@@ -100,7 +100,7 @@ public class XrHandController : MonoBehaviour
         _xrHand.HandAnimator.SetInteger(GrabItemIndexHash, _catchingItem.GrabItemIndex);
         _catchingItem.transform.parent = _xrHand.HandTransformAncher;
         _catchTransformAnimationCoroutine = StartCoroutine(PlayCatchTransformAnimation());
-        _catchingItem.Catched(OnVibrate);
+        _catchingItem.Catched(OnXrHandVibrated, OnXrHandTransformAnimated);
     }
 
     private void TryToReleaseItem()
@@ -135,7 +135,7 @@ public class XrHandController : MonoBehaviour
         itemTransform.SetLocalPositionAndRotation(endPosition, Quaternion.identity);
         _catchTransformAnimationCoroutine = null;
 
-        OnVibrate(0.5f, 0.3f, 0.1f);
+        OnXrHandVibrated(0.5f, 0.2f, 0.1f);
     }
 
     private void OnTriggerEnterEvent(GrabableItem item, bool enter)
@@ -150,16 +150,21 @@ public class XrHandController : MonoBehaviour
         }
     }
 
-    private void OnVibrate(float frequency, float amplitude, float duration)
+    private void OnXrHandVibrated(float frequency, float amplitude, float duration)
     {
         OVRInput.Controller controller = _handType == HandType.Left ? OVRInput.Controller.LTouch : OVRInput.Controller.RTouch;
-        StartCoroutine(Vibrate(frequency, amplitude, duration, controller));
+        StartCoroutine(VibrateXrHand(frequency, amplitude, duration, controller));
     }
 
-    private IEnumerator Vibrate(float frequency, float amplitude, float duration, OVRInput.Controller controller)
+    private IEnumerator VibrateXrHand(float frequency, float amplitude, float duration, OVRInput.Controller controller)
     {
         OVRInput.SetControllerVibration(frequency, amplitude, controller);
         yield return new WaitForSeconds(duration);
         OVRInput.SetControllerVibration(0, 0, controller);
+    }
+
+    private void OnXrHandTransformAnimated(Vector3 localPosition, Quaternion localRotation)
+    {
+        _xrHand.transform.SetLocalPositionAndRotation(localPosition, localRotation);
     }
 }

@@ -15,3 +15,71 @@ MonoBehaviour:
   _maxAmmo: 0
   _muzzleFlashParticle: {fileID: 1003230792439982313, guid: 1a8963a7db1f2df4998eff72a00ee843, type: 3}
   _impactParticle: {fileID: 5542739345599769195, guid: 1131ce0157cbb68448710c7103565bdb, type: 3}
+  _bulletTrailCilinderMeshRenderer: {fileID: 3610779081985988676, guid: b44ed44dd0bcd1e418a88ea7c07c8d7b, type: 3}
+  _recoilPitchEuler:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: -100
+      outSlope: -100
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.1
+      value: -10
+      inSlope: 0.34691852
+      outSlope: 0.34691852
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 1
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 11.111112
+      outSlope: 11.111112
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _recoilTranslationZ:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: -0.7
+      outSlope: -0.7
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.1
+      value: -0.07
+      inSlope: 0.010482206
+      outSlope: 0.010482206
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 1
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0.07777778
+      outSlope: 0.07777778
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _recoilTimeInSec: 0.4
