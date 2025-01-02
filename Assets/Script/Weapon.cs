@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Weapon : GrabableItem
@@ -68,6 +69,12 @@ public class Weapon : GrabableItem
             dynamicMaterial.SetFloat(TrailLengthId, hit.distance + HitDistanceMergin);
             meshRenderer.sharedMaterial = dynamicMaterial;
             Destroy(meshRenderer.gameObject, BulletTrailDestroyTimeInSec);
+
+            DamageableCollider damageableCollider = hit.collider.GetComponent<DamageableCollider>();
+            if (damageableCollider != null)
+            {
+                damageableCollider.Damage(1);
+            }
         }
     }
 
