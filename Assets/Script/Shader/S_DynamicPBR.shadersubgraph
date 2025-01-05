@@ -402,6 +402,20 @@
             },
             "m_InputSlot": {
                 "m_Node": {
+                    "m_Id": "23c1545a7a1841e4b47d22879b50fb96"
+                },
+                "m_SlotId": 7
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "d4b17e6241d14c0080b7eb298747256c"
+                },
+                "m_SlotId": 1
+            },
+            "m_InputSlot": {
+                "m_Node": {
                     "m_Id": "efb90308ad9e4795a0f03da4c528f12f"
                 },
                 "m_SlotId": 1
@@ -904,6 +918,9 @@
         },
         {
             "m_Id": "e5aad96e9cf84e3f8caa34c62b6b0ff2"
+        },
+        {
+            "m_Id": "a8349e9cc8134bf48e871f2df754e01d"
         }
     ],
     "synonyms": [],
@@ -1635,6 +1652,29 @@
     },
     "m_ConversionType": 2,
     "m_Normalize": true
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
+    "m_ObjectId": "a8349e9cc8134bf48e871f2df754e01d",
+    "m_Id": 7,
+    "m_DisplayName": "Reflection_Out",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Reflection_Out",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_Labels": []
 }
 
 {

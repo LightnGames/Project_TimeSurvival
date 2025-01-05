@@ -8,11 +8,20 @@ public interface IDamageable
 
 public class DamageableCollider : MonoBehaviour
 {
+    public enum DamagePartType
+    {
+        Default,
+        Critical
+    }
+
     [SerializeField] private Transform _parent;
+    [SerializeField] private DamagePartType _partType;
 
     public void Damage(int damageAmount)
     {
         IDamageable damageable = _parent.GetComponent<IDamageable>();
         damageable.Damage(damageAmount);
     }
+
+    public DamagePartType PartType { get { return _partType; } }
 }

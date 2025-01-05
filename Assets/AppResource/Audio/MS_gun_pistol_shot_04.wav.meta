@@ -1,0 +1,30 @@
+fileFormatVersion: 2
+guid: 4b904538a7c5e9742a2b7d494742134a
+AssetOrigin:
+  serializedVersion: 1
+  productId: 59420
+  packageName: Gun Sound Pack
+  packageVersion: 1.0
+  assetPath: Assets/Gamemaster Audio - Gun Sound Pack/Gun/gun_pistol_shot_04.wav
+  uploadId: 110477
+AudioImporter:
+  externalObjects: {}
+  serializedVersion: 8
+  defaultSettings:
+    serializedVersion: 2
+    loadType: 0
+    sampleRateSetting: 0
+    sampleRateOverride: 44100
+    compressionFormat: 1
+    quality: 1
+    conversionMode: 0
+    preloadAudioData: 1
+  platformSettingOverrides: {}
+  forceToMono: 1
+  normalize: 1
+  loadInBackground: 0
+  ambisonic: 0
+  3D: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

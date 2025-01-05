@@ -1,6 +1,7 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Weapon : GrabableItem
 {
@@ -12,10 +13,12 @@ public class Weapon : GrabableItem
     private readonly int TrailLengthId = Shader.PropertyToID("_TrailLength");
     private readonly int TrailStartTimeId = Shader.PropertyToID("_TrailStartTime");
     private float _triggerPitchAngleEuler = 0.0f;
+    private AudioSource _audioSource;
 
     protected override void Awake()
     {
         base.Awake();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void LateUpdate()
@@ -31,6 +34,13 @@ public class Weapon : GrabableItem
         _triggerPitchAngleEuler = input._indexTrigger * MaxTriggerAngleEuler;
     }
 
+    public override void Catched(VibrateEvent vibrateEvent, XrHandTransformEvent transformEvent)
+    {
+        base.Catched(vibrateEvent, transformEvent);
+        int randomIndex = Random.Range(0, _weaponScriptableObject.EquipAudioClips.Length);
+        _audioSource.PlayOneShot(_weaponScriptableObject.EquipAudioClips[randomIndex]);
+    }
+
     public override void OnIndexTriggered() 
     {
         MuzzleFlashEffect();
@@ -40,11 +50,17 @@ public class Weapon : GrabableItem
 
     private void MuzzleFlashEffect()
     {
+        bool canFire = true;
         _animator.SetTrigger(ShotHash);
         ParticleSystem muzzleFlashParticle = Instantiate(_weaponScriptableObject.MuzzleFlashParticlePrefab, _muzzleFlashAncher.transform.position, _muzzleFlashAncher.transform.rotation);
         const float MuzzleFlashParticleDestroyTimeInSec = 3.0f;
         Destroy(muzzleFlashParticle.gameObject, MuzzleFlashParticleDestroyTimeInSec);
         VibrateXrHand(0, 1, 0.1f);
+
+        AudioSource audioSource = muzzleFlashParticle.GetComponent<AudioSource>();
+        AudioClip[] audioClips = canFire ? _weaponScriptableObject.ShotAudioClips : _weaponScriptableObject.DryDireAudioClips;
+        int randomIndex = Random.Range(0, audioClips.Length);
+        audioSource.PlayOneShot(audioClips[randomIndex]);
     }
 
     private void Shot()

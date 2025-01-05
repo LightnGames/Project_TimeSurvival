@@ -83,3 +83,21 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _recoilTimeInSec: 0.4
+  _shotAudioClips:
+  - {fileID: 8300000, guid: c12bc10dadc48864987bf6e62042df18, type: 3}
+  - {fileID: 8300000, guid: c5e279d29d5c329478a25a6af3c72c04, type: 3}
+  - {fileID: 8300000, guid: 07556fb1dfcbf0f48b3aee5615b9b10e, type: 3}
+  - {fileID: 8300000, guid: 4b904538a7c5e9742a2b7d494742134a, type: 3}
+  - {fileID: 8300000, guid: 983b67587918a904789f72aded615608, type: 3}
+  _dryFireAudioClips:
+  - {fileID: 8300000, guid: 9f31824e7b0cdaa469619aa2ffa5ae3e, type: 3}
+  - {fileID: 8300000, guid: a855226e0db60db4c87ea985a324c6bc, type: 3}
+  - {fileID: 8300000, guid: d55635c544f9c8542b43626962833a91, type: 3}
+  - {fileID: 8300000, guid: 2fde7aefe04237f4aabcbf3a95cfb1ba, type: 3}
+  _equipAudioClips:
+  - {fileID: 8300000, guid: 6e39d9aa3cc4d2d418064b362ebd583b, type: 3}
+  - {fileID: 8300000, guid: a27b1e1335b19104faeefc0b538a62f4, type: 3}
+  - {fileID: 8300000, guid: a76580dc06c7ccb43a843f5e53d3988b, type: 3}
+  - {fileID: 8300000, guid: 55e8c4563432a444a9400fc2320cee9c, type: 3}
+  - {fileID: 8300000, guid: b4db6228bd3d2374da330cc620627bc3, type: 3}
+  - {fileID: 8300000, guid: 260ec164f4d976645b14726ea5aed821, type: 3}
