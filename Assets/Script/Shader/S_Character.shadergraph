@@ -182,20 +182,6 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
-                    "m_Id": "4be22b4f5b144d6b90737f9a79968489"
-                },
-                "m_SlotId": 4
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "572b5f79daa2465d9c1733345cb31bd0"
-                },
-                "m_SlotId": 1008117658
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
                     "m_Id": "572b5f79daa2465d9c1733345cb31bd0"
                 },
                 "m_SlotId": 1
@@ -508,7 +494,7 @@
         "preventRotation": false
     },
     "m_Path": "Shader Graphs",
-    "m_GraphPrecision": 1,
+    "m_GraphPrecision": 2,
     "m_PreviewMode": 2,
     "m_OutputNode": {
         "m_Id": ""
@@ -1332,7 +1318,7 @@
         "code",
         "HLSL"
     ],
-    "m_Precision": 1,
+    "m_Precision": 2,
     "m_PreviewExpanded": false,
     "m_DismissedVersion": 0,
     "m_PreviewMode": 0,
@@ -1342,7 +1328,6 @@
     "m_SourceType": 0,
     "m_FunctionName": "SpecularOcclusionFromBentNormal",
     "m_FunctionSource": "aba6238d539be4a40afa3b59d2a5c6ff",
-    "m_FunctionSourceUsePragmas": true,
     "m_FunctionBody": "Enter function body here..."
 }
 
@@ -3222,7 +3207,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "_SpecularAO",
     "m_StageCapability": 3,
-    "m_Value": 0.0,
+    "m_Value": 1.0,
     "m_DefaultValue": 0.0,
     "m_Labels": []
 }

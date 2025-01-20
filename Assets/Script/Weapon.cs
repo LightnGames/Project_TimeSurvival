@@ -9,10 +9,12 @@ public class Weapon : GrabableItem
     [SerializeField] private Animator _animator;
     [SerializeField] private Transform _muzzleFlashAncher;
     [SerializeField] private Transform _triggerTransform;
+    [SerializeField] private Transform _emptyShellAncherTransform;
     private readonly int ShotHash = Animator.StringToHash("Shot");
     private readonly int TrailLengthId = Shader.PropertyToID("_TrailLength");
     private readonly int TrailStartTimeId = Shader.PropertyToID("_TrailStartTime");
     private float _triggerPitchAngleEuler = 0.0f;
+    private float _shotRecoilTimer = 0.0f;
     private AudioSource _audioSource;
 
     protected override void Awake()
@@ -32,6 +34,7 @@ public class Weapon : GrabableItem
 
         const float MaxTriggerAngleEuler = 45.0f;
         _triggerPitchAngleEuler = input._indexTrigger * MaxTriggerAngleEuler;
+        _shotRecoilTimer += Time.deltaTime;
     }
 
     public override void Catched(VibrateEvent vibrateEvent, XrHandTransformEvent transformEvent)
@@ -43,9 +46,15 @@ public class Weapon : GrabableItem
 
     public override void OnIndexTriggered() 
     {
+        if (_shotRecoilTimer < _weaponScriptableObject.RecoilTimeInSec)
+        {
+            return;
+        }
+
         MuzzleFlashEffect();
+        DischargeEmptyShell();
         Shot();
-        StartCoroutine(ShotRecoilAnimation());
+        StartCoroutine(PlayShotRecoilAnimation());
     }
 
     private void MuzzleFlashEffect()
@@ -63,6 +72,15 @@ public class Weapon : GrabableItem
         audioSource.PlayOneShot(audioClips[randomIndex]);
     }
 
+    private void DischargeEmptyShell()
+    {
+        Rigidbody emptyShell = Instantiate(_weaponScriptableObject.EmptyShellPrefab, _emptyShellAncherTransform.transform.position, _emptyShellAncherTransform.transform.rotation);
+        emptyShell.AddForce(Vector3.forward * 3.0f);
+        emptyShell.AddTorque(Vector3.right * 1.0f);
+        const float DestroyTimeInSec = 5.0f;
+        Destroy(emptyShell.gameObject, DestroyTimeInSec);
+    }
+
     private void Shot()
     {
         RaycastHit hit;
@@ -71,12 +89,6 @@ public class Weapon : GrabableItem
         Vector3 muzzleFlashPosition = _muzzleFlashAncher.position;
         if (Physics.SphereCast(muzzleFlashPosition, RayRadius, _muzzleFlashAncher.forward * MaxRayLength, out hit))
         {
-            const float ImpactParticleDestroyTimeInSec = 10.0f;
-            Quaternion rotation = Quaternion.LookRotation(hit.normal);
-            ParticleSystem impactParticle = Instantiate(_weaponScriptableObject.ImpactParticlePrefab, hit.point, rotation);
-            impactParticle.transform.parent = hit.transform;
-            Destroy(impactParticle.gameObject, ImpactParticleDestroyTimeInSec);
-
             const float BulletTrailDestroyTimeInSec = 5.0f;
             const float HitDistanceMergin = 0.05f;
             MeshRenderer meshRenderer = Instantiate(_weaponScriptableObject.BulletTrailCilinderMeshRendererPrefab, muzzleFlashPosition, _muzzleFlashAncher.rotation);
@@ -86,15 +98,25 @@ public class Weapon : GrabableItem
             meshRenderer.sharedMaterial = dynamicMaterial;
             Destroy(meshRenderer.gameObject, BulletTrailDestroyTimeInSec);
 
+            ParticleSystem impactParticlePrefab = _weaponScriptableObject.ImpactParticlePrefab;
             DamageableCollider damageableCollider = hit.collider.GetComponent<DamageableCollider>();
             if (damageableCollider != null)
             {
                 damageableCollider.Damage(1);
+                impactParticlePrefab = _weaponScriptableObject.BloodImpactParticlePrefab;
             }
+
+            const float ImpactParticleDestroyTimeInSec = 10.0f;
+            Quaternion rotation = Quaternion.LookRotation(hit.normal);
+            ParticleSystem impactParticle = Instantiate(impactParticlePrefab, hit.point, rotation);
+            impactParticle.transform.parent = hit.transform;
+            Destroy(impactParticle.gameObject, ImpactParticleDestroyTimeInSec);
         }
+
+        _shotRecoilTimer = 0.0f;
     }
 
-    private IEnumerator ShotRecoilAnimation()
+    private IEnumerator PlayShotRecoilAnimation()
     {
         float animationLength = _weaponScriptableObject.RecoilTimeInSec;
         float animationTime = 0.0f;

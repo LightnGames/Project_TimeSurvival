@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: b9c95345ddfb02249aeeed8ced72d89b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.40338388
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b9c95345ddfb02249aeeed8ced72d89b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b9c95345ddfb02249aeeed8ced72d89b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.519144
+      value: 5.18
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b9c95345ddfb02249aeeed8ced72d89b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -236,10 +236,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29a68cf7843af71489e76460d04bc76a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spawnType: 1
   _enemyScriptableObject: {fileID: 11400000, guid: 42447a7e96ca2d54e9fe3e38e5d4be95, type: 2}
   _footAudioSourceL: {fileID: 2118849747870435520}
   _footAudioSourceR: {fileID: 1726954001665771259}
-  _footAudioSourceVoice: {fileID: 4487379925631147267}
+  _voiceAudioSource: {fileID: 4487379925631147267}
 --- !u!195 &913888377435342685
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -359,7 +360,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -973,7 +974,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0

@@ -15,6 +15,8 @@ MonoBehaviour:
   _maxAmmo: 0
   _muzzleFlashParticle: {fileID: 1003230792439982313, guid: 1a8963a7db1f2df4998eff72a00ee843, type: 3}
   _impactParticle: {fileID: 5542739345599769195, guid: 1131ce0157cbb68448710c7103565bdb, type: 3}
+  _bloodImpactParticle: {fileID: 4355658961749207885, guid: 67acfb8bea492d9449e887ff37d36d1e, type: 3}
+  _emptyShellPrefab: {fileID: 7708233588953067852, guid: 2176e40dff65d26448dc93d27390ac3d, type: 3}
   _bulletTrailCilinderMeshRenderer: {fileID: 3610779081985988676, guid: b44ed44dd0bcd1e418a88ea7c07c8d7b, type: 3}
   _recoilPitchEuler:
     serializedVersion: 2

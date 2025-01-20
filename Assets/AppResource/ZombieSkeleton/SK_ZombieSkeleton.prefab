@@ -976,10 +976,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29a68cf7843af71489e76460d04bc76a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spawnType: 1
   _enemyScriptableObject: {fileID: 11400000, guid: 42447a7e96ca2d54e9fe3e38e5d4be95, type: 2}
   _footAudioSourceL: {fileID: 511037639811314452}
   _footAudioSourceR: {fileID: 8954186873397749070}
-  _footAudioSourceVoice: {fileID: 6248247004918450952}
+  _voiceAudioSource: {fileID: 6248247004918450952}
 --- !u!195 &5540210340565992596
 NavMeshAgent:
   m_ObjectHideFlags: 0

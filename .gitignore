@@ -5,6 +5,7 @@ Temp/
 Obj/
 UnityGenerated/
 Library/
+ThirdParty/
 Logs/
 .vs/
 .utmp/
@@ -40,6 +41,8 @@ ExportedObj/
 .Trashes
 ehthumbs.db
 Thumbs.db
+RuntimeActionBindings.json
+TempAssembly.dll
 
 
 # ============ #

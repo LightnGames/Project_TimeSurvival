@@ -23,10 +23,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 52e741d80683e534da694176faab5bb5, type: 3}
   - {fileID: 8300000, guid: b1e65c6770925f841a74804c47769553, type: 3}
   - {fileID: 8300000, guid: c25ca4ea96a5a8046afdca71e6dea0b0, type: 3}
-  _footStepRateInMeeter: 0.5
+  _footStepRateInMeeter: 0.7
   _fadeRangeMin: 0
-  _fadeRangeMax: 0.15
+  _fadeRangeMax: 0.16
   _fadeTime: 50
-  _timeScaleRangeMin: 0.2
+  _timeScaleRangeMin: 0.1
   _timeScaleRangeMax: 1
   _timeScaleTime: 50

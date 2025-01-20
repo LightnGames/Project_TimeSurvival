@@ -669,6 +669,29 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
+    "m_ObjectId": "39f0e817a0b14fe18a76e0a8cd0ace1c",
+    "m_Id": 7,
+    "m_DisplayName": "Reflection_Out",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Reflection_Out",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Texture2DMaterialSlot",
     "m_ObjectId": "3a9a8827c43f47528a46ae3afa3308c8",
     "m_Id": 0,
@@ -943,6 +966,9 @@
         },
         {
             "m_Id": "2f2382bdfe154cf19a677125e60f6080"
+        },
+        {
+            "m_Id": "39f0e817a0b14fe18a76e0a8cd0ace1c"
         }
     ],
     "synonyms": [],

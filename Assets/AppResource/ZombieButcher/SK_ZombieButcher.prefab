@@ -629,7 +629,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -995,10 +995,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29a68cf7843af71489e76460d04bc76a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spawnType: 1
   _enemyScriptableObject: {fileID: 11400000, guid: 42447a7e96ca2d54e9fe3e38e5d4be95, type: 2}
   _footAudioSourceL: {fileID: 7596979151797975139}
   _footAudioSourceR: {fileID: 1544328135774284528}
-  _footAudioSourceVoice: {fileID: 5800418535644249979}
+  _voiceAudioSource: {fileID: 5800418535644249979}
 --- !u!195 &3524220004893005529
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1286,7 +1287,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0

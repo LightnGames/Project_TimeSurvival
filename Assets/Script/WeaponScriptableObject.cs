@@ -6,6 +6,8 @@ public class WeaponScriptableObject : ScriptableObject
     [SerializeField] private int _maxAmmo;
     [SerializeField] private ParticleSystem _muzzleFlashParticle;
     [SerializeField] private ParticleSystem _impactParticle;
+    [SerializeField] private ParticleSystem _bloodImpactParticle;
+    [SerializeField] private Rigidbody _emptyShellPrefab;
     [SerializeField] private MeshRenderer _bulletTrailCilinderMeshRenderer;
     [SerializeField] private AnimationCurve _recoilPitchEuler;
     [SerializeField] private AnimationCurve _recoilTranslationZ;
@@ -17,6 +19,8 @@ public class WeaponScriptableObject : ScriptableObject
     public int MaxAmmo { get { return _maxAmmo; } }
     public ParticleSystem MuzzleFlashParticlePrefab { get {  return _muzzleFlashParticle; } }
     public ParticleSystem ImpactParticlePrefab { get { return _impactParticle; } }
+    public ParticleSystem BloodImpactParticlePrefab { get { return _bloodImpactParticle; } }
+    public Rigidbody EmptyShellPrefab { get { return _emptyShellPrefab; } }
     public MeshRenderer BulletTrailCilinderMeshRendererPrefab { get { return _bulletTrailCilinderMeshRenderer; } }
     public AnimationCurve RecoilPitchEuler { get {  return _recoilPitchEuler; } }
     public AnimationCurve RecoilTranslationZ { get { return _recoilTranslationZ; } }

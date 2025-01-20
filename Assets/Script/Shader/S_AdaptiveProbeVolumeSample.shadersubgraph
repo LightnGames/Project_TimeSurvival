@@ -179,7 +179,7 @@
         "preventRotation": false
     },
     "m_Path": "Sub Graphs",
-    "m_GraphPrecision": 1,
+    "m_GraphPrecision": 2,
     "m_PreviewMode": 2,
     "m_OutputNode": {
         "m_Id": "015e4460dd83417d98968dee8d029ec9"
@@ -372,7 +372,6 @@
     "m_SourceType": 0,
     "m_FunctionName": "AdaptiveProbeVolumeSample",
     "m_FunctionSource": "aba6238d539be4a40afa3b59d2a5c6ff",
-    "m_FunctionSourceUsePragmas": true,
     "m_FunctionBody": "#ifdef SHADERGRAPH_PREVIEW\r\nOut = 0;\r\n#else\nOut =  EvaluateAdaptiveProbeVolume(\r\n         PositionWS,\r\n         NormalWS,\r\n         ViewDirWS,\r\n         PositionCS,\r\n         Color\r\n     );\r\n#endif"
 }
 

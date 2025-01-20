@@ -35,7 +35,6 @@ public class PlayerController : MonoBehaviour
         float inputLength = Mathf.Min(stick.magnitude, 1.0f);
 
         UpdateFade(inputLength);
-        print(stick);
 
         if (inputLength < 0.001f)
         {
@@ -77,6 +76,5 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         Shader.SetGlobalFloat(GlobalTimeScaleId, 0.0f);
-        print("reset");
     }
 }

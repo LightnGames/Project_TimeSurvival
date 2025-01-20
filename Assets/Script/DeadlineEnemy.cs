@@ -18,6 +18,6 @@ public class DeadlineEnemy : MonoBehaviour
 
     private void OnDisable()
     {
-        Shader.SetGlobalFloat(DeadlinePositionZId, 0.0f);
+        Shader.SetGlobalFloat(DeadlinePositionZId, -5.0f);
     }
 }

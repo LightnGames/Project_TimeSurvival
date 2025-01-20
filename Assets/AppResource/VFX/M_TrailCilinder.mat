@@ -40,7 +40,7 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _TrailAlpha: 0.6
+    - _TrailAlpha: 0.4
     - _TrailFadeTime: 1
     - _TrailLength: 5
     - _TrailRadius: 0.005
