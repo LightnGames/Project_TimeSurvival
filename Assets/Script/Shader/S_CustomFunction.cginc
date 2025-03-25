@@ -35,23 +35,28 @@ void SpecularOcclusionFromBentNormal_half(in half EffectScale, in half3 ViewDirW
     Out = saturate(lerp(1.0, weight, EffectScale * bentNormalIntensity));
 }
 
-//void ReflectionProbe_half(in half3 ViewDirWS, in half3 NormalWS, in half3 PositionWS, in half LOD, out half3 Out)
-//{
-//#ifdef SHADERGRAPH_PREVIEW
-//     Out = half3(0, 0, 0);
-//#else
-//half3 viewDirWS = ViewDirWS;
-//half3 normalWS = NormalWS;
-//half3 reflDir = reflect(-viewDirWS, normalWS);
-
-//half3 factors = ((reflDir > 0 ? unity_SpecCube0_BoxMax.xyz : unity_SpecCube0_BoxMin.xyz) - PositionWS) / reflDir;
-//half scalar = min(min(factors.x, factors.y), factors.z);
-//half3 uvw = reflDir * scalar + (PositionWS - unity_SpecCube0_ProbePosition.xyz);
-
-//half4 sampleRefl = SAMPLE_TEXTURECUBE_LOD(unity_SpecCube0, samplerunity_SpecCube0, uvw, LOD);
-//half3 specCol = DecodeHDREnvironment(sampleRefl, unity_SpecCube0_HDR);
-//    Out = specCol;
-//#endif
-//}
+void LightingSpotLight_half(in half3 Albedo, in half Smoothness, in half Metallic, in half3 PositionWS, in half3 NormalWS, in half3 ViewDirWS, out half3 Out)
+{
+#ifndef SHADERGRAPH_PREVIEW
+    uint pixelLightCount = GetAdditionalLightsCount();
+    if (pixelLightCount == 0)
+    {
+        Out = half3(0, 0, 0);
+        return;
+    }
+    Light light = GetAdditionalPerObjectLight(0, PositionWS);
+    
+    half alpha = 1.0;
+    BRDFData brdfData;
+    InitializeBRDFData(Albedo, Metallic, 1, Smoothness, alpha, brdfData);
+    
+    half NdotL = saturate(dot(NormalWS, light.direction));
+    half3 radiance = light.color * (light.distanceAttenuation * NdotL);
+    half3 brdf = LightingLambert(half3(1, 1, 1), light.direction, NormalWS) + DirectBRDFSpecular(brdfData, NormalWS, light.direction, ViewDirWS);
+    Out = radiance * brdf;
+#else
+    Out = half3(0, 0, 0);
+#endif
+}
 
 #endif

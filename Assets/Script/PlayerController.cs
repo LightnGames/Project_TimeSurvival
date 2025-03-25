@@ -1,9 +1,12 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamageable
 {
     [SerializeField] PlayerScriptableObject _playerScriptableObject;
     [SerializeField] Renderer _fadeRenderer;
+    [SerializeField] Transform _headTransfrom;
     private readonly int FadeId = Shader.PropertyToID("_Fade");
     private readonly int GlobalTimeScaleId = Shader.PropertyToID("_GlobalTimeScale");
     private CharacterController _characterController;
@@ -11,17 +14,22 @@ public class PlayerController : MonoBehaviour
     private float _moveLengthFromFootStepStart = 0.0f;
     private Material[] _fadeMaterials;
     private float _prevFade = 0.0f;
+    private bool _dead = false;
 
     private void Awake()
     {
         _characterController = GetComponent<CharacterController>();
         _audioSource = GetComponent<AudioSource>();
         _fadeMaterials = new Material[_fadeRenderer.sharedMaterials.Length];
-        for(int i = 0; i < _fadeMaterials.Length; i++)
+        for (int i = 0; i < _fadeMaterials.Length; i++)
         {
             _fadeMaterials[i] = _fadeRenderer.materials[i];
             _fadeRenderer.sharedMaterials[i] = _fadeMaterials[i];
         }
+
+#if UNITY_EDITOR
+        _headTransfrom.localPosition = Vector3.up * 1.6f;
+#endif
     }
 
     private void Update()
@@ -34,7 +42,19 @@ public class PlayerController : MonoBehaviour
 #endif
         float inputLength = Mathf.Min(stick.magnitude, 1.0f);
 
-        UpdateFade(inputLength);
+        if (!_dead)
+        {
+            UpdateFade(inputLength);
+        }
+
+        UpdateTimeScale();
+        ApplyTimeScaleFade();
+        ApplyEnvTimeScaleFade();
+
+        if (_dead)
+        {
+            return;
+        }
 
         if (inputLength < 0.001f)
         {
@@ -58,23 +78,63 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void UpdateFade(float inputLength)
+    private void UpdateFade(float fadeTarget)
     {
-        float fade = _prevFade + (inputLength - _prevFade) / _playerScriptableObject.FadeTime;
+        _prevFade = _prevFade + (fadeTarget - _prevFade) / _playerScriptableObject.FadeTime;
+    }
+
+    private void ApplyTimeScaleFade()
+    {
+        float fade = _dead ? 1.0f - _prevFade : _prevFade;
         foreach (Material material in _fadeMaterials)
         {
             float remapedFade = _playerScriptableObject.GetRemapedFade(fade);
             material.SetFloat(FadeId, remapedFade);
         }
+    }
 
-        _prevFade = fade;
+    private void ApplyEnvTimeScaleFade()
+    {
+        Shader.SetGlobalFloat(GlobalTimeScaleId, 1.0f - _prevFade);
+    }
 
-        Time.timeScale = _playerScriptableObject.GetRemapedTimeScale(fade);
-        Shader.SetGlobalFloat(GlobalTimeScaleId, 1.0f - fade);
+    private void UpdateTimeScale()
+    {
+        Time.timeScale = _playerScriptableObject.GetRemapedTimeScale(_prevFade);
     }
 
     private void OnDisable()
     {
         Shader.SetGlobalFloat(GlobalTimeScaleId, 0.0f);
+    }
+
+    public void Damage(int damageAmount, Transform damageSource)
+    {
+        _dead = true;
+        StartCoroutine(KilledLookat(damageSource));
+        StartCoroutine(RequestForGameRestart());
+        GameSceneManager.Instance.GameOver();
+    }
+
+    private IEnumerator KilledLookat(Transform sourceTransform)
+    {
+        Quaternion startRotation = transform.rotation;
+        Quaternion endRotation = Quaternion.LookRotation(sourceTransform.position - transform.position);
+        float startFade = _prevFade;
+        float animationTime = 0.0f;
+        float animationLength = 0.1f;
+        while (animationTime < 1.0f)
+        {
+            _prevFade = Mathf.Lerp(startFade, 1.0f, animationTime);
+            transform.rotation = Quaternion.Lerp(startRotation, endRotation, animationTime);
+            animationTime += Time.deltaTime / Time.timeScale / animationLength;
+            yield return null;
+        }
+    }
+
+    private IEnumerator RequestForGameRestart()
+    {
+        yield return new WaitForSeconds(6.0f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

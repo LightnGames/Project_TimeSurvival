@@ -3,7 +3,7 @@ using UnityEngine;
 
 public interface IDamageable
 {
-    public abstract void Damage(int damageAmount);
+    public abstract void Damage(int damageAmount, Transform damageSource);
 }
 
 public class DamageableCollider : MonoBehaviour
@@ -17,10 +17,10 @@ public class DamageableCollider : MonoBehaviour
     [SerializeField] private Transform _parent;
     [SerializeField] private DamagePartType _partType;
 
-    public void Damage(int damageAmount)
+    public void Damage(int damageAmount, Transform damageSource)
     {
         IDamageable damageable = _parent.GetComponent<IDamageable>();
-        damageable.Damage(damageAmount);
+        damageable.Damage(damageAmount, damageSource);
     }
 
     public DamagePartType PartType { get { return _partType; } }

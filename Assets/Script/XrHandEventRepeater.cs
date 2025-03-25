@@ -7,7 +7,7 @@ public class XrHandEventRepeater : MonoBehaviour
 
     public Animator HandAnimator { get; private set; }
     public Transform HandTransformAncher { get { return _handTransformAncher; } }
-    public Action<GrabableItem, bool> OnTriggerEnterEvent { get; set; }
+    public Action<CatchableItem, bool> OnTriggerEnterEvent { get; set; }
 
     private void Awake()
     {
@@ -16,7 +16,7 @@ public class XrHandEventRepeater : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        GrabableItem item = other.gameObject.GetComponent<GrabableItem>();
+        CatchableItem item = other.gameObject.GetComponent<CatchableItem>();
         if (item == null)
         {
             return;
@@ -30,7 +30,7 @@ public class XrHandEventRepeater : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        GrabableItem item = other.gameObject.GetComponent<GrabableItem>();
+        CatchableItem item = other.gameObject.GetComponent<CatchableItem>();
         if (item == null)
         {
             return;

@@ -1,52 +1,108 @@
 using System.Collections;
-using Unity.VisualScripting;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class Weapon : GrabableItem
+public class Weapon : MonoBehaviour
 {
     [SerializeField] private WeaponScriptableObject _weaponScriptableObject;
     [SerializeField] private Animator _animator;
     [SerializeField] private Transform _muzzleFlashAncher;
     [SerializeField] private Transform _triggerTransform;
     [SerializeField] private Transform _emptyShellAncherTransform;
+    [SerializeField] private Light _flashLight;
     private readonly int ShotHash = Animator.StringToHash("Shot");
     private readonly int TrailLengthId = Shader.PropertyToID("_TrailLength");
     private readonly int TrailStartTimeId = Shader.PropertyToID("_TrailStartTime");
+    private readonly int FresnelEffectId = Shader.PropertyToID("_FresnelEffect");
     private float _triggerPitchAngleEuler = 0.0f;
     private float _shotRecoilTimer = 0.0f;
     private AudioSource _audioSource;
+    private Rigidbody _rigidbody;
+    private Collider _collider;
+    private List<Material> _materials = new List<Material>();
+    private event CatchableItem.VibrateEvent _mainGripVibrationEvent = null;
+    private event CatchableItem.XrHandAnimationTransformEvent _mainGripAnimationTransformEvent = null;
 
-    protected override void Awake()
+    protected virtual void Awake()
     {
-        base.Awake();
+        _rigidbody = GetComponent<Rigidbody>();
+        _collider = GetComponent<Collider>();
         _audioSource = GetComponent<AudioSource>();
+
+        MeshRenderer[] meshRenderers = GetComponentsInChildren<MeshRenderer>();
+        foreach (MeshRenderer renderer in meshRenderers)
+        {
+            foreach(Material material in renderer.materials)
+            {
+                _materials.Add(material);
+            }
+        }
+
+        SwitchFresnelEffect(true);
     }
 
-    private void LateUpdate()
+    protected void SwitchFresnelEffect(bool visibility)
+    {
+        foreach (Material material in _materials)
+        {
+            material.SetFloat(FresnelEffectId, visibility ? 1.0f : 0.0f);
+        }
+    }
+
+    protected virtual void Update() { }
+
+    protected virtual void LateUpdate()
     {
         _triggerTransform.localRotation = Quaternion.Euler(_triggerPitchAngleEuler, 0, 0);
     }
 
-    public override void CatchedUpdate(in GrabableItemInputData input)
+    public virtual void MainGripCatchedUpdate(in CatchableItem.GrabableItemInputData input, Transform mainGripTransform)
     {
-        base.CatchedUpdate(input);
-
         const float MaxTriggerAngleEuler = 45.0f;
         _triggerPitchAngleEuler = input._indexTrigger * MaxTriggerAngleEuler;
         _shotRecoilTimer += Time.deltaTime;
     }
 
-    public override void Catched(VibrateEvent vibrateEvent, XrHandTransformEvent transformEvent)
+    public virtual void MainGripCatched(CatchableItem.VibrateEvent vibrateEvent, CatchableItem.XrHandAnimationTransformEvent transformEvent)
     {
-        base.Catched(vibrateEvent, transformEvent);
-        int randomIndex = Random.Range(0, _weaponScriptableObject.EquipAudioClips.Length);
-        _audioSource.PlayOneShot(_weaponScriptableObject.EquipAudioClips[randomIndex]);
+        _mainGripVibrationEvent = vibrateEvent;
+        _mainGripAnimationTransformEvent = transformEvent;
+        CatchedWeapon();
     }
 
-    public override void OnIndexTriggered() 
+    public virtual void MainGripReleased()
     {
-        if (_shotRecoilTimer < _weaponScriptableObject.RecoilTimeInSec)
+        _mainGripVibrationEvent = null;
+        _mainGripAnimationTransformEvent = null;
+    }
+
+    protected void CatchedWeapon()
+    {
+        int randomIndex = Random.Range(0, _weaponScriptableObject.EquipAudioClips.Length);
+        _audioSource.PlayOneShot(_weaponScriptableObject.EquipAudioClips[randomIndex]);
+        _rigidbody.isKinematic = true;
+        _collider.enabled = false;
+        _flashLight.enabled = true;
+        SwitchFresnelEffect(false);
+    }
+
+    protected void ReleasedWeapon()
+    {
+        _rigidbody.isKinematic = false;
+        _collider.enabled = true;
+        _flashLight.enabled = false;
+        SwitchFresnelEffect(true);
+    }
+
+    public bool IsMainGripCatched()
+    {
+        return _mainGripAnimationTransformEvent != null;
+    }
+
+    public void OnMainGripIndexTriggered()
+    {
+        if (!CanShot())
         {
             return;
         }
@@ -57,6 +113,16 @@ public class Weapon : GrabableItem
         StartCoroutine(PlayShotRecoilAnimation());
     }
 
+    protected bool IsReadyToShotTimer()
+    {
+        return _shotRecoilTimer > _weaponScriptableObject.RecoilTimeInSec;
+    }
+
+    protected virtual bool CanShot()
+    {
+        return IsReadyToShotTimer();
+    }
+
     private void MuzzleFlashEffect()
     {
         bool canFire = true;
@@ -64,7 +130,7 @@ public class Weapon : GrabableItem
         ParticleSystem muzzleFlashParticle = Instantiate(_weaponScriptableObject.MuzzleFlashParticlePrefab, _muzzleFlashAncher.transform.position, _muzzleFlashAncher.transform.rotation);
         const float MuzzleFlashParticleDestroyTimeInSec = 3.0f;
         Destroy(muzzleFlashParticle.gameObject, MuzzleFlashParticleDestroyTimeInSec);
-        VibrateXrHand(0, 1, 0.1f);
+        _mainGripVibrationEvent(0, 1, 0.15f / Time.timeScale);
 
         AudioSource audioSource = muzzleFlashParticle.GetComponent<AudioSource>();
         AudioClip[] audioClips = canFire ? _weaponScriptableObject.ShotAudioClips : _weaponScriptableObject.DryDireAudioClips;
@@ -81,7 +147,7 @@ public class Weapon : GrabableItem
         Destroy(emptyShell.gameObject, DestroyTimeInSec);
     }
 
-    private void Shot()
+    protected virtual void Shot()
     {
         RaycastHit hit;
         const float MaxRayLength = 30.0f;
@@ -102,7 +168,8 @@ public class Weapon : GrabableItem
             DamageableCollider damageableCollider = hit.collider.GetComponent<DamageableCollider>();
             if (damageableCollider != null)
             {
-                damageableCollider.Damage(1);
+                int damage = damageableCollider.PartType == DamageableCollider.DamagePartType.Critical ? 2 : 1;
+                damageableCollider.Damage(damage, transform);
                 impactParticlePrefab = _weaponScriptableObject.BloodImpactParticlePrefab;
             }
 
@@ -124,10 +191,10 @@ public class Weapon : GrabableItem
         {
             Vector3 position = Vector3.forward * _weaponScriptableObject.RecoilTranslationZ.Evaluate(animationTime);
             Quaternion rotation = Quaternion.Euler(Vector3.up * _weaponScriptableObject.RecoilPitchEuler.Evaluate(animationTime));
-            AnimateXrHandTransform(position, rotation);
+            _mainGripAnimationTransformEvent(position, rotation);
             yield return null;
             animationTime += Time.deltaTime / animationLength;
         }
-        AnimateXrHandTransform(Vector3.zero, Quaternion.identity);
+        _mainGripAnimationTransformEvent(Vector3.zero, Quaternion.identity);
     }
 }

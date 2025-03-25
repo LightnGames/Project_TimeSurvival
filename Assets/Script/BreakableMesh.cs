@@ -1,16 +1,17 @@
 using System.Collections;
 using UnityEngine;
 
-public class BreakableWall : MonoBehaviour, IEventTrigger
+public class BreakableMesh : MonoBehaviour, IEventTrigger
 {
     [SerializeField] Rigidbody[] _fractureRigidBodies;
     [SerializeField] MeshRenderer _dummyWallMeshRenderer;
+    [SerializeField] float _forceScale;
 
     public void OnEventTriggered()
     {
         StartCoroutine(HideDummyWall());
 
-        Vector3 forceVelocity = -transform.right * 200.0f;
+        Vector3 forceVelocity = transform.forward * _forceScale;
         foreach (var rigidBody in _fractureRigidBodies)
         {
             rigidBody.isKinematic = false;

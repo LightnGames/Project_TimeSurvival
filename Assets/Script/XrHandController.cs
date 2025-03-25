@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Windows;
+using UnityEngine.Animations;
 
 public class XrHandController : MonoBehaviour
 {
@@ -17,24 +18,29 @@ public class XrHandController : MonoBehaviour
     private readonly int GrabHash = Animator.StringToHash("Grab");
     private readonly int TriggerHash = Animator.StringToHash("Trigger");
     private readonly int GrabItemIndexHash = Animator.StringToHash("GrabItemIndex");
-    private LinkedList<GrabableItem> _catchableItems;
-    private GrabableItem _catchingItem;
+    private LinkedList<CatchableItem> _catchableItems;
+    private CatchableItem _catchingItem;
     private Coroutine _catchTransformAnimationCoroutine = null;
     private float _prevIndexTriggerAmount = 0.0f;
+    private ConstraintSource _constraintSource;
 
     private void Awake()
     {
-        _catchableItems = new LinkedList<GrabableItem>();
+        _catchableItems = new LinkedList<CatchableItem>();
         _xrHand.OnTriggerEnterEvent += OnTriggerEnterEvent;
+
+        _constraintSource = new ConstraintSource();
+        _constraintSource.sourceTransform = _xrHand.HandTransformAncher;
+        _constraintSource.weight = 1.0f;
     }
-    private void Update()
+    private void LateUpdate()
     {
         var handTriggerTarget = _handType == HandType.Left ? OVRInput.RawAxis1D.LHandTrigger : OVRInput.RawAxis1D.RHandTrigger;
         var indexTriggerTarget = _handType == HandType.Left ? OVRInput.RawAxis1D.LIndexTrigger : OVRInput.RawAxis1D.RIndexTrigger;
         float grabAmount = OVRInput.Get(handTriggerTarget);
         float grabIndexAmount = OVRInput.Get(indexTriggerTarget);
 
-        GrabableItem.GrabableItemInputData _grabableItemInput = new GrabableItem.GrabableItemInputData();
+        CatchableItem.GrabableItemInputData _grabableItemInput = new CatchableItem.GrabableItemInputData();
         _grabableItemInput._indexTrigger = grabIndexAmount;
 
         _xrHand.HandAnimator.SetFloat(GrabHash, grabAmount, 0.1f, Time.deltaTime);
@@ -61,6 +67,11 @@ public class XrHandController : MonoBehaviour
             _catchingItem.CatchedUpdate(_grabableItemInput);
             _prevIndexTriggerAmount = grabIndexAmount;
         }
+
+        foreach (var item in _catchableItems)
+        {
+            Debug.DrawLine(item.transform.position, item.transform.position + item.transform.up * 0.2f, item.IsCatched ? Color.red : Color.yellow);
+        }
     }
 
     private void TryToCatchItem()
@@ -70,7 +81,7 @@ public class XrHandController : MonoBehaviour
             return;
         }
 
-        GrabableItem nearestItem = null;
+        CatchableItem nearestItem = null;
         float minSqrLength = float.MaxValue;
         foreach (var item in _catchableItems)
         {
@@ -98,9 +109,8 @@ public class XrHandController : MonoBehaviour
             StopCoroutine(_catchTransformAnimationCoroutine);
         }
         _xrHand.HandAnimator.SetInteger(GrabItemIndexHash, _catchingItem.GrabItemIndex);
-        _catchingItem.transform.parent = _xrHand.HandTransformAncher;
+        _catchingItem.Catched(OnXrHandVibrated, OnXrHandTransformAnimated, _constraintSource);
         _catchTransformAnimationCoroutine = StartCoroutine(PlayCatchTransformAnimation());
-        _catchingItem.Catched(OnXrHandVibrated, OnXrHandTransformAnimated);
     }
 
     private void TryToReleaseItem()
@@ -111,34 +121,18 @@ public class XrHandController : MonoBehaviour
         }
 
         _xrHand.HandAnimator.SetInteger(GrabItemIndexHash, 0);
-        _catchingItem.transform.parent = null;
         _catchingItem.Released();
         _catchingItem = null;
     }
 
     private IEnumerator PlayCatchTransformAnimation()
     {
-        Transform itemTransform = _catchingItem.transform;
-        Vector3 startPosition = itemTransform.localPosition;
-        Quaternion startRotation = itemTransform.rotation;
-        Vector3 endPosition = _catchingItem.CatchAncherTransform.localPosition;
-        const float AnimationLength = 0.1f;
-        float animationTime = 0.0f;
-        while (animationTime < 1.0f)
-        {
-            Vector3 position = Vector3.Lerp(startPosition, endPosition, animationTime);
-            Quaternion rotation = Quaternion.Lerp(startRotation, Quaternion.identity, animationTime);
-            itemTransform.SetLocalPositionAndRotation(position, rotation);
-            animationTime += Time.deltaTime / AnimationLength;
-            yield return null;
-        }
-        itemTransform.SetLocalPositionAndRotation(endPosition, Quaternion.identity);
-        _catchTransformAnimationCoroutine = null;
-
+        yield return StartCoroutine(_catchingItem.PlayCatchTransformAnimation());
         OnXrHandVibrated(0.5f, 0.2f, 0.1f);
+        _catchTransformAnimationCoroutine = null;
     }
 
-    private void OnTriggerEnterEvent(GrabableItem item, bool enter)
+    private void OnTriggerEnterEvent(CatchableItem item, bool enter)
     {
         if (enter)
         {

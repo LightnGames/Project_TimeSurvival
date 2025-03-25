@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UIElements;
 
 public class Enemy : MonoBehaviour, IDamageable, IEventTrigger
 {
@@ -15,6 +16,9 @@ public class Enemy : MonoBehaviour, IDamageable, IEventTrigger
 
     private readonly int IsWalingHash = Animator.StringToHash("Walk");
     private readonly int SpawnTypeHash = Animator.StringToHash("SpawnType");
+    private readonly int DeadHash = Animator.StringToHash("Dead");
+    private readonly int DamageHash = Animator.StringToHash("Damage");
+    private readonly int KillPlayerHash = Animator.StringToHash("KillPlayer");
     private int _health = 0;
 
     private void Awake()
@@ -22,6 +26,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEventTrigger
         _animator = GetComponent<Animator>();
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _navMeshAgent.updatePosition = false;
+        _navMeshAgent.enabled = false;
         _health = _enemyScriptableObject.MaxHealth;
         _animator.SetInteger(SpawnTypeHash, _spawnType);
     }
@@ -53,20 +58,72 @@ public class Enemy : MonoBehaviour, IDamageable, IEventTrigger
 
     public void EndSpawn()
     {
-        _navMeshAgent.SetDestination(-Vector3.forward * 3);
+        _navMeshAgent.enabled = true;
     }
 
     private void Update()
     {
-        if (_navMeshAgent.enabled)
+        if (!_navMeshAgent.enabled)
         {
-            _navMeshAgent.nextPosition = transform.position;
-            bool isWalking = _navMeshAgent.velocity.sqrMagnitude > 0.05f;
-            _animator.SetBool(IsWalingHash, isWalking);
+            return;
+        }
+
+        if (GameSceneManager.Instance.IsGameOver)
+        {
+            _navMeshAgent.enabled = false;
+            return;
+        }
+
+        _navMeshAgent.destination = GameSceneManager.Instance.PlayerTransform.position;
+        _navMeshAgent.nextPosition = transform.position;
+        bool isWalking = _navMeshAgent.velocity.sqrMagnitude > 0.05f;
+        _animator.SetBool(IsWalingHash, isWalking);
+
+        if (Vector3.Distance(_navMeshAgent.destination, transform.position) < _navMeshAgent.stoppingDistance + 0.2f)
+        {
+            KillPlayer();
         }
     }
 
-    public void Damage(int damageAmount)
+    private void KillPlayer()
+    {
+        _animator.SetTrigger(KillPlayerHash);
+        IDamageable damageable = GameSceneManager.Instance.PlayerTransform.GetComponent<IDamageable>();
+        damageable.Damage(1, transform);
+        _navMeshAgent.enabled = false;
+        StartCoroutine(FitKilledPlayerTransform());
+    }
+
+    private IEnumerator FitKilledPlayerTransform()
+    {
+        Transform playerCameraTransform = GameSceneManager.Instance.CameraTransform;
+        Transform playerTransform = GameSceneManager.Instance.PlayerTransform;
+        Quaternion startRotation = transform.rotation;
+
+        Vector3 startPosition = transform.position;
+        float animationTime = 0.0f;
+        float animationLength = 0.1f;
+        while (animationTime < 1.0f)
+        {
+            Vector3 playerCameraPositionXZ = playerCameraTransform.position;
+            playerCameraPositionXZ.y = transform.position.y;
+
+            Vector3 playerPositionXZ = playerTransform.position;
+            playerPositionXZ.y = transform.position.y;
+
+            Vector3 cameraToPlayerOffset = (transform.position - playerCameraPositionXZ).normalized;
+            Vector3 endPosition = playerPositionXZ + cameraToPlayerOffset;
+            Vector3 position = Vector3.Lerp(startPosition, endPosition, animationTime);
+
+            Quaternion endRotation = Quaternion.LookRotation(playerPositionXZ - transform.position);
+            Quaternion rotation = Quaternion.Lerp(startRotation, endRotation, animationTime);
+            transform.SetPositionAndRotation(position, rotation);
+            animationTime += Time.deltaTime / Time.timeScale / animationLength;
+            yield return null;
+        }
+    }
+
+    public void Damage(int damageAmount, Transform damageSource)
     {
         if (IsDead())
         {
@@ -76,13 +133,13 @@ public class Enemy : MonoBehaviour, IDamageable, IEventTrigger
         _health = Mathf.Max(_health - damageAmount, 0);
         if (_health == 0)
         {
-            _animator.SetTrigger("Dead");
+            _animator.SetTrigger(DeadHash);
             _voiceAudioSource.PlayOneShot(_enemyScriptableObject.GetRandomDeadAudioClip());
             _navMeshAgent.enabled = false;
             return;
         }
 
-        _animator.SetTrigger("Damage");
+        _animator.SetTrigger(DamageHash);
         _voiceAudioSource.PlayOneShot(_enemyScriptableObject.GetRandomTakeDamageAudioClip());
     }
 
