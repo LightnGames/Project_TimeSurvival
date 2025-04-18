@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 73704d97f7b770a43a452b6311812ad2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.083
+      value: 1.943
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 73704d97f7b770a43a452b6311812ad2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -18,19 +18,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 73704d97f7b770a43a452b6311812ad2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.025
+      value: 0.712
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 73704d97f7b770a43a452b6311812ad2, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.8105326
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 73704d97f7b770a43a452b6311812ad2, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 73704d97f7b770a43a452b6311812ad2, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.58569354
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 73704d97f7b770a43a452b6311812ad2, type: 3}
       propertyPath: m_LocalRotation.z
@@ -42,11 +42,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 73704d97f7b770a43a452b6311812ad2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 71.704
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 73704d97f7b770a43a452b6311812ad2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 73704d97f7b770a43a452b6311812ad2, type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 73704d97f7b770a43a452b6311812ad2, type: 3}
       propertyPath: m_Name
@@ -88,5 +92,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.7871274, y: 0.8497642, z: 2.1350474}
+  m_Size: {x: 0.7871274, y: 0.8, z: 2.1350474}
   m_Center: {x: 0.017746046, y: 0.4187413, z: 0.0016565323}

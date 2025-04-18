@@ -3,6 +3,7 @@ using UnityEngine;
 //[CreateAssetMenu(menuName = "WeaponScriptableObject")]
 public class WeaponScriptableObject : ScriptableObject
 {
+    [SerializeField] private float _baseDamage;
     [SerializeField] private int _maxAmmo;
     [SerializeField] private ParticleSystem _muzzleFlashParticle;
     [SerializeField] private ParticleSystem _impactParticle;
@@ -16,6 +17,7 @@ public class WeaponScriptableObject : ScriptableObject
     [SerializeField] private AudioClip[] _dryFireAudioClips;
     [SerializeField] private AudioClip[] _equipAudioClips;
 
+    public float BaseDamage { get { return _baseDamage; } }
     public int MaxAmmo { get { return _maxAmmo; } }
     public ParticleSystem MuzzleFlashParticlePrefab { get {  return _muzzleFlashParticle; } }
     public ParticleSystem ImpactParticlePrefab { get { return _impactParticle; } }
@@ -26,6 +28,6 @@ public class WeaponScriptableObject : ScriptableObject
     public AnimationCurve RecoilTranslationZ { get { return _recoilTranslationZ; } }
     public float RecoilTimeInSec { get { return _recoilTimeInSec; } }
     public AudioClip[] ShotAudioClips { get {  return _shotAudioClips; } }
-    public AudioClip[] DryDireAudioClips { get { return _dryFireAudioClips; } } 
+    public AudioClip[] DryFireAudioClips { get { return _dryFireAudioClips; } } 
     public AudioClip[] EquipAudioClips { get { return _equipAudioClips; } }
 }

@@ -1,6 +1,8 @@
 #ifndef REFLECTION_PROBE_FUNCTION_INCLUDED
 #define REFLECTION_PROBE_FUNCTION_INCLUDED
 
+#pragma multi_compile_fragment _ _REFLECTION_PROBE_BOX_PROJECTION
+#pragma multi_compile _ _FORWARD_PLUS
 #ifndef SHADERGRAPH_PREVIEW
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/GlobalIllumination.hlsl"
 #endif

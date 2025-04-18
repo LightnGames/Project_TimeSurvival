@@ -143,9 +143,9 @@ public class SniperRifle : Weapon
         _subGripCatchedInverseRotation = transform.rotation;
     }
 
-    protected override bool CanShot()
+    protected override bool IsReadyToShot()
     {
-        return base.CanShot() && _pumpState == PumpState.ShotReady;
+        return base.IsReadyToShot() && _pumpState == PumpState.ShotReady;
     }
 
     protected override void Shot()

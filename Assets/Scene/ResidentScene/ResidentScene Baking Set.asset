@@ -37,22 +37,8 @@ MonoBehaviour:
   m_LightingScenarios:
   - Default
   cellDescs:
-    m_Keys: 06000000000000000100000007000000
+    m_Keys: 00000000060000000100000007000000
     m_Values:
-    - position: {x: -1, y: 0, z: 0}
-      index: 6
-      probeCount: 1856
-      minSubdiv: 0
-      indexChunkCount: 91
-      shChunkCount: 1
-      bricksCount: 29
-      indirectionEntryInfo:
-      - positionInBricks: {x: -27, y: 0, z: 0}
-        minSubdiv: 0
-        minBrickPos: {x: 0, y: 0, z: 0}
-        maxBrickPosPlusOne: {x: 28, y: 28, z: 28}
-        hasMinMax: 1
-        hasOnlyBiggerBricks: 0
     - position: {x: -1, y: 0, z: -1}
       index: 0
       probeCount: 960
@@ -62,6 +48,20 @@ MonoBehaviour:
       bricksCount: 15
       indirectionEntryInfo:
       - positionInBricks: {x: -27, y: 0, z: -27}
+        minSubdiv: 0
+        minBrickPos: {x: 0, y: 0, z: 0}
+        maxBrickPosPlusOne: {x: 28, y: 28, z: 28}
+        hasMinMax: 1
+        hasOnlyBiggerBricks: 0
+    - position: {x: -1, y: 0, z: 0}
+      index: 6
+      probeCount: 1856
+      minSubdiv: 0
+      indexChunkCount: 91
+      shChunkCount: 1
+      bricksCount: 29
+      indirectionEntryInfo:
+      - positionInBricks: {x: -27, y: 0, z: 0}
         minSubdiv: 0
         minBrickPos: {x: 0, y: 0, z: 0}
         maxBrickPosPlusOne: {x: 28, y: 28, z: 28}
@@ -97,13 +97,13 @@ MonoBehaviour:
         hasOnlyBiggerBricks: 0
   m_SerializedPerSceneCellList:
   - sceneGUID: c5a19caad08e8124dac11b322f615ad2
-    cellList: 06000000000000000100000007000000
+    cellList: 00000000060000000100000007000000
   cellSharedDataAsset:
     m_AssetGUID: d05eda5b849836e4ca159c1ce3be6492
     m_StreamableAssetPath: APVStreamingAssets\e4ec773f2d3379e4d933bd40a9e2319d\d05eda5b849836e4ca159c1ce3be6492.bytes
     m_ElementSize: 8192
     m_StreamableCellDescs:
-      m_Keys: 06000000000000000100000007000000
+      m_Keys: 00000000060000000100000007000000
       m_Values:
       - offset: 0
         elementCount: 1
@@ -118,13 +118,13 @@ MonoBehaviour:
     m_Keys:
     - Default
     m_Values:
-    - sceneHash: 1135921911
+    - sceneHash: 2118469225
       cellDataAsset:
         m_AssetGUID: 7c92781135f0f7a4aba8d3a5a516c623
         m_StreamableAssetPath: APVStreamingAssets\e4ec773f2d3379e4d933bd40a9e2319d\7c92781135f0f7a4aba8d3a5a516c623.bytes
         m_ElementSize: 131072
         m_StreamableCellDescs:
-          m_Keys: 06000000000000000100000007000000
+          m_Keys: 00000000060000000100000007000000
           m_Values:
           - offset: 0
             elementCount: 1
@@ -140,7 +140,7 @@ MonoBehaviour:
         m_StreamableAssetPath: APVStreamingAssets\e4ec773f2d3379e4d933bd40a9e2319d\c843c8a266a7fad419c0f833667ab972.bytes
         m_ElementSize: 131072
         m_StreamableCellDescs:
-          m_Keys: 06000000000000000100000007000000
+          m_Keys: 00000000060000000100000007000000
           m_Values:
           - offset: 0
             elementCount: 1
@@ -156,7 +156,7 @@ MonoBehaviour:
         m_StreamableAssetPath: APVStreamingAssets\e4ec773f2d3379e4d933bd40a9e2319d\217b6d0938f6f1d4294e2de36c143236.bytes
         m_ElementSize: 0
         m_StreamableCellDescs:
-          m_Keys: 06000000000000000100000007000000
+          m_Keys: 00000000060000000100000007000000
           m_Values:
           - offset: 0
             elementCount: 1
@@ -172,12 +172,12 @@ MonoBehaviour:
     m_StreamableAssetPath: APVStreamingAssets\e4ec773f2d3379e4d933bd40a9e2319d\fa779546245cdbd49ab073d064a8c27e.bytes
     m_ElementSize: 16
     m_StreamableCellDescs:
-      m_Keys: 06000000000000000100000007000000
+      m_Keys: 00000000060000000100000007000000
       m_Values:
       - offset: 0
-        elementCount: 29
-      - offset: 464
         elementCount: 15
+      - offset: 240
+        elementCount: 29
       - offset: 704
         elementCount: 15
       - offset: 944
@@ -188,7 +188,7 @@ MonoBehaviour:
     m_StreamableAssetPath: APVStreamingAssets\e4ec773f2d3379e4d933bd40a9e2319d\47eb441b679f7bb418717fd5e4d231de.bytes
     m_ElementSize: 262144
     m_StreamableCellDescs:
-      m_Keys: 06000000000000000100000007000000
+      m_Keys: 00000000060000000100000007000000
       m_Values:
       - offset: 0
         elementCount: 1

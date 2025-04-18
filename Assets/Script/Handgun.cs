@@ -18,9 +18,9 @@ public class Handgun : Weapon
         base.LateUpdate();
     }
 
-    protected override bool CanShot()
+    protected override bool IsReadyToShot()
     {
-        return base.CanShot();
+        return base.IsReadyToShot();
     }
 
     protected override void Shot()

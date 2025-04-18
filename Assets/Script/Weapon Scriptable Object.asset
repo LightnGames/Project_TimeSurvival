@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b20c7f5bf6869438d00f5efbf7129d, type: 3}
   m_Name: Weapon Scriptable Object
   m_EditorClassIdentifier: 
-  _maxAmmo: 0
+  _baseDamage: 1
+  _maxAmmo: 5
   _muzzleFlashParticle: {fileID: 1003230792439982313, guid: 1a8963a7db1f2df4998eff72a00ee843, type: 3}
   _impactParticle: {fileID: 5542739345599769195, guid: 1131ce0157cbb68448710c7103565bdb, type: 3}
   _bloodImpactParticle: {fileID: 4355658961749207885, guid: 67acfb8bea492d9449e887ff37d36d1e, type: 3}

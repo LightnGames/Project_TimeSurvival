@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 703972d33035b8a4d85c78f7d91fc1fa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.5138178
+      value: -3.250012
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 703972d33035b8a4d85c78f7d91fc1fa, type: 3}
       propertyPath: m_LocalPosition.y
@@ -18,19 +18,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 703972d33035b8a4d85c78f7d91fc1fa, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.953
+      value: 3.395
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 703972d33035b8a4d85c78f7d91fc1fa, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7950198
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 703972d33035b8a4d85c78f7d91fc1fa, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 703972d33035b8a4d85c78f7d91fc1fa, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.6065836
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 703972d33035b8a4d85c78f7d91fc1fa, type: 3}
       propertyPath: m_LocalRotation.z
@@ -42,11 +42,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 703972d33035b8a4d85c78f7d91fc1fa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 74.686
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 703972d33035b8a4d85c78f7d91fc1fa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 703972d33035b8a4d85c78f7d91fc1fa, type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 703972d33035b8a4d85c78f7d91fc1fa, type: 3}
       propertyPath: m_Name
