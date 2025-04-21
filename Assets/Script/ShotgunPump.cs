@@ -26,4 +26,9 @@ public class ShotgunPump : CatchableItem
         base.CatchedUpdate(input);
         _weapon.PumpCatchedUpdate(input, transform);
     }
+
+    public override bool IsCatcheable()
+    {
+        return _weapon.IsEmptyAmmo();
+    }
 }

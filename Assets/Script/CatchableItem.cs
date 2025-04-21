@@ -62,6 +62,11 @@ public class CatchableItem : MonoBehaviour
         transform.SetLocalPositionAndRotation(_defaultLocalPosition, _defaultLocalRotation);
     }
 
+    public virtual bool IsCatcheable()
+    {
+        return true;
+    }
+
     public IEnumerator PlayCatchTransformAnimation()
     {
         if (_unuseCatchedAnimation)

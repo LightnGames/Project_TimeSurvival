@@ -24,4 +24,9 @@ public class SniperRifleBolt : CatchableItem
         base.CatchedUpdate(input);
         _weapon.BoltCatchedUpdate(input, transform);
     }
+
+    public override bool IsCatcheable()
+    {
+        return _weapon.IsEmptyAmmo();
+    }
 }

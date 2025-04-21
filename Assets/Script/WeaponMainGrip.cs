@@ -32,4 +32,9 @@ public class WeaponMainGrip : CatchableItem
         base.OnIndexTriggered();
         _weapon.OnMainGripIndexTriggered();
     }
+    public override bool IsCatcheable()
+    {
+        return _weapon.IsEmptyAmmo();
+    }
+
 }

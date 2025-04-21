@@ -94,7 +94,11 @@ public class Weapon : MonoBehaviour
         _rigidbody.isKinematic = false;
         _collider.enabled = true;
         _flashLight.enabled = false;
-        SwitchFresnelEffect(true);
+
+        if (!IsEmptyAmmo())
+        {
+            SwitchFresnelEffect(true);
+        }
     }
 
     public bool IsMainGripCatched()
@@ -102,9 +106,14 @@ public class Weapon : MonoBehaviour
         return _mainGripAnimationTransformEvent != null;
     }
 
+    public bool IsEmptyAmmo()
+    {
+        return _ammo == 0;
+    }
+
     public void OnMainGripIndexTriggered()
     {
-        if (_ammo == 0)
+        if (IsEmptyAmmo())
         {
             DryFire();
             return;
