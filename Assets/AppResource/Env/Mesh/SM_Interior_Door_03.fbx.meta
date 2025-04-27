@@ -13,7 +13,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Glass(Fade)
-    second: {fileID: 2100000, guid: 9566a76eaa0caa542bab69e1bf8f150d, type: 2}
+    second: {fileID: 2100000, guid: ed5853a5ef6a1f844b42e34a6d5d6bac, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

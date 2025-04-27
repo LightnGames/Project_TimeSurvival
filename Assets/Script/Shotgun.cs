@@ -25,6 +25,7 @@ public class Shotgun : Weapon
 
         _pumpDefaultLocalPosition = _pumpMeshTransform.localPosition;
         _pumpDefaultRotation = _pumpMeshTransform.localRotation;
+        _pumpState = PumpState.ShotReady;
     }
 
     protected override void Update()

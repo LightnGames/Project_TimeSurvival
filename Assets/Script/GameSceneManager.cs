@@ -18,6 +18,7 @@ public class GameSceneManager : MonoBehaviour
     private void Awake()
     {
         OVRManager.SetSpaceWarp(true);
+
         OVRPlugin.systemDisplayFrequency = 90.0f;
         _defaultFixedDeltaTime = Time.fixedDeltaTime;
         _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;

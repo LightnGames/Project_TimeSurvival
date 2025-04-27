@@ -2,6 +2,7 @@
 #define CUSTOM_ASEC_FUNCTION_INCLUDED
 
 #ifndef SHADERGRAPH_PREVIEW
+#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Color.hlsl"
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 #include "Packages/com.unity.shadergraph/ShaderGraphLibrary/ShaderVariablesFunctions.hlsl"
@@ -213,12 +214,31 @@ void ACES_float(in float3 Color, out half3 Out)
 {    
 #ifndef SHADERGRAPH_PREVIEW
     float3 colorACES = unity_to_ACES(Color);
-    //Out = AcesTonemap_UE4(colorACES);
-    Out = AcesTonemap_Unity(colorACES);
+    Out = AcesTonemap_UE4(colorACES);
+    //Out = AcesTonemap_Unity(colorACES);
     //Out = ACES_to_unity(UnityACES(colorACES));
 #else
     Out = Color;
 #endif
+}
+
+void ApplyLut_half(in half3 Color, in UnityTexture2D LutTexture, in UnitySamplerState Sampler, in half3 UserLutParams, in half UserLutContrib, out half3 Out)
+{
+    half3 srgbColor = FastLinearToSRGB(Color);
+    half3 scaleOffset = UserLutParams;
+    half3 uvw = srgbColor;
+    uvw.z *= scaleOffset.z;
+    float shift = floor(uvw.z);
+    uvw.xy = uvw.xy * scaleOffset.z * scaleOffset.xy + scaleOffset.xy * 0.5;
+    uvw.x += shift * scaleOffset.y;
+    uvw.xyz = lerp(
+        SAMPLE_TEXTURE2D_LOD(LutTexture, Sampler, uvw.xy, 0.0).rgb,
+        SAMPLE_TEXTURE2D_LOD(LutTexture, Sampler, uvw.xy + float2(scaleOffset.y, 0.0), 0.0).rgb,
+        uvw.z - shift
+    );
+    half3 outLut = uvw.xyz;
+    half3 outSrgbColor = lerp(srgbColor, outLut, UserLutContrib);
+    Out = FastSRGBToLinear(outSrgbColor);
 }
 
 #endif

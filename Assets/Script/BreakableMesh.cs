@@ -6,6 +6,13 @@ public class BreakableMesh : MonoBehaviour, IEventTrigger
     [SerializeField] Rigidbody[] _fractureRigidBodies;
     [SerializeField] MeshRenderer _dummyWallMeshRenderer;
     [SerializeField] float _forceScale;
+    [SerializeField] AudioClip _audioClip;
+
+    private AudioSource _audioSource;
+    private void Awake()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
 
     public void OnEventTriggered()
     {
@@ -27,5 +34,7 @@ public class BreakableMesh : MonoBehaviour, IEventTrigger
         }
 
         _dummyWallMeshRenderer.enabled = false;
+
+        _audioSource.PlayOneShot(_audioClip);
     }
 }

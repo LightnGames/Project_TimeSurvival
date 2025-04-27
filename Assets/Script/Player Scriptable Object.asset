@@ -26,7 +26,7 @@ MonoBehaviour:
   _footStepRateInMeeter: 0.7
   _fadeRangeMin: 0
   _fadeRangeMax: 0.16
-  _fadeTime: 50
-  _timeScaleRangeMin: 0.1
+  _fadeTime: 30
+  _timeScaleRangeMin: 0.05
   _timeScaleRangeMax: 1
   _timeScaleTime: 50

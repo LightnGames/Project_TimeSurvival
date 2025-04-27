@@ -40,7 +40,9 @@ public class PlayerController : MonoBehaviour, IDamageable
         stick.x = Input.GetAxisRaw("Horizontal");
         stick.y = Input.GetAxisRaw("Vertical");
 #endif
-        float inputLength = Mathf.Min(stick.magnitude, 1.0f);
+        float inputRawLength = stick.magnitude;
+        float inputLength = Mathf.Min(inputRawLength, 1.0f);
+        Vector2 inputDirection = stick / inputRawLength;
 
         if (!_dead)
         {
@@ -56,17 +58,15 @@ public class PlayerController : MonoBehaviour, IDamageable
             return;
         }
 
-        if (inputLength < 0.001f)
-        {
-            return;
-        }
-
         float moveSpeed = 1.0f;
-        Vector3 moveDirection = Vector3.zero;
-        moveDirection.x = stick.x / inputLength;
-        moveDirection.z = stick.y / inputLength;
+        Vector3 moveDirection = Vector3.down;
+        if (inputLength > 0.001f)
+        {
+            moveDirection.x = inputDirection.x * inputLength;
+            moveDirection.z = inputDirection.y * inputLength;
+        }
         float invTimeScale = 1.0f / Time.timeScale;
-        float moveLength = inputLength * moveSpeed * invTimeScale * Time.deltaTime;
+        float moveLength = moveSpeed * invTimeScale * Time.deltaTime;
         _characterController.Move(moveDirection * moveLength);
         _moveLengthFromFootStepStart += moveLength;
 

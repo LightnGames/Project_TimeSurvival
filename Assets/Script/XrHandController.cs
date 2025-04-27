@@ -68,10 +68,12 @@ public class XrHandController : MonoBehaviour
             _prevIndexTriggerAmount = grabIndexAmount;
         }
 
+#if UNITY_EDITOR
         foreach (var item in _catchableItems)
         {
             Debug.DrawLine(item.transform.position, item.transform.position + item.transform.up * 0.2f, item.IsCatched ? Color.red : Color.yellow);
         }
+#endif
     }
 
     private void TryToCatchItem()
@@ -86,6 +88,11 @@ public class XrHandController : MonoBehaviour
         foreach (var item in _catchableItems)
         {
             if (item.IsCatched)
+            {
+                continue;
+            }
+
+            if (!item.IsCatcheable())
             {
                 continue;
             }

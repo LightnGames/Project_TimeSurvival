@@ -176,6 +176,9 @@
         },
         {
             "m_Id": "4c3d67dda10d42378bc9f634dbaa4711"
+        },
+        {
+            "m_Id": "041fe9e668e74f5b842f39921f5e7738"
         }
     ],
     "m_GroupDatas": [
@@ -246,6 +249,34 @@
                     "m_Id": "d410d85c23c14747895fc22fd4dded61"
                 },
                 "m_SlotId": 2
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "0352121b8e3841e7a1dfcf54044b86d6"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "3a6a9e57594740eab30b05b34d73bf7f"
+                },
+                "m_SlotId": 1
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "041fe9e668e74f5b842f39921f5e7738"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "a46644d8e7e84c7db502a1df2d93d214"
+                },
+                "m_SlotId": 9
             }
         },
         {
@@ -545,6 +576,20 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
+                    "m_Id": "4c3d67dda10d42378bc9f634dbaa4711"
+                },
+                "m_SlotId": 2
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "2ab42691086849ac8063fa5f791e2767"
+                },
+                "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
                     "m_Id": "52b4ac5b0cc3455f88ad0553291be021"
                 },
                 "m_SlotId": 0
@@ -657,20 +702,6 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
-                    "m_Id": "9d4c646ed15844c3b10422f3627e62da"
-                },
-                "m_SlotId": 2
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "2ab42691086849ac8063fa5f791e2767"
-                },
-                "m_SlotId": 0
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
                     "m_Id": "9e0300e1b7ec4762a8ba9bb7dcc9f897"
                 },
                 "m_SlotId": 2
@@ -762,20 +793,6 @@
             "m_InputSlot": {
                 "m_Node": {
                     "m_Id": "0d75903f1bbe4eb28795c6182c2531c7"
-                },
-                "m_SlotId": 1
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
-                    "m_Id": "acfdc2b63f024ef28db115cb9b9b9070"
-                },
-                "m_SlotId": 0
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "3a6a9e57594740eab30b05b34d73bf7f"
                 },
                 "m_SlotId": 1
             }
@@ -1203,6 +1220,40 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.ScreenPositionNode",
+    "m_ObjectId": "041fe9e668e74f5b842f39921f5e7738",
+    "m_Group": {
+        "m_Id": "7a91c7c5bb1849c0b268b4ef38e7a9e3"
+    },
+    "m_Name": "Screen Position",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": 9.0,
+            "y": 963.0,
+            "width": 208.0,
+            "height": 312.0
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "b490b3cdb249477aa9659007b1461622"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_ScreenSpaceType": 0
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector2MaterialSlot",
     "m_ObjectId": "0421eedbbe73471886fd4f6e62d78e1d",
     "m_Id": 5,
@@ -1320,6 +1371,27 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector2MaterialSlot",
+    "m_ObjectId": "0779b8289e7f461faa074515fbdfb967",
+    "m_Id": 9,
+    "m_DisplayName": "NormalizedScreenSpaceUV",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "NormalizedScreenSpaceUV",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0
+    },
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "09401930c14740b2b71afa69bc883cad",
     "m_Id": 0,
@@ -1433,7 +1505,6 @@
     "m_SourceType": 0,
     "m_FunctionName": "ReflectionProbe",
     "m_FunctionSource": "0ba9fcc0b31954149974cd8f7dd62596",
-    "m_FunctionSourceUsePragmas": true,
     "m_FunctionBody": "#ifdef SHADERGRAPH_PREVIEW\r\n     Out = half3(0, 0, 0);\r\n#else\r\n    half3 viewDirWS = ViewDirWS;\r\n    half3 normalWS = NormalWS;\r\n    half3 reflDir = reflect(-viewDirWS, normalWS);\r\n\r\n    half3 factors = ((reflDir > 0 ? unity_SpecCube0_BoxMax.xyz : unity_SpecCube0_BoxMin.xyz) - PositionWS) / reflDir;\r\n    half scalar = min(min(factors.x, factors.y), factors.z);\r\n    half3 uvw = reflDir * scalar + (PositionWS - unity_SpecCube0_ProbePosition.xyz);\r\n\r\n    half4 sampleRefl = SAMPLE_TEXTURECUBE_LOD(unity_SpecCube0, samplerunity_SpecCube0, uvw, LOD);\r\n    half3 specCol = DecodeHDREnvironment(sampleRefl, unity_SpecCube0_HDR);\r\n    Out = specCol;\r\n#endif"
 }
 
@@ -1794,8 +1865,8 @@
     "m_ObjectId": "1ae08e0b95624c2e85a18a4878cc3a04",
     "m_Title": "oneMinusReflectivity",
     "m_Position": {
-        "x": -330.0,
-        "y": 40.0
+        "x": -330.0000305175781,
+        "y": 40.00000762939453
     }
 }
 
@@ -2575,7 +2646,16 @@
     },
     "m_Slots": [
         {
+            "m_Id": "f169423e8a39444e9b5aa07ffa460209"
+        },
+        {
+            "m_Id": "7d618ae3f1b24d50a8c0ccde33eac801"
+        },
+        {
             "m_Id": "3bd54deaf067423e9b6f0f3b127bce99"
+        },
+        {
+            "m_Id": "ca4f7be78bf04465baf248827ce4a41b"
         },
         {
             "m_Id": "a1c86dbe711f4544857141010dac65ab"
@@ -2594,12 +2674,6 @@
         },
         {
             "m_Id": "18921ef0fb5e4654befcc2bac1fdfbe4"
-        },
-        {
-            "m_Id": "f169423e8a39444e9b5aa07ffa460209"
-        },
-        {
-            "m_Id": "7d618ae3f1b24d50a8c0ccde33eac801"
         }
     ],
     "synonyms": [
@@ -2616,7 +2690,6 @@
     "m_SourceType": 0,
     "m_FunctionName": "SdfStep",
     "m_FunctionSource": "b3734d86f2072f6429a5419164ef08ae",
-    "m_FunctionSourceUsePragmas": true,
     "m_FunctionBody": "#ifdef SHADERGRAPH_PREVIEW\r\n     Out = half3(0, 0, 0);\r\n#else\r\n    half3 viewDirWS = ViewDirWS;\r\n    half3 normalWS = NormalWS;\r\n    half3 reflDir = reflect(-viewDirWS, normalWS);\r\n\r\n    half3 factors = ((reflDir > 0 ? unity_SpecCube0_BoxMax.xyz : unity_SpecCube0_BoxMin.xyz) - PositionWS) / reflDir;\r\n    half scalar = min(min(factors.x, factors.y), factors.z);\r\n    half3 uvw = reflDir * scalar + (PositionWS - unity_SpecCube0_ProbePosition.xyz);\r\n\r\n    half4 sampleRefl = SAMPLE_TEXTURECUBE_LOD(unity_SpecCube0, samplerunity_SpecCube0, uvw, LOD);\r\n    half3 specCol = DecodeHDREnvironment(sampleRefl, unity_SpecCube0_HDR);\r\n    Out = specCol;\r\n#endif"
 }
 
@@ -2757,10 +2830,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -658.0,
-            "y": -571.0,
-            "width": 55.99993896484375,
-            "height": 23.99993896484375
+            "x": -275.0,
+            "y": -517.0,
+            "width": 56.00001525878906,
+            "height": 24.000030517578126
         }
     },
     "m_Slots": [
@@ -2818,9 +2891,9 @@
         "m_Position": {
             "serializedVersion": "2",
             "x": 606.0,
-            "y": -437.0000305175781,
-            "width": 129.99993896484376,
-            "height": 117.99996948242188
+            "y": -441.00006103515627,
+            "width": 130.00006103515626,
+            "height": 118.00003051757813
         }
     },
     "m_Slots": [
@@ -3147,7 +3220,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "PerceptualRoughness",
     "m_StageCapability": 3,
-    "m_Value": 0.30000001192092898,
+    "m_Value": 0.0,
     "m_DefaultValue": 0.0,
     "m_Labels": []
 }
@@ -3408,8 +3481,8 @@
     "m_ObjectId": "69fe9e1a45fa4d5f8469c946808c9996",
     "m_Title": "grazingTerm",
     "m_Position": {
-        "x": 441.0000305175781,
-        "y": 55.99992752075195
+        "x": 441.0001220703125,
+        "y": 56.000030517578128
     }
 }
 
@@ -3621,7 +3694,7 @@
     "m_Title": "追加スポットライト",
     "m_Position": {
         "x": -28.0,
-        "y": 487.99993896484377
+        "y": 488.00006103515627
     }
 }
 
@@ -3874,7 +3947,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "PerceptualRoughness",
     "m_StageCapability": 3,
-    "m_Value": 0.5,
+    "m_Value": 0.0,
     "m_DefaultValue": 0.0,
     "m_Labels": []
 }
@@ -4494,9 +4567,6 @@
     },
     "m_Slots": [
         {
-            "m_Id": "30d070cd0e0a4270b5e7abffbc05a9b5"
-        },
-        {
             "m_Id": "6cb3778768d0441c9175895fb2733fc7"
         },
         {
@@ -4513,6 +4583,12 @@
         },
         {
             "m_Id": "517cabdcd1764c0ca39f8b8a0285996c"
+        },
+        {
+            "m_Id": "0779b8289e7f461faa074515fbdfb967"
+        },
+        {
+            "m_Id": "30d070cd0e0a4270b5e7abffbc05a9b5"
         }
     ],
     "synonyms": [
@@ -4528,8 +4604,7 @@
     },
     "m_SourceType": 0,
     "m_FunctionName": "LightingSpotLight",
-    "m_FunctionSource": "aba6238d539be4a40afa3b59d2a5c6ff",
-    "m_FunctionSourceUsePragmas": true,
+    "m_FunctionSource": "093b46132398bcb44a3abddb78acd35d",
     "m_FunctionBody": "Enter function body here..."
 }
 
@@ -4809,6 +4884,31 @@
 }
 
 {
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
+    "m_ObjectId": "b490b3cdb249477aa9659007b1461622",
+    "m_Id": 0,
+    "m_DisplayName": "Out",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_Labels": []
+}
+
+{
     "m_SGVersion": 1,
     "m_Type": "UnityEditor.ShaderGraph.PositionNode",
     "m_ObjectId": "b5e55c26f0844767b4a04e68fe782369",
@@ -4851,8 +4951,8 @@
     "m_ObjectId": "b707bede7d944262870d8a55ddade634",
     "m_Title": "surfaceReduction",
     "m_Position": {
-        "x": -496.00006103515627,
-        "y": -325.00006103515627
+        "x": -496.0000305175781,
+        "y": -325.0000305175781
     }
 }
 
@@ -5005,7 +5105,7 @@
     "m_Title": "Smoothness",
     "m_Position": {
         "x": -1326.0001220703125,
-        "y": -459.00006103515627
+        "y": -459.0
     }
 }
 
@@ -5308,6 +5408,23 @@
         "z": 0.0
     },
     "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.CubemapInputMaterialSlot",
+    "m_ObjectId": "ca4f7be78bf04465baf248827ce4a41b",
+    "m_Id": 10,
+    "m_DisplayName": "ProbeTexture",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "ProbeTexture",
+    "m_StageCapability": 3,
+    "m_BareResource": false,
+    "m_Cubemap": {
+        "m_SerializedCubemap": "{\"cubemap\":{\"fileID\":8900000,\"guid\":\"036835b13e18d9b4ba5909f73b023dff\",\"type\":3}}",
+        "m_Guid": ""
+    }
 }
 
 {
@@ -6097,8 +6214,8 @@
     "m_ObjectId": "eff10b83e2364bce96b169dbc2dc7b26",
     "m_Title": "Reflectivity",
     "m_Position": {
-        "x": 208.00001525878907,
-        "y": 37.99993133544922
+        "x": 208.0000762939453,
+        "y": 38.0000114440918
     }
 }
 

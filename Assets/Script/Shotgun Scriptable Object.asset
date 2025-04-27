@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4b20c7f5bf6869438d00f5efbf7129d, type: 3}
+  m_Name: Shotgun Scriptable Object
+  m_EditorClassIdentifier: 
+  _baseDamage: 2
+  _maxAmmo: 5
+  _shotVibrationScale: 1.5
+  _muzzleFlashParticle: {fileID: 330549061114691825, guid: d7ad8f104cca16744a6a4846f3ec2dda, type: 3}
+  _impactParticle: {fileID: 5542739345599769195, guid: 1131ce0157cbb68448710c7103565bdb, type: 3}
+  _bloodImpactParticle: {fileID: 4355658961749207885, guid: 67acfb8bea492d9449e887ff37d36d1e, type: 3}
+  _emptyShellPrefab: {fileID: 7708233588953067852, guid: 2176e40dff65d26448dc93d27390ac3d, type: 3}
+  _bulletTrailCilinderMeshRenderer: {fileID: 3610779081985988676, guid: b44ed44dd0bcd1e418a88ea7c07c8d7b, type: 3}
+  _recoilPitchEuler:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: -16.450933
+      outSlope: -16.450933
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.058335878
+      value: -0.9596796
+      inSlope: 0.34691852
+      outSlope: 0.34691852
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 1
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.27410027
+      value: 0.74258137
+      inSlope: -3.2642293
+      outSlope: -3.2642293
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.21607809
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0.017529286
+      outSlope: 0.017529286
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.3616744
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _recoilTranslationZ:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: -0.7099056
+      outSlope: -0.7099056
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.1
+      value: -0.07099056
+      inSlope: -0.00077198853
+      outSlope: -0.00077198853
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 1
+      outWeight: 0.20370372
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0.0788784
+      outSlope: 0.0788784
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _recoilTimeInSec: 0.5
+  _shotAudioClips:
+  - {fileID: 8300000, guid: f6aea4d7c02e44a4e8a88338fa70df0b, type: 3}
+  - {fileID: 8300000, guid: c081db1d3d0a3304db5558861b2ca14d, type: 3}
+  - {fileID: 8300000, guid: 598952201ea2c9a45af2c3db53a9ba8c, type: 3}
+  - {fileID: 8300000, guid: 6352334068c2b164a88d2ed163137da6, type: 3}
+  _dryFireAudioClips:
+  - {fileID: 8300000, guid: 9f31824e7b0cdaa469619aa2ffa5ae3e, type: 3}
+  - {fileID: 8300000, guid: a855226e0db60db4c87ea985a324c6bc, type: 3}
+  - {fileID: 8300000, guid: d55635c544f9c8542b43626962833a91, type: 3}
+  - {fileID: 8300000, guid: 2fde7aefe04237f4aabcbf3a95cfb1ba, type: 3}
+  _equipAudioClips:
+  - {fileID: 8300000, guid: 6e39d9aa3cc4d2d418064b362ebd583b, type: 3}
+  - {fileID: 8300000, guid: a27b1e1335b19104faeefc0b538a62f4, type: 3}
+  - {fileID: 8300000, guid: a76580dc06c7ccb43a843f5e53d3988b, type: 3}
+  - {fileID: 8300000, guid: 55e8c4563432a444a9400fc2320cee9c, type: 3}
+  - {fileID: 8300000, guid: b4db6228bd3d2374da330cc620627bc3, type: 3}
+  - {fileID: 8300000, guid: 260ec164f4d976645b14726ea5aed821, type: 3}

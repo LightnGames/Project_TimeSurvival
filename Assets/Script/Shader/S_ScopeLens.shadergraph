@@ -156,6 +156,20 @@
             },
             "m_InputSlot": {
                 "m_Node": {
+                    "m_Id": "44250e0647074913831e96f8cba4acea"
+                },
+                "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "381514a626354c438df2f1bab92a3f2f"
+                },
+                "m_SlotId": 2
+            },
+            "m_InputSlot": {
+                "m_Node": {
                     "m_Id": "cc62ed90aeae423c90c1a64e62cce1d9"
                 },
                 "m_SlotId": 1981662675
@@ -199,20 +213,6 @@
             "m_InputSlot": {
                 "m_Node": {
                     "m_Id": "72650d7137d745e5bfffc87f30b550f5"
-                },
-                "m_SlotId": 0
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
-                    "m_Id": "572b5f79daa2465d9c1733345cb31bd0"
-                },
-                "m_SlotId": 2
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "381514a626354c438df2f1bab92a3f2f"
                 },
                 "m_SlotId": 0
             }
@@ -366,23 +366,23 @@
             },
             "m_InputSlot": {
                 "m_Node": {
-                    "m_Id": "44250e0647074913831e96f8cba4acea"
+                    "m_Id": "ce23aa31ce7b424483d6465441b2aea8"
                 },
-                "m_SlotId": 0
+                "m_SlotId": 1
             }
         },
         {
             "m_OutputSlot": {
                 "m_Node": {
-                    "m_Id": "cc62ed90aeae423c90c1a64e62cce1d9"
+                    "m_Id": "ce6b1083f38f4d4cb0e913b5c030967c"
                 },
-                "m_SlotId": 1
+                "m_SlotId": 2
             },
             "m_InputSlot": {
                 "m_Node": {
-                    "m_Id": "ce23aa31ce7b424483d6465441b2aea8"
+                    "m_Id": "381514a626354c438df2f1bab92a3f2f"
                 },
-                "m_SlotId": 1
+                "m_SlotId": 0
             }
         },
         {
@@ -2782,8 +2782,8 @@
     "m_ObjectId": "a6594151e53546e9b2e7224f0c35a2e6",
     "m_Title": "スコープRTにはすでにトーンマッピングが有効",
     "m_Position": {
-        "x": 361.0,
-        "y": 99.0
+        "x": 361.0000915527344,
+        "y": 98.99999237060547
     }
 }
 

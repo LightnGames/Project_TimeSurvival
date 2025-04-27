@@ -11,7 +11,8 @@ Material:
   m_Shader: {fileID: -6465566751694194690, guid: c5065ed1f78c60749a6cfa89c6f26557, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - PROBE_VOLUMES_L1
   m_InvalidKeywords:
   - _REFLECTION_PROBE_BOX_PROJECTION_A
   m_LightmapFlags: 4
@@ -25,6 +26,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _ApplyLutCustomFunction_5d5484bcdb4a467c822a2a98f812cf8e_LutTexture_2_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 2016c549e50ca41dbaf31f25fbfcbeb8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 2800000, guid: 1d5cfcab26959a64f9472f3c88443170, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -47,6 +52,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _LutCustomFunction_5d5484bcdb4a467c822a2a98f812cf8e_LutTexture_2_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 0a86d251d0bc04c96b834e43bf5da91f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _LutCustomFunction_5d5484bcdb4a467c822a2a98f812cf8e_New_2_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 0a86d251d0bc04c96b834e43bf5da91f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -73,6 +86,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 18b04334b5175734d90390d325b6e4d8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SdfStepCustomFunction_3a6a9e57594740eab30b05b34d73bf7f_ProbeTexture_10_Cubemap:
+        m_Texture: {fileID: 8900000, guid: 036835b13e18d9b4ba5909f73b023dff, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SdfStepCustomFunction_3a6a9e57594740eab30b05b34d73bf7f_SdfTexture_7_Texture3D:
         m_Texture: {fileID: 11700000, guid: 440092a1c8118a245bc1f4c9a6e1c33b, type: 2}
         m_Scale: {x: 1, y: 1}
@@ -83,6 +100,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_ae648803557f4b80bfae3597822ca19e_Out_0_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 2016c549e50ca41dbaf31f25fbfcbeb8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -99,6 +120,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - PROBE_VOLUMES_L1: 1
     - _AddPrecomputedVelocity: 0
     - _AlphaClip: 0
     - _AlphaToMask: 0

@@ -1760,8 +1760,8 @@
     "m_ObjectId": "9f3b663b4d0448f49dfb7f98d45b70d5",
     "m_Title": "HeightFog",
     "m_Position": {
-        "x": -971.0001220703125,
-        "y": -776.0000610351563
+        "x": -970.9999389648438,
+        "y": -776.0
     }
 }
 
@@ -1915,10 +1915,10 @@
     "m_ShaderOutputName": "B",
     "m_StageCapability": 3,
     "m_Value": {
-        "x": 1.0,
-        "y": 1.0,
-        "z": 1.0,
-        "w": 1.0
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
     },
     "m_DefaultValue": {
         "x": 0.0,

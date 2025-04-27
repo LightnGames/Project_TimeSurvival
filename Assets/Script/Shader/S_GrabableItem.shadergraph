@@ -16,7 +16,14 @@
             "m_Id": "9f12f2f1d90d4c169df0da6aea8f1265"
         }
     ],
-    "m_Keywords": [],
+    "m_Keywords": [
+        {
+            "m_Id": "7149b5c5df0245a3b6fab47f0967b3e9"
+        },
+        {
+            "m_Id": "eef4496e38504cb39819039ba195f02b"
+        }
+    ],
     "m_Dropdowns": [],
     "m_CategoryData": [
         {
@@ -775,7 +782,7 @@
     "m_ShaderOutputName": "B",
     "m_StageCapability": 3,
     "m_Value": {
-        "x": 2.0,
+        "x": 3.0,
         "y": 1.0,
         "z": 1.0,
         "w": 1.0
@@ -1373,7 +1380,7 @@
     ],
     "synonyms": [],
     "m_Precision": 0,
-    "m_PreviewExpanded": false,
+    "m_PreviewExpanded": true,
     "m_DismissedVersion": 0,
     "m_PreviewMode": 2,
     "m_CustomColors": {
@@ -1814,6 +1821,12 @@
         },
         {
             "m_Id": "9f12f2f1d90d4c169df0da6aea8f1265"
+        },
+        {
+            "m_Id": "7149b5c5df0245a3b6fab47f0967b3e9"
+        },
+        {
+            "m_Id": "eef4496e38504cb39819039ba195f02b"
         }
     ]
 }
@@ -1884,6 +1897,31 @@
     },
     "m_Labels": [],
     "m_Channel": 0
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.ShaderKeyword",
+    "m_ObjectId": "7149b5c5df0245a3b6fab47f0967b3e9",
+    "m_Guid": {
+        "m_GuidSerialized": "bbc113db-0331-4c34-a98f-c86dcfca7fd1"
+    },
+    "m_Name": "PROBE_VOLUMES_L1",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "PROBE_VOLUMES_L1",
+    "m_DefaultReferenceName": "_PROBE_VOLUMES_L1",
+    "m_OverrideReferenceName": "PROBE_VOLUMES_L1",
+    "m_GeneratePropertyBlock": false,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_KeywordType": 0,
+    "m_KeywordDefinition": 0,
+    "m_KeywordScope": 0,
+    "m_KeywordStages": 2,
+    "m_Entries": [],
+    "m_Value": 1,
+    "m_IsEditable": true
 }
 
 {
@@ -2868,7 +2906,7 @@
     "m_ShaderOutputName": "A",
     "m_StageCapability": 3,
     "m_Value": {
-        "x": 0.800000011920929,
+        "x": 1.0,
         "y": 0.0,
         "z": 0.0,
         "w": 0.0
@@ -3478,6 +3516,31 @@
     "m_Value": 0.0,
     "m_DefaultValue": 0.0,
     "m_Labels": []
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.ShaderKeyword",
+    "m_ObjectId": "eef4496e38504cb39819039ba195f02b",
+    "m_Guid": {
+        "m_GuidSerialized": "865d2740-506a-4954-a658-149c1500ecb2"
+    },
+    "m_Name": "REFLECTION_PROBE_BOX_PROJECTION",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "REFLECTION_PROBE_BOX_PROJECTION",
+    "m_DefaultReferenceName": "_REFLECTION_PROBE_BOX_PROJECTION",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": false,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_KeywordType": 0,
+    "m_KeywordDefinition": 0,
+    "m_KeywordScope": 0,
+    "m_KeywordStages": 2,
+    "m_Entries": [],
+    "m_Value": 1,
+    "m_IsEditable": true
 }
 
 {

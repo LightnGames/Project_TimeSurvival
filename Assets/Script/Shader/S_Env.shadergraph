@@ -31,7 +31,14 @@
             "m_Id": "125eff51f7b649a0bfb9e12f7a586f37"
         }
     ],
-    "m_Keywords": [],
+    "m_Keywords": [
+        {
+            "m_Id": "476ceee233464206a2781235782979dc"
+        },
+        {
+            "m_Id": "aeef9afa1c8449c5ba2d1d5a54deaf8b"
+        }
+    ],
     "m_Dropdowns": [],
     "m_CategoryData": [
         {
@@ -2828,7 +2835,6 @@
     "m_SourceType": 1,
     "m_FunctionName": "LightmapUv",
     "m_FunctionSource": "",
-    "m_FunctionSourceUsePragmas": true,
     "m_FunctionBody": "Scale = unity_LightmapST.xy;\nOffset = unity_LightmapST.zw;"
 }
 
@@ -7028,8 +7034,8 @@
     "m_ObjectId": "41c954ff52be43e38db4dd33bef51b88",
     "m_Title": "床付近の汚れ",
     "m_Position": {
-        "x": -3796.999755859375,
-        "y": -241.99998474121095
+        "x": -3797.0,
+        "y": -242.0
     }
 }
 
@@ -7317,6 +7323,31 @@
         "z": 0.0
     },
     "m_Labels": []
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.ShaderKeyword",
+    "m_ObjectId": "476ceee233464206a2781235782979dc",
+    "m_Guid": {
+        "m_GuidSerialized": "acf46c28-95c4-453c-84a9-f1401b9ce97a"
+    },
+    "m_Name": "REFLECTION_PROBE_BOX_PROJECTION",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "REFLECTION_PROBE_BOX_PROJECTION",
+    "m_DefaultReferenceName": "_REFLECTION_PROBE_BOX_PROJECTION",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": false,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_KeywordType": 0,
+    "m_KeywordDefinition": 0,
+    "m_KeywordScope": 0,
+    "m_KeywordStages": 2,
+    "m_Entries": [],
+    "m_Value": 1,
+    "m_IsEditable": true
 }
 
 {
@@ -7752,7 +7783,7 @@
         }
     ],
     "synonyms": [],
-    "m_Precision": 0,
+    "m_Precision": 2,
     "m_PreviewExpanded": false,
     "m_DismissedVersion": 0,
     "m_PreviewMode": 0,
@@ -8809,7 +8840,7 @@
         "sum",
         "plus"
     ],
-    "m_Precision": 0,
+    "m_Precision": 1,
     "m_PreviewExpanded": false,
     "m_DismissedVersion": 0,
     "m_PreviewMode": 0,
@@ -9540,6 +9571,12 @@
         },
         {
             "m_Id": "125eff51f7b649a0bfb9e12f7a586f37"
+        },
+        {
+            "m_Id": "476ceee233464206a2781235782979dc"
+        },
+        {
+            "m_Id": "aeef9afa1c8449c5ba2d1d5a54deaf8b"
         }
     ]
 }
@@ -9568,13 +9605,13 @@
     },
     "m_Name": "S_AdaptiveProbeVolumeSample",
     "m_DrawState": {
-        "m_Expanded": false,
+        "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -401.9999084472656,
-            "y": -636.0000610351563,
+            "x": -402.0000305175781,
+            "y": -635.0,
             "width": 227.0,
-            "height": 142.99996948242188
+            "height": 119.0
         }
     },
     "m_Slots": [
@@ -9910,7 +9947,6 @@
     "m_SourceType": 0,
     "m_FunctionName": "SpecularOcclusionFromBentNormal",
     "m_FunctionSource": "aba6238d539be4a40afa3b59d2a5c6ff",
-    "m_FunctionSourceUsePragmas": true,
     "m_FunctionBody": "Enter function body here..."
 }
 
@@ -12751,7 +12787,7 @@
     "m_Title": "デッドライン",
     "m_Position": {
         "x": -920.0,
-        "y": -286.9999694824219
+        "y": -287.0
     }
 }
 
@@ -13209,8 +13245,8 @@
     "m_ObjectId": "a0a14bbf13f646e5b4ceaee0c9bf0bd2",
     "m_Title": "床の汚れ",
     "m_Position": {
-        "x": -3908.99951171875,
-        "y": -1866.9998779296875
+        "x": -3909.0,
+        "y": -1867.0
     }
 }
 
@@ -13954,6 +13990,31 @@
         "z": 0.0,
         "w": 0.0
     }
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.ShaderKeyword",
+    "m_ObjectId": "aeef9afa1c8449c5ba2d1d5a54deaf8b",
+    "m_Guid": {
+        "m_GuidSerialized": "3746b7d8-712d-46bc-8d7d-f4eb7f06a8b8"
+    },
+    "m_Name": "PROBE_VOLUMES_L1",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "PROBE_VOLUMES_L1",
+    "m_DefaultReferenceName": "_PROBE_VOLUMES_L1",
+    "m_OverrideReferenceName": "PROBE_VOLUMES_L1",
+    "m_GeneratePropertyBlock": false,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_KeywordType": 0,
+    "m_KeywordDefinition": 0,
+    "m_KeywordScope": 0,
+    "m_KeywordStages": 2,
+    "m_Entries": [],
+    "m_Value": 1,
+    "m_IsEditable": true
 }
 
 {
@@ -18290,7 +18351,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "_Scale",
     "m_StageCapability": 2,
-    "m_Value": 0.029999999329447748,
+    "m_Value": 0.05000000074505806,
     "m_DefaultValue": 0.0,
     "m_Labels": []
 }

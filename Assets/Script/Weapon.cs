@@ -42,6 +42,8 @@ public class Weapon : MonoBehaviour
         }
 
         SwitchFresnelEffect(true);
+
+        DischargeEmptyShell();
     }
 
     protected void SwitchFresnelEffect(bool visibility)
@@ -142,12 +144,13 @@ public class Weapon : MonoBehaviour
 
     private void MuzzleFlashEffect()
     {
-        bool canFire = true;
         _animator.SetTrigger(ShotHash);
         ParticleSystem muzzleFlashParticle = Instantiate(_weaponScriptableObject.MuzzleFlashParticlePrefab, _muzzleFlashAncher.transform.position, _muzzleFlashAncher.transform.rotation);
         const float MuzzleFlashParticleDestroyTimeInSec = 3.0f;
         Destroy(muzzleFlashParticle.gameObject, MuzzleFlashParticleDestroyTimeInSec);
-        _mainGripVibrationEvent(0, 1, 0.15f / Time.timeScale);
+
+        float vibrationScale = _weaponScriptableObject.ShotVibrationScale;
+        _mainGripVibrationEvent(0, vibrationScale, vibrationScale * 0.15f / Time.timeScale);
 
         AudioClip[] audioClips = _weaponScriptableObject.ShotAudioClips;
         int randomIndex = Random.Range(0, audioClips.Length);
@@ -156,9 +159,9 @@ public class Weapon : MonoBehaviour
 
     private void DischargeEmptyShell()
     {
-        Rigidbody emptyShell = Instantiate(_weaponScriptableObject.EmptyShellPrefab, _emptyShellAncherTransform.transform.position, _emptyShellAncherTransform.transform.rotation);
-        emptyShell.AddForce(Vector3.forward * 10.0f);
-        emptyShell.AddTorque(Vector3.right * 1.0f);
+        Rigidbody emptyShell = Instantiate(_weaponScriptableObject.EmptyShellPrefab, _emptyShellAncherTransform.position, _emptyShellAncherTransform.rotation);
+        emptyShell.AddForce(_emptyShellAncherTransform.forward * 50.0f);
+        emptyShell.AddTorque(_emptyShellAncherTransform.right * 1.0f);
         const float DestroyTimeInSec = 5.0f;
         Destroy(emptyShell.gameObject, DestroyTimeInSec);
     }
@@ -173,7 +176,7 @@ public class Weapon : MonoBehaviour
     protected virtual void Shot()
     {
         RaycastHit hit;
-        const float MaxRayLength = 30.0f;
+        const float MaxRayLength = 50.0f;
         const float RayRadius = 0.05f;
         Vector3 muzzleFlashPosition = _muzzleFlashAncher.transform.position;
         if (Physics.SphereCast(muzzleFlashPosition, RayRadius, _muzzleFlashAncher.transform.forward * MaxRayLength, out hit))

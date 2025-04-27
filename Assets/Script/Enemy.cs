@@ -139,7 +139,12 @@ public class Enemy : MonoBehaviour, IDamageable, IEventTrigger
             return;
         }
 
-        _animator.SetTrigger(DamageHash);
+        // ダメージ量が体力の半分を超えていたら必ずダメージリアクションする。
+        if (damageAmount > _enemyScriptableObject.MaxHealth / 2)
+        {
+            _animator.SetTrigger(DamageHash);
+        }
+
         _voiceAudioSource.PlayOneShot(_enemyScriptableObject.GetRandomTakeDamageAudioClip());
     }
 

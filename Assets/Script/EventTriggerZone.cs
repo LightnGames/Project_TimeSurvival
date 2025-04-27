@@ -22,7 +22,7 @@ public class EventTriggerZone : MonoBehaviour
             t.GetComponent<IEventTrigger>().OnEventTriggered();
         }
 
-        enabled = false;
+        gameObject.SetActive(false);
     }
 
     private void OnDrawGizmos()

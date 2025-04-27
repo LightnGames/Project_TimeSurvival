@@ -11,7 +11,9 @@ Material:
   m_Shader: {fileID: -6465566751694194690, guid: a89ad2cc40c974643b475a58fe5fdba7, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - PROBE_VOLUMES_L1
+  - _REFLECTION_PROBE_BOX_PROJECTION
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -26,6 +28,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _ApplyLutCustomFunction_5d5484bcdb4a467c822a2a98f812cf8e_LutTexture_2_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 2016c549e50ca41dbaf31f25fbfcbeb8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 2800000, guid: 11d23c8c18e1a5f46819acfe13c22947, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -56,6 +62,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _EmissiveMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _LutCustomFunction_5d5484bcdb4a467c822a2a98f812cf8e_LutTexture_2_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 0a86d251d0bc04c96b834e43bf5da91f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _LutCustomFunction_5d5484bcdb4a467c822a2a98f812cf8e_New_2_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 0a86d251d0bc04c96b834e43bf5da91f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -110,6 +124,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 18b04334b5175734d90390d325b6e4d8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SdfStepCustomFunction_3a6a9e57594740eab30b05b34d73bf7f_ProbeTexture_10_Cubemap:
+        m_Texture: {fileID: 8900000, guid: 036835b13e18d9b4ba5909f73b023dff, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SdfStepCustomFunction_3a6a9e57594740eab30b05b34d73bf7f_SdfTexture_7_Texture3D:
         m_Texture: {fileID: 11700000, guid: 440092a1c8118a245bc1f4c9a6e1c33b, type: 2}
         m_Scale: {x: 1, y: 1}
@@ -130,12 +148,20 @@ Material:
         m_Texture: {fileID: 2800000, guid: 5e6810996137dad44b406e114bbeee42, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_313223e1e8b346e4847d96543f2c4076_Out_0_Texture2D:
+        m_Texture: {fileID: 2800000, guid: c9dc623248ff248e58517376e3706980, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Texture2DAsset_6c6efc63b55d4c28872ecb40dc097cc0_Out_0_Texture2D:
         m_Texture: {fileID: 2800000, guid: 8c585e3141d8ebb4ba4cdd2833ecf48e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2DAsset_a089c2d369b74ef6aa162f2fa188d230_Out_0_Texture2D:
         m_Texture: {fileID: 2800000, guid: 23dbb74cb9990be4eae7f40325588850, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_ae648803557f4b80bfae3597822ca19e_Out_0_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 2016c549e50ca41dbaf31f25fbfcbeb8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -156,6 +182,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - PROBE_VOLUMES_L1: 1
     - _AddPrecomputedVelocity: 0
     - _AlphaClip: 0
     - _AlphaToMask: 0
@@ -185,6 +212,7 @@ Material:
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _REFLECTION_PROBE_BOX_PROJECTION: 1
     - _ReceiveShadows: 1
     - _Shininess: 0
     - _SmoothTest: 0

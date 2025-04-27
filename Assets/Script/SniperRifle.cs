@@ -27,6 +27,7 @@ public class SniperRifle : Weapon
 
         _boltDefaultLocalPosition = _boltMeshTransform.localPosition;
         _scopeCamera.enabled = false;
+        _pumpState = PumpState.ShotReady;
     }
 
     protected override void Update()
@@ -119,7 +120,7 @@ public class SniperRifle : Weapon
             if (_pumpState == PumpState.NeedBoltAction)
             {
                 _pumpState = PumpState.ShotReady;
-                _boltVibrationEvent(0.7f, 0.5f, 0.1f);
+                _boltVibrationEvent(0.3f, 1.5f, 0.2f);
             }
         }
 

@@ -5,6 +5,7 @@ public class WeaponScriptableObject : ScriptableObject
 {
     [SerializeField] private float _baseDamage;
     [SerializeField] private int _maxAmmo;
+    [SerializeField] private float _shotVibrationScale;
     [SerializeField] private ParticleSystem _muzzleFlashParticle;
     [SerializeField] private ParticleSystem _impactParticle;
     [SerializeField] private ParticleSystem _bloodImpactParticle;
@@ -18,6 +19,7 @@ public class WeaponScriptableObject : ScriptableObject
     [SerializeField] private AudioClip[] _equipAudioClips;
 
     public float BaseDamage { get { return _baseDamage; } }
+    public float ShotVibrationScale { get { return _shotVibrationScale; } }
     public int MaxAmmo { get { return _maxAmmo; } }
     public ParticleSystem MuzzleFlashParticlePrefab { get {  return _muzzleFlashParticle; } }
     public ParticleSystem ImpactParticlePrefab { get { return _impactParticle; } }

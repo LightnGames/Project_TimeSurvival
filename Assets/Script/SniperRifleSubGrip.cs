@@ -21,4 +21,9 @@ public class SniperRifleSubGrip : CatchableItem
         base.CatchedUpdate(input);
         _weapon.SubGripCatchedUpdate(input, transform);
     }
+
+    public override bool IsCatcheable()
+    {
+        return !_weapon.IsEmptyAmmo() && _weapon.IsMainGripCatched();
+    }
 }

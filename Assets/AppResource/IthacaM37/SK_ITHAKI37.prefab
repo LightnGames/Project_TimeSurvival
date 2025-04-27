@@ -40,6 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3762400082597522456}
+  - component: {fileID: 8063224385897010872}
   m_Layer: 0
   m_Name: MuzzleFlashAncher
   m_TagString: Untagged
@@ -62,6 +63,103 @@ Transform:
   m_Children: []
   m_Father: {fileID: 681531271995454089}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &8063224385897010872
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2464517968768201099}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &4755015786079618821
 GameObject:
   m_ObjectHideFlags: 0
@@ -137,8 +235,8 @@ Light:
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 1, g: 0.96756893, b: 0.7216981, a: 1}
-  m_Intensity: 1
-  m_Range: 3.4319916
+  m_Intensity: 6
+  m_Range: 4
   m_SpotAngle: 44.60852
   m_InnerSpotAngle: 22.503275
   m_CookieSize: 10
@@ -481,15 +579,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: a0d4445b8ecffd44f8db7a8e3b159232, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.048
+      value: 8.903
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a0d4445b8ecffd44f8db7a8e3b159232, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.25
+      value: 0.974
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a0d4445b8ecffd44f8db7a8e3b159232, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.547
+      value: 19.343
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a0d4445b8ecffd44f8db7a8e3b159232, type: 3}
       propertyPath: m_LocalRotation.w
@@ -592,7 +690,7 @@ LODGroup:
     - renderer: {fileID: 385113497579826733}
     - renderer: {fileID: 1742951157166376821}
     - renderer: {fileID: 3422148708062545957}
-  - screenRelativeHeight: 0.096090935
+  - screenRelativeHeight: 0.04730335
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 3263414412322366902}
@@ -657,9 +755,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30c3a165640a0344fbb2abb19e6939eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weaponScriptableObject: {fileID: 11400000, guid: 26300094aa816744990c0868ed900884, type: 2}
+  _weaponScriptableObject: {fileID: 11400000, guid: a5ea2555382a4104b9ce9ff5e79e0588, type: 2}
   _animator: {fileID: 7941403032486012982}
-  _muzzleFlashAncher: {fileID: 3762400082597522456}
+  _muzzleFlashAncher: {fileID: 8063224385897010872}
   _triggerTransform: {fileID: 3851166101723537314}
   _emptyShellAncherTransform: {fileID: 6156183643833540145}
   _flashLight: {fileID: 8226866970562398126}
@@ -687,7 +785,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

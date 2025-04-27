@@ -29,6 +29,6 @@ public class ShotgunPump : CatchableItem
 
     public override bool IsCatcheable()
     {
-        return _weapon.IsEmptyAmmo();
+        return !_weapon.IsEmptyAmmo();
     }
 }
