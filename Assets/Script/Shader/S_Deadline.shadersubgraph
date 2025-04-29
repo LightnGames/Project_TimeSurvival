@@ -151,7 +151,7 @@
         "preventRotation": false
     },
     "m_Path": "Sub Graphs",
-    "m_GraphPrecision": 1,
+    "m_GraphPrecision": 2,
     "m_PreviewMode": 2,
     "m_OutputNode": {
         "m_Id": "b431be2a1fdd4373b8ad47e455d0f302"
@@ -790,8 +790,8 @@
     "m_ObjectId": "e417dc7cff174f2da506f365d5f5a703",
     "m_Title": "オフセット",
     "m_Position": {
-        "x": -153.99996948242188,
-        "y": 49.999935150146487
+        "x": -154.0,
+        "y": 50.0
     }
 }
 

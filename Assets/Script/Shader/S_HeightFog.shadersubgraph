@@ -386,7 +386,7 @@
         "preventRotation": false
     },
     "m_Path": "Sub Graphs",
-    "m_GraphPrecision": 1,
+    "m_GraphPrecision": 2,
     "m_PreviewMode": 2,
     "m_OutputNode": {
         "m_Id": "457fa65eb32045f3a5c78f07148d4f01"
@@ -1760,8 +1760,8 @@
     "m_ObjectId": "9f3b663b4d0448f49dfb7f98d45b70d5",
     "m_Title": "HeightFog",
     "m_Position": {
-        "x": -970.9999389648438,
-        "y": -776.0
+        "x": -971.0001220703125,
+        "y": -776.0000610351563
     }
 }
 

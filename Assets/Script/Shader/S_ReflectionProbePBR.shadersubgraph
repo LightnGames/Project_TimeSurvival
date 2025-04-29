@@ -1058,7 +1058,7 @@
         "preventRotation": false
     },
     "m_Path": "Sub Graphs",
-    "m_GraphPrecision": 1,
+    "m_GraphPrecision": 2,
     "m_PreviewMode": 2,
     "m_OutputNode": {
         "m_Id": "d7885103aeb64413936a3e746214377c"
@@ -1865,8 +1865,8 @@
     "m_ObjectId": "1ae08e0b95624c2e85a18a4878cc3a04",
     "m_Title": "oneMinusReflectivity",
     "m_Position": {
-        "x": -330.0000305175781,
-        "y": 40.00000762939453
+        "x": -329.9998779296875,
+        "y": 40.00010299682617
     }
 }
 
@@ -2951,7 +2951,7 @@
     "m_ObjectId": "4cbbb7537a0249ecabe9d800dbb1b944",
     "m_Title": "perceptualRoughness",
     "m_Position": {
-        "x": -952.0000610351563,
+        "x": -951.9998779296875,
         "y": -672.0000610351563
     }
 }
@@ -3181,8 +3181,8 @@
     "m_ObjectId": "5853fb714e0e40acb9c24110e5a0c819",
     "m_Title": "Roughness2",
     "m_Position": {
-        "x": -889.0000610351563,
-        "y": -224.00003051757813
+        "x": -888.9998779296875,
+        "y": -224.0
     }
 }
 
@@ -3481,8 +3481,8 @@
     "m_ObjectId": "69fe9e1a45fa4d5f8469c946808c9996",
     "m_Title": "grazingTerm",
     "m_Position": {
-        "x": 441.0001220703125,
-        "y": 56.000030517578128
+        "x": 441.0002136230469,
+        "y": 56.0
     }
 }
 
@@ -3693,8 +3693,8 @@
     "m_ObjectId": "7a91c7c5bb1849c0b268b4ef38e7a9e3",
     "m_Title": "追加スポットライト",
     "m_Position": {
-        "x": -28.0,
-        "y": 488.00006103515627
+        "x": -27.999755859375,
+        "y": 488.0
     }
 }
 
@@ -4951,8 +4951,8 @@
     "m_ObjectId": "b707bede7d944262870d8a55ddade634",
     "m_Title": "surfaceReduction",
     "m_Position": {
-        "x": -496.0000305175781,
-        "y": -325.0000305175781
+        "x": -495.99981689453127,
+        "y": -325.0
     }
 }
 
@@ -5104,7 +5104,7 @@
     "m_ObjectId": "bf50514c3a834d8d8198803000b4cd11",
     "m_Title": "Smoothness",
     "m_Position": {
-        "x": -1326.0001220703125,
+        "x": -1325.999755859375,
         "y": -459.0
     }
 }
@@ -6214,8 +6214,8 @@
     "m_ObjectId": "eff10b83e2364bce96b169dbc2dc7b26",
     "m_Title": "Reflectivity",
     "m_Position": {
-        "x": 208.0000762939453,
-        "y": 38.0000114440918
+        "x": 208.0,
+        "y": 37.999996185302737
     }
 }
 

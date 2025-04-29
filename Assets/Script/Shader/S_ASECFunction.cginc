@@ -8,18 +8,6 @@
 #include "Packages/com.unity.shadergraph/ShaderGraphLibrary/ShaderVariablesFunctions.hlsl"
 #endif
 
-inline half3 UnityACES(in float3 Color)
-{
-    const float a = 2.51;
-    const float b = 0.03;
-    const float c = 2.43;
-    const float d = 0.59;
-    const float e = 0.14;
-    return saturate(
-                    Color * (a * Color + b) /
-                    (Color * (c * Color + d) + e));
-}
-
 float3 AcesTonemap_UE4(float3 aces)
 {
 #ifndef SHADERGRAPH_PREVIEW
@@ -124,7 +112,7 @@ float3 AcesTonemap_UE4(float3 aces)
 #endif
 }
 
-float3 AcesTonemap_Unity(float3 aces)
+half3 AcesTonemap_Unity(half3 aces)
 {
 #ifndef SHADERGRAPH_PREVIEW
 #if TONEMAPPING_USE_FULL_ACES
@@ -136,17 +124,17 @@ float3 AcesTonemap_Unity(float3 aces)
 #else
 
 				    // --- Glow module --- //
-    float saturation = rgb_2_saturation(aces);
-    float ycIn = rgb_2_yc(aces);
-    float s = sigmoid_shaper((saturation - 0.4) / 0.2);
-    float addedGlow = 1.0 + glow_fwd(ycIn, RRT_GLOW_GAIN * s, RRT_GLOW_MID);
+    half saturation = rgb_2_saturation(aces);
+    half ycIn = rgb_2_yc(aces);
+    half s = sigmoid_shaper((saturation - 0.4) / 0.2);
+    half addedGlow = 1.0 + glow_fwd(ycIn, RRT_GLOW_GAIN * s, RRT_GLOW_MID);
     aces *= addedGlow;
 
 				    // --- Red modifier --- //
-    float hue = rgb_2_hue(aces);
-    float centeredHue = center_hue(hue, RRT_RED_HUE);
-    float hueWeight;
-				    {
+    half hue = rgb_2_hue(aces);
+    half centeredHue = center_hue(hue, RRT_RED_HUE);
+    half hueWeight;
+	{
 				        //hueWeight = cubic_basis_shaper(centeredHue, RRT_RED_WIDTH);
         hueWeight = smoothstep(0.0, 1.0, 1.0 - abs(2.0 * centeredHue / RRT_RED_WIDTH));
         hueWeight *= hueWeight;
@@ -155,7 +143,7 @@ float3 AcesTonemap_Unity(float3 aces)
     aces.r += hueWeight * saturation * (RRT_RED_PIVOT - aces.r) * (1.0 - RRT_RED_SCALE);
 
 				    // --- ACES to RGB rendering space --- //
-    float3 acescg = max(0.0, ACES_to_ACEScg(aces));
+    half3 acescg = max(0.0, ACES_to_ACEScg(aces));
 
 				    // --- Global desaturation --- //
 				    //acescg = mul(RRT_SAT_MAT, acescg);
@@ -173,20 +161,20 @@ float3 AcesTonemap_Unity(float3 aces)
 				    float3 x = acescg;
 				    float3 rgbPost = ((a * x + b)) / ((c * x + d) + e/(x + FLT_MIN));
 #else
-    const float a = 2.785085;
-    const float b = 0.107772;
-    const float c = 2.936045;
-    const float d = 0.887122;
-    const float e = 0.806889;
-    float3 x = acescg;
-    float3 rgbPost = (x * (a * x + b)) / (x * (c * x + d) + e);
+    const half a = 2.785085;
+    const half b = 0.107772;
+    const half c = 2.936045;
+    const half d = 0.887122;
+    const half e = 0.806889;
+    half3 x = acescg;
+    half3 rgbPost = (x * (a * x + b)) / (x * (c * x + d) + e);
 #endif
 
 				    // Scale luminance to linear code value
 				    // float3 linearCV = Y_2_linCV(rgbPost, CINEMA_WHITE, CINEMA_BLACK);
 
 				    // Apply gamma adjustment to compensate for dim surround
-    float3 linearCV = darkSurround_to_dimSurround(rgbPost);
+    half3 linearCV = darkSurround_to_dimSurround(rgbPost);
 
 				    // Apply desaturation to compensate for luminance difference
 				    //linearCV = mul(ODT_SAT_MAT, color);
@@ -194,7 +182,7 @@ float3 AcesTonemap_Unity(float3 aces)
 
 				    // Convert to display primary encoding
 				    // Rendering space RGB to XYZ
-    float3 XYZ = mul(AP1_2_XYZ_MAT, linearCV);
+    half3 XYZ = mul(AP1_2_XYZ_MAT, linearCV);
 
 				    // Apply CAT from ACES white point to assumed observer adapted white point
     XYZ = mul(D60_2_D65_CAT, XYZ);
@@ -210,13 +198,13 @@ float3 AcesTonemap_Unity(float3 aces)
 #endif
 }
 
-void ACES_float(in float3 Color, out half3 Out)
+void ACES_half(in half3 Color, out half3 Out)
 {    
 #ifndef SHADERGRAPH_PREVIEW
-    float3 colorACES = unity_to_ACES(Color);
-    Out = AcesTonemap_UE4(colorACES);
-    //Out = AcesTonemap_Unity(colorACES);
-    //Out = ACES_to_unity(UnityACES(colorACES));
+    half3 colorACES = unity_to_ACES(Color);
+    //Out = AcesTonemap_UE4(colorACES);
+    Out = AcesTonemap_Unity(colorACES);
+    //Out = AcesTonemap(colorACES);
 #else
     Out = Color;
 #endif
@@ -228,12 +216,12 @@ void ApplyLut_half(in half3 Color, in UnityTexture2D LutTexture, in UnitySampler
     half3 scaleOffset = UserLutParams;
     half3 uvw = srgbColor;
     uvw.z *= scaleOffset.z;
-    float shift = floor(uvw.z);
+    half shift = floor(uvw.z);
     uvw.xy = uvw.xy * scaleOffset.z * scaleOffset.xy + scaleOffset.xy * 0.5;
     uvw.x += shift * scaleOffset.y;
     uvw.xyz = lerp(
         SAMPLE_TEXTURE2D_LOD(LutTexture, Sampler, uvw.xy, 0.0).rgb,
-        SAMPLE_TEXTURE2D_LOD(LutTexture, Sampler, uvw.xy + float2(scaleOffset.y, 0.0), 0.0).rgb,
+        SAMPLE_TEXTURE2D_LOD(LutTexture, Sampler, uvw.xy + half2(scaleOffset.y, 0.0), 0.0).rgb,
         uvw.z - shift
     );
     half3 outLut = uvw.xyz;

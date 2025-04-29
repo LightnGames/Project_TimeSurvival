@@ -46,6 +46,11 @@ public class Enemy : MonoBehaviour, IDamageable, IEventTrigger
         _voiceAudioSource.PlayOneShot(_enemyScriptableObject.GetRandomSmallImpactAudioClip());
     }
 
+    public void PlayOneShotFenceRampage()
+    {
+        _voiceAudioSource.PlayOneShot(_enemyScriptableObject.GetRandomFenceRampageAudioClip());
+    }
+
     public void PlayOneShotFootL()
     {
         _footAudioSourceL.PlayOneShot(_enemyScriptableObject.GetRandomFootStepAudioClip());

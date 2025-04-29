@@ -53,3 +53,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: bb435654e84e2974c91d1be7e989226f, type: 3}
   - {fileID: 8300000, guid: 4b6e4f16e3da33442a99ccacf3dc21df, type: 3}
   - {fileID: 8300000, guid: 8f54d253cbea2584eb3c28a789b00874, type: 3}
+  _fenceRampageAudioClips:
+  - {fileID: 8300000, guid: 1a35c99e2ae5d134f9b5084f43249004, type: 3}
+  - {fileID: 8300000, guid: 2509ff97a7edd9943a10e726aaec2999, type: 3}
+  - {fileID: 8300000, guid: 5f943c47e3f8d41468eda81a1a101efa, type: 3}

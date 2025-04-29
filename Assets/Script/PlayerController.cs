@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         float invTimeScale = 1.0f / Time.timeScale;
         float moveLength = moveSpeed * invTimeScale * Time.deltaTime;
         _characterController.Move(moveDirection * moveLength);
-        _moveLengthFromFootStepStart += moveLength;
+        _moveLengthFromFootStepStart += moveLength * inputLength;
 
         if (_moveLengthFromFootStepStart > _playerScriptableObject.FootStepRateInMeeter)
         {
