@@ -7,10 +7,10 @@ public class PlayerController : MonoBehaviour, IDamageable
     [SerializeField] PlayerScriptableObject _playerScriptableObject;
     [SerializeField] Renderer _fadeRenderer;
     [SerializeField] Transform _headTransfrom;
+    [SerializeField] private AudioSource _audioSource;
     private readonly int FadeId = Shader.PropertyToID("_Fade");
     private readonly int GlobalTimeScaleId = Shader.PropertyToID("_GlobalTimeScale");
     private CharacterController _characterController;
-    private AudioSource _audioSource;
     private float _moveLengthFromFootStepStart = 0.0f;
     private Material[] _fadeMaterials;
     private float _prevFade = 0.0f;
@@ -19,7 +19,6 @@ public class PlayerController : MonoBehaviour, IDamageable
     private void Awake()
     {
         _characterController = GetComponent<CharacterController>();
-        _audioSource = GetComponent<AudioSource>();
         _fadeMaterials = new Material[_fadeRenderer.sharedMaterials.Length];
         for (int i = 0; i < _fadeMaterials.Length; i++)
         {

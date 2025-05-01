@@ -42,8 +42,6 @@ public class Weapon : MonoBehaviour
         }
 
         SwitchFresnelEffect(true);
-
-        DischargeEmptyShell();
     }
 
     protected void SwitchFresnelEffect(bool visibility)
