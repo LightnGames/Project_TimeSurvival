@@ -2835,6 +2835,7 @@
     "m_SourceType": 1,
     "m_FunctionName": "LightmapUv",
     "m_FunctionSource": "",
+    "m_FunctionSourceUsePragmas": true,
     "m_FunctionBody": "Scale = unity_LightmapST.xy;\nOffset = unity_LightmapST.zw;"
 }
 
@@ -7034,7 +7035,7 @@
     "m_ObjectId": "41c954ff52be43e38db4dd33bef51b88",
     "m_Title": "床付近の汚れ",
     "m_Position": {
-        "x": -3797.0,
+        "x": -3796.999755859375,
         "y": -242.0
     }
 }
@@ -9947,6 +9948,7 @@
     "m_SourceType": 0,
     "m_FunctionName": "SpecularOcclusionFromBentNormal",
     "m_FunctionSource": "aba6238d539be4a40afa3b59d2a5c6ff",
+    "m_FunctionSourceUsePragmas": true,
     "m_FunctionBody": "Enter function body here..."
 }
 
@@ -10835,7 +10837,7 @@
     "m_ObjectId": "826a5c62f9294c4ea7e9bbcf3f2156c3",
     "m_Title": "ハイとフォグ色",
     "m_Position": {
-        "x": -855.0,
+        "x": -854.9999389648438,
         "y": -923.0
     }
 }
@@ -12786,8 +12788,8 @@
     "m_ObjectId": "9d403efb8ad24be7a64b5acf4cd32892",
     "m_Title": "デッドライン",
     "m_Position": {
-        "x": -920.0,
-        "y": -287.0
+        "x": -919.9999389648438,
+        "y": -286.9999694824219
     }
 }
 
@@ -13246,7 +13248,7 @@
     "m_Title": "床の汚れ",
     "m_Position": {
         "x": -3909.0,
-        "y": -1867.0
+        "y": -1866.9998779296875
     }
 }
 
@@ -15293,6 +15295,7 @@
     },
     "isMainTexture": false,
     "useTilingAndOffset": false,
+    "useTexelSize": true,
     "m_Modifiable": true,
     "m_DefaultType": 0
 }
@@ -15733,6 +15736,7 @@
     },
     "isMainTexture": false,
     "useTilingAndOffset": false,
+    "useTexelSize": true,
     "m_Modifiable": true,
     "m_DefaultType": 0
 }
@@ -16047,6 +16051,7 @@
     },
     "isMainTexture": false,
     "useTilingAndOffset": false,
+    "useTexelSize": true,
     "m_Modifiable": true,
     "m_DefaultType": 0
 }
@@ -18190,8 +18195,8 @@
     "m_ObjectId": "f91d18f0b0314859a486627178e997c0",
     "m_Title": "天井付近の汚れ",
     "m_Position": {
-        "x": -3798.0,
-        "y": -1331.0
+        "x": -3797.999755859375,
+        "y": -1330.999755859375
     }
 }
 

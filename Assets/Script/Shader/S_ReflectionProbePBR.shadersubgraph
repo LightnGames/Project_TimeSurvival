@@ -562,20 +562,6 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
-                    "m_Id": "47e5b0d1e41144afb48402ce18c476f3"
-                },
-                "m_SlotId": 1
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "3a6a9e57594740eab30b05b34d73bf7f"
-                },
-                "m_SlotId": 4
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
                     "m_Id": "4c3d67dda10d42378bc9f634dbaa4711"
                 },
                 "m_SlotId": 2
@@ -1505,6 +1491,7 @@
     "m_SourceType": 0,
     "m_FunctionName": "ReflectionProbe",
     "m_FunctionSource": "0ba9fcc0b31954149974cd8f7dd62596",
+    "m_FunctionSourceUsePragmas": true,
     "m_FunctionBody": "#ifdef SHADERGRAPH_PREVIEW\r\n     Out = half3(0, 0, 0);\r\n#else\r\n    half3 viewDirWS = ViewDirWS;\r\n    half3 normalWS = NormalWS;\r\n    half3 reflDir = reflect(-viewDirWS, normalWS);\r\n\r\n    half3 factors = ((reflDir > 0 ? unity_SpecCube0_BoxMax.xyz : unity_SpecCube0_BoxMin.xyz) - PositionWS) / reflDir;\r\n    half scalar = min(min(factors.x, factors.y), factors.z);\r\n    half3 uvw = reflDir * scalar + (PositionWS - unity_SpecCube0_ProbePosition.xyz);\r\n\r\n    half4 sampleRefl = SAMPLE_TEXTURECUBE_LOD(unity_SpecCube0, samplerunity_SpecCube0, uvw, LOD);\r\n    half3 specCol = DecodeHDREnvironment(sampleRefl, unity_SpecCube0_HDR);\r\n    Out = specCol;\r\n#endif"
 }
 
@@ -1865,8 +1852,8 @@
     "m_ObjectId": "1ae08e0b95624c2e85a18a4878cc3a04",
     "m_Title": "oneMinusReflectivity",
     "m_Position": {
-        "x": -329.9998779296875,
-        "y": 40.00010299682617
+        "x": -329.99993896484377,
+        "y": 39.999881744384769
     }
 }
 
@@ -2690,6 +2677,7 @@
     "m_SourceType": 0,
     "m_FunctionName": "SdfStep",
     "m_FunctionSource": "b3734d86f2072f6429a5419164ef08ae",
+    "m_FunctionSourceUsePragmas": true,
     "m_FunctionBody": "#ifdef SHADERGRAPH_PREVIEW\r\n     Out = half3(0, 0, 0);\r\n#else\r\n    half3 viewDirWS = ViewDirWS;\r\n    half3 normalWS = NormalWS;\r\n    half3 reflDir = reflect(-viewDirWS, normalWS);\r\n\r\n    half3 factors = ((reflDir > 0 ? unity_SpecCube0_BoxMax.xyz : unity_SpecCube0_BoxMin.xyz) - PositionWS) / reflDir;\r\n    half scalar = min(min(factors.x, factors.y), factors.z);\r\n    half3 uvw = reflDir * scalar + (PositionWS - unity_SpecCube0_ProbePosition.xyz);\r\n\r\n    half4 sampleRefl = SAMPLE_TEXTURECUBE_LOD(unity_SpecCube0, samplerunity_SpecCube0, uvw, LOD);\r\n    half3 specCol = DecodeHDREnvironment(sampleRefl, unity_SpecCube0_HDR);\r\n    Out = specCol;\r\n#endif"
 }
 
@@ -2951,8 +2939,8 @@
     "m_ObjectId": "4cbbb7537a0249ecabe9d800dbb1b944",
     "m_Title": "perceptualRoughness",
     "m_Position": {
-        "x": -951.9998779296875,
-        "y": -672.0000610351563
+        "x": -951.9999389648438,
+        "y": -671.9999389648438
     }
 }
 
@@ -3181,8 +3169,8 @@
     "m_ObjectId": "5853fb714e0e40acb9c24110e5a0c819",
     "m_Title": "Roughness2",
     "m_Position": {
-        "x": -888.9998779296875,
-        "y": -224.0
+        "x": -888.9999389648438,
+        "y": -224.00006103515626
     }
 }
 
@@ -3481,7 +3469,7 @@
     "m_ObjectId": "69fe9e1a45fa4d5f8469c946808c9996",
     "m_Title": "grazingTerm",
     "m_Position": {
-        "x": 441.0002136230469,
+        "x": 441.0,
         "y": 56.0
     }
 }
@@ -3693,8 +3681,8 @@
     "m_ObjectId": "7a91c7c5bb1849c0b268b4ef38e7a9e3",
     "m_Title": "追加スポットライト",
     "m_Position": {
-        "x": -27.999755859375,
-        "y": 488.0
+        "x": -28.0,
+        "y": 487.9998779296875
     }
 }
 
@@ -4605,6 +4593,7 @@
     "m_SourceType": 0,
     "m_FunctionName": "LightingSpotLight",
     "m_FunctionSource": "093b46132398bcb44a3abddb78acd35d",
+    "m_FunctionSourceUsePragmas": true,
     "m_FunctionBody": "Enter function body here..."
 }
 
@@ -4951,8 +4940,8 @@
     "m_ObjectId": "b707bede7d944262870d8a55ddade634",
     "m_Title": "surfaceReduction",
     "m_Position": {
-        "x": -495.99981689453127,
-        "y": -325.0
+        "x": -495.9999694824219,
+        "y": -325.00006103515627
     }
 }
 
@@ -5104,8 +5093,8 @@
     "m_ObjectId": "bf50514c3a834d8d8198803000b4cd11",
     "m_Title": "Smoothness",
     "m_Position": {
-        "x": -1325.999755859375,
-        "y": -459.0
+        "x": -1325.9998779296875,
+        "y": -459.0000305175781
     }
 }
 
@@ -6215,7 +6204,7 @@
     "m_Title": "Reflectivity",
     "m_Position": {
         "x": 208.0,
-        "y": 37.999996185302737
+        "y": 38.0
     }
 }
 

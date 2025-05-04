@@ -1,10 +1,5 @@
 using UnityEngine;
 
-public interface IEventTrigger
-{
-    void OnEventTriggered();
-}
-
 public class EventTriggerZone : MonoBehaviour
 {
     [SerializeField]

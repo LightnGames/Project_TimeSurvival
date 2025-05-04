@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b44065a4904cd1d41a5ddd021568317d
+guid: ef4a65b8c224ddb469d9bcbd2af6c3df
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -14,16 +14,6 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Glass(Fade)
     second: {fileID: 2100000, guid: ed5853a5ef6a1f844b42e34a6d5d6bac, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Wall_01
-    second: {fileID: 2100000, guid: 26d19f85aae2523489dff5cffa248d90, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Wall_02
-    second: {fileID: 2100000, guid: 7b68a43caaa25a24f831769bcef591fa, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -111,7 +101,7 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 1
+    hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1

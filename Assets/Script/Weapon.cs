@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Audio;
 
 public class Weapon : MonoBehaviour
 {
@@ -11,6 +10,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private Transform _triggerTransform;
     [SerializeField] private Transform _emptyShellAncherTransform;
     [SerializeField] private Light _flashLight;
+    [SerializeField] private Transform _onCatchedEventTransform = null;
     private readonly int ShotHash = Animator.StringToHash("Shot");
     private readonly int TrailLengthId = Shader.PropertyToID("_TrailLength");
     private readonly int TrailStartTimeId = Shader.PropertyToID("_TrailStartTime");
@@ -71,6 +71,11 @@ public class Weapon : MonoBehaviour
         _mainGripVibrationEvent = vibrateEvent;
         _mainGripAnimationTransformEvent = transformEvent;
         CatchedWeapon();
+
+        if (_onCatchedEventTransform != null)
+        {
+            _onCatchedEventTransform.GetComponent<IEventTrigger>().OnEventTriggered();
+        }
     }
 
     public virtual void MainGripReleased()
