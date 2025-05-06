@@ -72,7 +72,7 @@ AudioSource:
   m_GameObject: {fileID: 2464517968768201099}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 1696ddc9c1f8b344197a032157e1f087, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
@@ -84,8 +84,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 0.2
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -764,6 +764,7 @@ MonoBehaviour:
   _triggerTransform: {fileID: 3851166101723537314}
   _emptyShellAncherTransform: {fileID: 6156183643833540145}
   _flashLight: {fileID: 8226866970562398126}
+  _onCatchedEventTransform: {fileID: 0}
   _pumpMeshTransform: {fileID: 8891364303236712725}
   _pumpDefaultAncherTransform: {fileID: 3753770520147500105}
 --- !u!82 &2937324726658125459

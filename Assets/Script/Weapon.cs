@@ -11,13 +11,17 @@ public class Weapon : MonoBehaviour
     [SerializeField] private Transform _emptyShellAncherTransform;
     [SerializeField] private Light _flashLight;
     [SerializeField] private Transform _onCatchedEventTransform = null;
+    [SerializeField] private MeshRenderer _remainingBulletTextMeshRenderer;
     private readonly int ShotHash = Animator.StringToHash("Shot");
     private readonly int TrailLengthId = Shader.PropertyToID("_TrailLength");
     private readonly int TrailStartTimeId = Shader.PropertyToID("_TrailStartTime");
     private readonly int FresnelEffectId = Shader.PropertyToID("_FresnelEffect");
+    private readonly int DisplayNumberId = Shader.PropertyToID("_DisplayNumber");
+    private readonly int OutlineEffectStartTimeId = Shader.PropertyToID("_OutlineEffectStartTime");
     private float _triggerPitchAngleEuler = 0.0f;
     private float _shotRecoilTimer = 0.0f;
     private int _ammo = 0;
+    private Material _remainingBulletNumberMaterial;
     private AudioSource _audioSource;
     private Rigidbody _rigidbody;
     private Collider _collider;
@@ -31,7 +35,8 @@ public class Weapon : MonoBehaviour
         _collider = GetComponent<Collider>();
         _audioSource = GetComponent<AudioSource>();
         _ammo = _weaponScriptableObject.MaxAmmo;
-
+        _remainingBulletNumberMaterial = _remainingBulletTextMeshRenderer.material;
+;
         MeshRenderer[] meshRenderers = GetComponentsInChildren<MeshRenderer>();
         foreach (MeshRenderer renderer in meshRenderers)
         {
@@ -52,9 +57,38 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    protected virtual void Update() { }
+    protected virtual void Update()
+    {
+    }
 
     protected virtual void LateUpdate()
+    {
+    }
+
+    private void UpdateRemainingBulletText()
+    {
+        float currentDisplayNumber = _remainingBulletNumberMaterial.GetFloat(DisplayNumberId);
+        float displayDiff = Mathf.Abs(_ammo - currentDisplayNumber);
+        if (displayDiff < 0.01f)
+        {
+            return;
+        }
+
+        float newDisplayNumber = currentDisplayNumber + (_ammo - currentDisplayNumber) / 50.0f;
+        if (displayDiff < 0.01f)
+        {
+            newDisplayNumber = _ammo;
+            PlayRemainingBulletTextOutlineEffect();
+        }
+        _remainingBulletNumberMaterial.SetFloat(DisplayNumberId, newDisplayNumber);
+    }
+
+    private void PlayRemainingBulletTextOutlineEffect()
+    {
+        _remainingBulletNumberMaterial.SetFloat(OutlineEffectStartTimeId, Time.time);
+    }
+
+    private void UpdateTriggerRotation()
     {
         _triggerTransform.localRotation = Quaternion.Euler(_triggerPitchAngleEuler, 0, 0);
     }
@@ -64,6 +98,9 @@ public class Weapon : MonoBehaviour
         const float MaxTriggerAngleEuler = 45.0f;
         _triggerPitchAngleEuler = input._indexTrigger * MaxTriggerAngleEuler;
         _shotRecoilTimer += Time.deltaTime;
+
+        UpdateRemainingBulletText();
+        UpdateTriggerRotation();
     }
 
     public virtual void MainGripCatched(CatchableItem.VibrateEvent vibrateEvent, CatchableItem.XrHandAnimationTransformEvent transformEvent)
@@ -76,6 +113,8 @@ public class Weapon : MonoBehaviour
         {
             _onCatchedEventTransform.GetComponent<IEventTrigger>().OnEventTriggered();
         }
+
+        _remainingBulletNumberMaterial.SetFloat(DisplayNumberId, 0);
     }
 
     public virtual void MainGripReleased()
@@ -174,6 +213,9 @@ public class Weapon : MonoBehaviour
         AudioClip[] audioClips = _weaponScriptableObject.DryFireAudioClips;
         int randomIndex = Random.Range(0, audioClips.Length);
         _muzzleFlashAncher.PlayOneShot(audioClips[randomIndex]);
+
+        // 残弾UIにアウトライン強調を表示させる
+        PlayRemainingBulletTextOutlineEffect();
     }
 
     protected virtual void Shot()
