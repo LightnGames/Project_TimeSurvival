@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4102718305780413200}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CatchAncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3762400082597522456}
   - component: {fileID: 8063224385897010872}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MuzzleFlashAncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3753770520147500105}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PumpDefaultTransformAncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 2524845711756357097}
   - component: {fileID: 8226866970562398126}
   - component: {fileID: 8165886320469949745}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -321,7 +321,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6156183643833540145}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EmptyShellAcnher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -355,7 +355,7 @@ GameObject:
   - component: {fileID: 7216513030965989556}
   - component: {fileID: 7123053619041014076}
   - component: {fileID: 2007858417891787368}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MainGripItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -452,7 +452,7 @@ GameObject:
   - component: {fileID: 6824022051176211085}
   - component: {fileID: 4968712508484558938}
   - component: {fileID: 5786639489561907492}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PumpCatchableAncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -538,6 +538,115 @@ ParentConstraint:
   m_Active: 0
   m_IsLocked: 1
   m_Sources: []
+--- !u!1 &8739857287598223912
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1798622542569446285}
+  - component: {fileID: 7967267612698997670}
+  - component: {fileID: 6542176904062472988}
+  - component: {fileID: 2144078066953712505}
+  m_Layer: 8
+  m_Name: RemainingBulletNumberText (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1798622542569446285
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8739857287598223912}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -1, w: -0.0000002384186}
+  m_LocalPosition: {x: 0.0382, y: -0, z: 0}
+  m_LocalScale: {x: -0.02, y: -0.02, z: -0.02}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 681531271995454089}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180}
+--- !u!33 &7967267612698997670
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8739857287598223912}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &6542176904062472988
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8739857287598223912}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 6c86eac98e27d6a40b61bd5c98770857, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &2144078066953712505
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8739857287598223912}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &9061703357292715299
 GameObject:
   m_ObjectHideFlags: 0
@@ -547,7 +656,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3682322213745763701}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PumpCatchAncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -617,9 +726,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -56.511
       objectReference: {fileID: 0}
+    - target: {fileID: -8135941784481774615, guid: a0d4445b8ecffd44f8db7a8e3b159232, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -7507741294329495048, guid: a0d4445b8ecffd44f8db7a8e3b159232, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -6935975982581238793, guid: a0d4445b8ecffd44f8db7a8e3b159232, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -5593573851926242888, guid: a0d4445b8ecffd44f8db7a8e3b159232, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -4562531968790614023, guid: a0d4445b8ecffd44f8db7a8e3b159232, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a0d4445b8ecffd44f8db7a8e3b159232, type: 3}
       propertyPath: m_Name
       value: SK_ITHAKI37
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a0d4445b8ecffd44f8db7a8e3b159232, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -645,6 +778,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: a0d4445b8ecffd44f8db7a8e3b159232, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5984101937226135832}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: a0d4445b8ecffd44f8db7a8e3b159232, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1798622542569446285}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a0d4445b8ecffd44f8db7a8e3b159232, type: 3}
       insertIndex: -1
@@ -765,6 +901,7 @@ MonoBehaviour:
   _emptyShellAncherTransform: {fileID: 6156183643833540145}
   _flashLight: {fileID: 8226866970562398126}
   _onCatchedEventTransform: {fileID: 0}
+  _remainingBulletTextMeshRenderer: {fileID: 6542176904062472988}
   _pumpMeshTransform: {fileID: 8891364303236712725}
   _pumpDefaultAncherTransform: {fileID: 3753770520147500105}
 --- !u!82 &2937324726658125459

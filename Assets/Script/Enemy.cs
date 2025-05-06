@@ -61,6 +61,11 @@ public class Enemy : MonoBehaviour, IDamageable, IEventTrigger
         _footAudioSourceR.PlayOneShot(_enemyScriptableObject.GetRandomFootStepAudioClip());
     }
 
+    public void PlayOneShotBodyRip()
+    {
+        _voiceAudioSource.PlayOneShot(_enemyScriptableObject.GetRandomBodyRipAudioClip());
+    }
+
     public void EndSpawn()
     {
         _navMeshAgent.enabled = true;

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7863699417646568212}
   - component: {fileID: 4283399906176227862}
   - component: {fileID: 5193602446648084045}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2720597332157810899}
   - component: {fileID: 737914087131961492}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MuzzleFlashAncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 5394433705905723674}
   - component: {fileID: 8606972846713202676}
   - component: {fileID: 7426916219471909122}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_PM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -483,7 +483,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7261124589155781836}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EmptyShellAcnher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -517,7 +517,7 @@ GameObject:
   - component: {fileID: 2513800442997989181}
   - component: {fileID: 511614152260307290}
   - component: {fileID: 7844911415115028162}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MainGripItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -611,7 +611,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2198817743497640074}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CatchAncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -645,7 +645,7 @@ GameObject:
   - component: {fileID: 8968239185413936670}
   - component: {fileID: 8512184239407838678}
   - component: {fileID: 900796890334712983}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RemainingBulletNumberText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -790,13 +790,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6689328576086593357, guid: 0df3ee524731d8448b8a665b75906024, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -6377809767899645004, guid: 0df3ee524731d8448b8a665b75906024, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -5578949921371086668, guid: 0df3ee524731d8448b8a665b75906024, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -4436537088978347886, guid: 0df3ee524731d8448b8a665b75906024, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -1311711180396508847, guid: 0df3ee524731d8448b8a665b75906024, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0df3ee524731d8448b8a665b75906024, type: 3}
       propertyPath: m_Name
       value: SM_PM
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0df3ee524731d8448b8a665b75906024, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3866352391825706343, guid: 0df3ee524731d8448b8a665b75906024, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4415760266169250192, guid: 0df3ee524731d8448b8a665b75906024, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6842412967505471330, guid: 0df3ee524731d8448b8a665b75906024, type: 3}
       propertyPath: m_LocalRotation.y

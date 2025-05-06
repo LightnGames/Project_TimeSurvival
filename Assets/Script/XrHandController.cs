@@ -43,7 +43,9 @@ public class XrHandController : MonoBehaviour
         CatchableItem.GrabableItemInputData _grabableItemInput = new CatchableItem.GrabableItemInputData();
         _grabableItemInput._indexTrigger = grabIndexAmount;
 
-        _xrHand.HandAnimator.SetFloat(GrabHash, grabAmount, 0.1f, Time.deltaTime);
+        float invTimeScale = 1.0f / Time.timeScale;
+        _xrHand.HandAnimator.speed = invTimeScale;
+        _xrHand.HandAnimator.SetFloat(GrabHash, grabAmount, 0.1f, Time.deltaTime * invTimeScale);
         _xrHand.HandAnimator.SetFloat(TriggerHash, grabIndexAmount);
 
         const float GrabThrehold = 0.7f;

@@ -10,6 +10,7 @@ public class EnemyScriptableObject : ScriptableObject
     [SerializeField] private AudioClip[] _deadAudioClips;
     [SerializeField] private AudioClip[] _smallImpactAudioClips;
     [SerializeField] private AudioClip[] _fenceRampageAudioClips;
+    [SerializeField] private AudioClip[] _bodyRipAudioClips;
 
     public int MaxHealth { get { return _maxHealth; } }
     public AudioClip[] FootStepAudioClips { get { return _footStepAudioClips; } }
@@ -18,6 +19,7 @@ public class EnemyScriptableObject : ScriptableObject
     public AudioClip[] DeadAudioClips { get { return _takeDamageAudioClips; } }
     public AudioClip[] SmallImpactAudioClips { get { return _smallImpactAudioClips; } }
     public AudioClip[] FenceRampageAudioClips { get { return _fenceRampageAudioClips; } }
+    public AudioClip[] BodyRipAudioClips { get { return _bodyRipAudioClips; } }
 
     public AudioClip GetRandomFootStepAudioClip()
     {
@@ -47,5 +49,10 @@ public class EnemyScriptableObject : ScriptableObject
     public AudioClip GetRandomFenceRampageAudioClip()
     {
         return FenceRampageAudioClips[Random.Range(0, FenceRampageAudioClips.Length)];
+    }
+
+    public AudioClip GetRandomBodyRipAudioClip()
+    {
+        return BodyRipAudioClips[Random.Range(0, BodyRipAudioClips.Length)];
     }
 }

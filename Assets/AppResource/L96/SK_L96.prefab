@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3718076898871172474}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CatchAncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 8815753875855424613}
   - component: {fileID: 791294404750781476}
   - component: {fileID: 6283774347766512750}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,7 +161,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3507132528991055902}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BoltCatchAncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,7 +192,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7663548829526658200}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BoltDefaultAncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 2592397957370840933}
   - component: {fileID: 5372706013237202058}
   - component: {fileID: 5400928832981627068}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RemainingBulletNumberText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -332,7 +332,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5411414252250984229}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EmptyShellAcnher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -366,7 +366,7 @@ GameObject:
   - component: {fileID: 4109700927797917120}
   - component: {fileID: 6393462516143064220}
   - component: {fileID: 3654524984631249535}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MainGripItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -461,7 +461,7 @@ GameObject:
   m_Component:
   - component: {fileID: 219931350680650315}
   - component: {fileID: 3961273401140311845}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MuzzleFlashAncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -592,7 +592,7 @@ GameObject:
   - component: {fileID: 9086809858071731186}
   - component: {fileID: 4618383533388978683}
   - component: {fileID: 1202683371568655944}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SubGripCatchableAncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -689,7 +689,7 @@ GameObject:
   - component: {fileID: 5500113104356015676}
   - component: {fileID: 3685360959985390252}
   - component: {fileID: 550237080633812707}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ScopeCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -818,7 +818,7 @@ GameObject:
   - component: {fileID: 1407101357040397265}
   - component: {fileID: 8163619565317875353}
   - component: {fileID: 6603985087491369908}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BoltCatchableAncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -913,7 +913,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2110713331015091032}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SubGripCatchAncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -983,9 +983,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -11.695
       objectReference: {fileID: 0}
+    - target: {fileID: -8372845499773302592, guid: 1549d40c66aad474aa561b13076e3c3a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1549d40c66aad474aa561b13076e3c3a, type: 3}
       propertyPath: m_Name
       value: SK_L96
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1549d40c66aad474aa561b13076e3c3a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1542407243747908749, guid: 1549d40c66aad474aa561b13076e3c3a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3004717367422520080, guid: 1549d40c66aad474aa561b13076e3c3a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4681677716424542934, guid: 1549d40c66aad474aa561b13076e3c3a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6973745054039358615, guid: 1549d40c66aad474aa561b13076e3c3a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7740768314119197220, guid: 1549d40c66aad474aa561b13076e3c3a, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1373,9 +1401,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7770241682676735472, guid: 451fbd07e9cecd644aec97e4b455825c, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -1221351074366586023, guid: 451fbd07e9cecd644aec97e4b455825c, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 451fbd07e9cecd644aec97e4b455825c, type: 3}
       propertyPath: m_Name
       value: SM_Scope_25x56
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 451fbd07e9cecd644aec97e4b455825c, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

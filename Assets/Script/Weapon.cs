@@ -36,6 +36,7 @@ public class Weapon : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
         _ammo = _weaponScriptableObject.MaxAmmo;
         _remainingBulletNumberMaterial = _remainingBulletTextMeshRenderer.material;
+        _remainingBulletTextMeshRenderer.enabled = false;
 ;
         MeshRenderer[] meshRenderers = GetComponentsInChildren<MeshRenderer>();
         foreach (MeshRenderer renderer in meshRenderers)
@@ -74,7 +75,7 @@ public class Weapon : MonoBehaviour
             return;
         }
 
-        float newDisplayNumber = currentDisplayNumber + (_ammo - currentDisplayNumber) / 50.0f;
+        float newDisplayNumber = currentDisplayNumber + (_ammo - currentDisplayNumber) / 100.0f;
         if (displayDiff < 0.01f)
         {
             newDisplayNumber = _ammo;
@@ -95,9 +96,10 @@ public class Weapon : MonoBehaviour
 
     public virtual void MainGripCatchedUpdate(in CatchableItem.GrabableItemInputData input, Transform mainGripTransform)
     {
+        float invTimeScale = 1.0f / Time.timeScale;
         const float MaxTriggerAngleEuler = 45.0f;
         _triggerPitchAngleEuler = input._indexTrigger * MaxTriggerAngleEuler;
-        _shotRecoilTimer += Time.deltaTime;
+        _shotRecoilTimer += Time.deltaTime * invTimeScale;
 
         UpdateRemainingBulletText();
         UpdateTriggerRotation();
@@ -130,6 +132,7 @@ public class Weapon : MonoBehaviour
         _rigidbody.isKinematic = true;
         _collider.enabled = false;
         _flashLight.enabled = true;
+        _remainingBulletTextMeshRenderer.enabled = true;
         SwitchFresnelEffect(false);
     }
 
@@ -138,6 +141,7 @@ public class Weapon : MonoBehaviour
         _rigidbody.isKinematic = false;
         _collider.enabled = true;
         _flashLight.enabled = false;
+        _remainingBulletTextMeshRenderer.enabled = false;
 
         if (!IsEmptyAmmo())
         {
@@ -258,6 +262,7 @@ public class Weapon : MonoBehaviour
 
     private IEnumerator PlayShotRecoilAnimation()
     {
+        float invTimeScale = 1.0f / Time.timeScale;
         float animationLength = _weaponScriptableObject.RecoilTimeInSec;
         float animationTime = 0.0f;
         while (animationTime < 1.0f)
@@ -266,7 +271,7 @@ public class Weapon : MonoBehaviour
             Quaternion rotation = Quaternion.Euler(Vector3.up * _weaponScriptableObject.RecoilPitchEuler.Evaluate(animationTime));
             _mainGripAnimationTransformEvent(position, rotation);
             yield return null;
-            animationTime += Time.deltaTime / animationLength;
+            animationTime += Time.deltaTime * invTimeScale / animationLength;
         }
         _mainGripAnimationTransformEvent(Vector3.zero, Quaternion.identity);
     }

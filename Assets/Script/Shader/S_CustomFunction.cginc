@@ -5,18 +5,19 @@
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 #endif
 
-void AdaptiveProbeVolumeSample_half(in half3 ViewDirWS, in half3 NormalWS, in float3 PositionWS, in half2 PositionCS, in half3 Albedo, in half Metallic, out half3 Out)
+void AdaptiveProbeVolumeSample_half(in half3 ViewDirWS, in half3 NormalWS, in float3 PositionWS, in half3 Albedo, in half Metallic, out half3 Out)
 {
     Out = half3(1, 0, 0);
 #ifndef SHADERGRAPH_PREVIEW
 #if defined(PROBE_VOLUMES_L1) || defined(PROBE_VOLUMES_L2)
+    half2 ss= half2(0,0);
     half reflectivity = (1.0 - Metallic) * 0.96;
     half3 outColor;
     EvaluateAdaptiveProbeVolume(
          PositionWS,
          NormalWS,
          ViewDirWS,
-         PositionCS,
+         ss,
          outColor.rgb
      );
     Out = outColor * Albedo * reflectivity;

@@ -26,6 +26,8 @@ public class EventTriggerZone : MonoBehaviour
         Color color = Color.yellow;
         color.a = 0.2f;
         Gizmos.color = color;
-        Gizmos.DrawWireCube(transform.position+bc.center, bc.size);
+        Gizmos.matrix = Matrix4x4.TRS(transform.position + bc.center, transform.rotation, bc.size);
+        Gizmos.DrawWireCube(Vector3.zero, Vector3.one);
+        Gizmos.matrix = Matrix4x4.identity;
     }
 }
