@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "com.meta.xr.sdk.audio": "71.0.0",
+    "com.meta.xr.sdk.audio": "76.0.0",
     "com.meta.xr.sdk.core": "71.0.0",
     "com.unity.ai.navigation": "2.0.7",
     "com.unity.collab-proxy": "2.7.1",

@@ -22,6 +22,9 @@
     "m_Keywords": [
         {
             "m_Id": "97b943b5264d4ae2ae92bb87451362b7"
+        },
+        {
+            "m_Id": "22119d65035741dead69a4ca139a4114"
         }
     ],
     "m_Dropdowns": [],
@@ -875,6 +878,31 @@
 }
 
 {
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.ShaderKeyword",
+    "m_ObjectId": "22119d65035741dead69a4ca139a4114",
+    "m_Guid": {
+        "m_GuidSerialized": "f2e58135-308f-4b83-89f2-9b1eccb12c20"
+    },
+    "m_Name": "REFLECTION_PROBE_BOX_PROJECTION",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "REFLECTION_PROBE_BOX_PROJECTION",
+    "m_DefaultReferenceName": "_REFLECTION_PROBE_BOX_PROJECTION",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": false,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_KeywordType": 0,
+    "m_KeywordDefinition": 0,
+    "m_KeywordScope": 0,
+    "m_KeywordStages": 2,
+    "m_Entries": [],
+    "m_Value": 1,
+    "m_IsEditable": true
+}
+
+{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.SamplerStateMaterialSlot",
     "m_ObjectId": "231a05cacc9d41968d3b76d49eaf5403",
@@ -1407,6 +1435,7 @@
     "m_SourceType": 0,
     "m_FunctionName": "SpecularOcclusionFromBentNormal",
     "m_FunctionSource": "aba6238d539be4a40afa3b59d2a5c6ff",
+    "m_FunctionSourceUsePragmas": true,
     "m_FunctionBody": "Enter function body here..."
 }
 
@@ -1850,6 +1879,9 @@
         },
         {
             "m_Id": "10d58182cf384b44ba46220e12076c4b"
+        },
+        {
+            "m_Id": "22119d65035741dead69a4ca139a4114"
         },
         {
             "m_Id": "97b943b5264d4ae2ae92bb87451362b7"
@@ -2772,6 +2804,7 @@
     },
     "isMainTexture": false,
     "useTilingAndOffset": false,
+    "useTexelSize": true,
     "m_Modifiable": true,
     "m_DefaultType": 0
 }
@@ -2825,6 +2858,7 @@
     },
     "isMainTexture": false,
     "useTilingAndOffset": false,
+    "useTexelSize": true,
     "m_Modifiable": true,
     "m_DefaultType": 0
 }
@@ -2891,6 +2925,7 @@
     },
     "isMainTexture": false,
     "useTilingAndOffset": false,
+    "useTexelSize": true,
     "m_Modifiable": true,
     "m_DefaultType": 0
 }
@@ -2951,6 +2986,7 @@
     },
     "isMainTexture": false,
     "useTilingAndOffset": false,
+    "useTexelSize": true,
     "m_Modifiable": true,
     "m_DefaultType": 0
 }

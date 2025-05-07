@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 #if UNITY_EDITOR
         _headTransfrom.localPosition = Vector3.up * 1.6f;
 #endif
+        print("Game Started");
     }
 
     private void Update()

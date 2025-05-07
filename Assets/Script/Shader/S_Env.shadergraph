@@ -1058,20 +1058,6 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
-                    "m_Id": "3325cc599160401e83b943768ca374bb"
-                },
-                "m_SlotId": 0
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "6f364dc617e448778bb5de42a663d439"
-                },
-                "m_SlotId": -1078082692
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
                     "m_Id": "3350a0c864d04c4cb09617ba494fc080"
                 },
                 "m_SlotId": 1
@@ -7035,7 +7021,7 @@
     "m_ObjectId": "41c954ff52be43e38db4dd33bef51b88",
     "m_Title": "床付近の汚れ",
     "m_Position": {
-        "x": -3797.00048828125,
+        "x": -3797.000244140625,
         "y": -242.0
     }
 }
@@ -9624,9 +9610,6 @@
         },
         {
             "m_Id": "46ab0f621d7a48d389137748ecb5149f"
-        },
-        {
-            "m_Id": "f095003d77f146bf9ae12f4752b85cb7"
         },
         {
             "m_Id": "01c2ec40bd994ff18b3793f301073a00"
@@ -12788,7 +12771,7 @@
     "m_ObjectId": "9d403efb8ad24be7a64b5acf4cd32892",
     "m_Title": "デッドライン",
     "m_Position": {
-        "x": -920.0,
+        "x": -920.0000610351563,
         "y": -287.0000305175781
     }
 }
@@ -13247,8 +13230,8 @@
     "m_ObjectId": "a0a14bbf13f646e5b4ceaee0c9bf0bd2",
     "m_Title": "床の汚れ",
     "m_Position": {
-        "x": -3909.00048828125,
-        "y": -1867.000244140625
+        "x": -3909.000244140625,
+        "y": -1867.0001220703125
     }
 }
 
@@ -17717,31 +17700,6 @@
 
 {
     "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
-    "m_ObjectId": "f095003d77f146bf9ae12f4752b85cb7",
-    "m_Id": -1078082692,
-    "m_DisplayName": "PositionCS",
-    "m_SlotType": 0,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "_PositionCS",
-    "m_StageCapability": 3,
-    "m_Value": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0,
-        "w": 0.0
-    },
-    "m_DefaultValue": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0,
-        "w": 0.0
-    },
-    "m_Labels": []
-}
-
-{
-    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicValueMaterialSlot",
     "m_ObjectId": "f1264c60b5fc42558d0be048428228a5",
     "m_Id": 2,
@@ -18195,8 +18153,8 @@
     "m_ObjectId": "f91d18f0b0314859a486627178e997c0",
     "m_Title": "天井付近の汚れ",
     "m_Position": {
-        "x": -3798.0,
-        "y": -1331.0
+        "x": -3798.000244140625,
+        "y": -1331.0001220703125
     }
 }
 
