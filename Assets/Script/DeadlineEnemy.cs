@@ -2,12 +2,16 @@ using UnityEngine;
 
 public class DeadlineEnemy : MonoBehaviour
 {
+    private Renderer[] _renderers;
     private Animator _animator;
     private readonly int DeadlinePositionZId = Shader.PropertyToID("_DeadlinePositionZ");
 
     private void Awake()
     {
+        _renderers = GetComponentsInChildren<Renderer>();
         _animator = GetComponent<Animator>();
+        _animator.enabled = false;
+        SwitchMeshVisibility(false);
     }
 
     private void Update()
@@ -19,5 +23,19 @@ public class DeadlineEnemy : MonoBehaviour
     private void OnDisable()
     {
         Shader.SetGlobalFloat(DeadlinePositionZId, -10.0f);
+    }
+
+    private void SwitchMeshVisibility(bool visibility)
+    {
+        foreach (var renderer in _renderers)
+        {
+            renderer.enabled = visibility;
+        }
+    }
+
+    public void Spawn()
+    {
+        SwitchMeshVisibility(true);
+        _animator.enabled = true;
     }
 }

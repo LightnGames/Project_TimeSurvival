@@ -4,7 +4,7 @@ using UnityEngine;
 public class BreakableMesh : MonoBehaviour, IEventTrigger
 {
     [SerializeField] Rigidbody[] _fractureRigidBodies;
-    [SerializeField] MeshRenderer _dummyWallMeshRenderer;
+    [SerializeField] MeshRenderer[] _dummyWallMeshRenderers;
     [SerializeField] float _forceScale;
     [SerializeField] AudioClip _audioClip;
 
@@ -18,7 +18,7 @@ public class BreakableMesh : MonoBehaviour, IEventTrigger
     {
         StartCoroutine(HideDummyWall());
 
-        Vector3 forceVelocity = transform.forward * _forceScale;
+        Vector3 forceVelocity = -transform.up * _forceScale;
         foreach (var rigidBody in _fractureRigidBodies)
         {
             rigidBody.isKinematic = false;
@@ -33,7 +33,10 @@ public class BreakableMesh : MonoBehaviour, IEventTrigger
             yield return null;
         }
 
-        _dummyWallMeshRenderer.enabled = false;
+        foreach(MeshRenderer meshRenderer in _dummyWallMeshRenderers)
+        {
+            meshRenderer.enabled = false;
+        }
 
         _audioSource.PlayOneShot(_audioClip);
     }

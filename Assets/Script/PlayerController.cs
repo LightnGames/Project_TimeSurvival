@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR.Management;
 
 public class PlayerController : MonoBehaviour, IDamageable
 {
@@ -16,6 +17,12 @@ public class PlayerController : MonoBehaviour, IDamageable
     private float _prevFade = 0.0f;
     private bool _dead = false;
 
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    static void Init()
+    {
+
+    }
+
     private void Awake()
     {
         _characterController = GetComponent<CharacterController>();
@@ -26,8 +33,9 @@ public class PlayerController : MonoBehaviour, IDamageable
             _fadeRenderer.sharedMaterials[i] = _fadeMaterials[i];
         }
 
-#if UNITY_EDITOR
+#if UNITY_EDITOR || APP_MODE_ANDROID_STAND_ALONE
         _headTransfrom.localPosition = Vector3.up * 1.6f;
+        Application.targetFrameRate = 60;
 #endif
         print("Game Started");
     }

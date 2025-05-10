@@ -14,7 +14,10 @@ public class EventTriggerZone : MonoBehaviour
 
         foreach (Transform t in _targets)
         {
-            t.GetComponent<IEventTrigger>().OnEventTriggered();
+            foreach (IEventTrigger i in t.GetComponents<IEventTrigger>())
+            {
+                i.OnEventTriggered();
+            }
         }
 
         gameObject.SetActive(false);

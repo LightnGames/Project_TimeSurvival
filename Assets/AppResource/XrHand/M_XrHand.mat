@@ -13,6 +13,7 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - PROBE_VOLUMES_L1
+  - _REFLECTION_PROBE_BOX_PROJECTION
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -168,6 +169,7 @@ Material:
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: -40
+    - _REFLECTION_PROBE_BOX_PROJECTION: 1
     - _ReceiveShadows: 1
     - _SmoothTest: 0
     - _Smoothness: 0
@@ -177,6 +179,7 @@ Material:
     - _SrcBlendAlpha: 1
     - _Surface: 0
     - _WorkflowMode: 1
+    - _XRMotionVectorsPass: 1
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 0}
