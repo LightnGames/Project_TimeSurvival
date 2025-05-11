@@ -52,6 +52,12 @@ public class PlayerController : MonoBehaviour, IDamageable
         float inputLength = Mathf.Min(inputRawLength, 1.0f);
         Vector2 inputDirection = stick / inputRawLength;
 
+#if APP_MODE_ANDROID_STAND_ALONE
+        TouchPadController touchPadController = TouchPadController.Get();
+        inputLength = touchPadController.TouchPadInputAmount;
+        inputDirection = touchPadController.TouchPadDirection;
+#endif
+
         if (!_dead)
         {
             UpdateFade(inputLength);
