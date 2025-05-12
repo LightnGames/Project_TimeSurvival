@@ -71,6 +71,9 @@ public class PlayerController : MonoBehaviour, IDamageable
             return;
         }
 
+        // Note: カメラ向いてるほうに移動を試すやつ
+        // スマホ版はこれでよい
+#if APP_MODE_ANDROID_STAND_ALONE
         float moveSpeed = 1.0f;
         Vector3 cameraSpaceMoveDirection = Camera.main.transform.TransformVector(new Vector3(inputDirection.x, 0, inputDirection.y));
         cameraSpaceMoveDirection.y = 0.0f;
@@ -86,6 +89,18 @@ public class PlayerController : MonoBehaviour, IDamageable
 
         moveDirection += Vector3.down;
         _characterController.Move(moveDirection * moveLength);
+#else
+        float moveSpeed = 1.0f;
+        Vector3 moveDirection = Vector3.down;
+        if (inputLength > 0.001f)
+        {
+            moveDirection.x = inputDirection.x * inputLength;
+            moveDirection.z = inputDirection.y * inputLength;
+        }
+        float invTimeScale = 1.0f / Time.timeScale;
+        float moveLength = moveSpeed * invTimeScale * Time.deltaTime;
+        _characterController.Move(moveDirection * moveLength);
+#endif
         _moveLengthFromFootStepStart += moveLength * inputLength;
 
         if (_moveLengthFromFootStepStart > _playerScriptableObject.FootStepRateInMeeter)
