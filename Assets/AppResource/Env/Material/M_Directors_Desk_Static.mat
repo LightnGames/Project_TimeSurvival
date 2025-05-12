@@ -13,6 +13,7 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - PROBE_VOLUMES_L1
+  - _CLUSTER_LIGHT_LOOP
   - _REFLECTION_PROBE_BOX_PROJECTION
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -174,6 +175,7 @@ Material:
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
+    - _CLUSTER_LIGHT_LOOP: 1
     - _CastShadows: 0
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
@@ -204,6 +206,7 @@ Material:
     - _SrcBlendAlpha: 1
     - _Surface: 0
     - _WorkflowMode: 1
+    - _XRMotionVectorsPass: 1
     - _ZTest: 4
     - _ZWrite: 1
     - _ZWriteControl: 0

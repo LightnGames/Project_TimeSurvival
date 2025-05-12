@@ -72,14 +72,19 @@ public class PlayerController : MonoBehaviour, IDamageable
         }
 
         float moveSpeed = 1.0f;
-        Vector3 moveDirection = Vector3.down;
+        Vector3 cameraSpaceMoveDirection = Camera.main.transform.TransformVector(new Vector3(inputDirection.x, 0, inputDirection.y));
+        cameraSpaceMoveDirection.y = 0.0f;
+        cameraSpaceMoveDirection = cameraSpaceMoveDirection.normalized;
+
+        Vector3 moveDirection = Vector3.zero;
         if (inputLength > 0.001f)
         {
-            moveDirection.x = inputDirection.x * inputLength;
-            moveDirection.z = inputDirection.y * inputLength;
+            moveDirection = cameraSpaceMoveDirection * inputLength;
         }
         float invTimeScale = 1.0f / Time.timeScale;
         float moveLength = moveSpeed * invTimeScale * Time.deltaTime;
+
+        moveDirection += Vector3.down;
         _characterController.Move(moveDirection * moveLength);
         _moveLengthFromFootStepStart += moveLength * inputLength;
 

@@ -33,6 +33,9 @@
     ],
     "m_Keywords": [
         {
+            "m_Id": "d90d22538cac43bd89c0831bfdfc69ed"
+        },
+        {
             "m_Id": "476ceee233464206a2781235782979dc"
         },
         {
@@ -7021,7 +7024,7 @@
     "m_ObjectId": "41c954ff52be43e38db4dd33bef51b88",
     "m_Title": "床付近の汚れ",
     "m_Position": {
-        "x": -3797.000244140625,
+        "x": -3797.0,
         "y": -242.0
     }
 }
@@ -9563,6 +9566,9 @@
             "m_Id": "476ceee233464206a2781235782979dc"
         },
         {
+            "m_Id": "d90d22538cac43bd89c0831bfdfc69ed"
+        },
+        {
             "m_Id": "aeef9afa1c8449c5ba2d1d5a54deaf8b"
         }
     ]
@@ -10821,7 +10827,7 @@
     "m_Title": "ハイとフォグ色",
     "m_Position": {
         "x": -855.0,
-        "y": -923.0001220703125
+        "y": -923.0
     }
 }
 
@@ -12771,8 +12777,8 @@
     "m_ObjectId": "9d403efb8ad24be7a64b5acf4cd32892",
     "m_Title": "デッドライン",
     "m_Position": {
-        "x": -920.0000610351563,
-        "y": -287.0000305175781
+        "x": -920.0,
+        "y": -287.0
     }
 }
 
@@ -13230,8 +13236,8 @@
     "m_ObjectId": "a0a14bbf13f646e5b4ceaee0c9bf0bd2",
     "m_Title": "床の汚れ",
     "m_Position": {
-        "x": -3909.000244140625,
-        "y": -1867.0001220703125
+        "x": -3909.0,
+        "y": -1867.0
     }
 }
 
@@ -16622,6 +16628,31 @@
 }
 
 {
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.ShaderKeyword",
+    "m_ObjectId": "d90d22538cac43bd89c0831bfdfc69ed",
+    "m_Guid": {
+        "m_GuidSerialized": "e748f6d5-a6bb-41ca-a3d1-48639eaaf1d2"
+    },
+    "m_Name": "CLUSTER_LIGHT_LOOP",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "CLUSTER_LIGHT_LOOP",
+    "m_DefaultReferenceName": "_CLUSTER_LIGHT_LOOP",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": false,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_KeywordType": 0,
+    "m_KeywordDefinition": 0,
+    "m_KeywordScope": 0,
+    "m_KeywordStages": 2,
+    "m_Entries": [],
+    "m_Value": 1,
+    "m_IsEditable": true
+}
+
+{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
     "m_ObjectId": "d9115715400d403e8b372040d9fd0481",
@@ -18153,8 +18184,8 @@
     "m_ObjectId": "f91d18f0b0314859a486627178e997c0",
     "m_Title": "天井付近の汚れ",
     "m_Position": {
-        "x": -3798.000244140625,
-        "y": -1331.0001220703125
+        "x": -3798.0,
+        "y": -1331.0
     }
 }
 

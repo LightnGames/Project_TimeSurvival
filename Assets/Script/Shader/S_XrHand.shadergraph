@@ -21,6 +21,9 @@
             "m_Id": "d2c7740cb53549388a270b2e299a7274"
         },
         {
+            "m_Id": "28e3f6d8b64641878935fcf448b2f567"
+        },
+        {
             "m_Id": "f9a88ff59add4b56a8268fde377af334"
         }
     ],
@@ -691,6 +694,31 @@
 }
 
 {
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.ShaderKeyword",
+    "m_ObjectId": "28e3f6d8b64641878935fcf448b2f567",
+    "m_Guid": {
+        "m_GuidSerialized": "f5740c41-73be-4dab-aea4-fa0919c5797e"
+    },
+    "m_Name": "CLUSTER_LIGHT_LOOP",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "CLUSTER_LIGHT_LOOP",
+    "m_DefaultReferenceName": "_CLUSTER_LIGHT_LOOP",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": false,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_KeywordType": 0,
+    "m_KeywordDefinition": 0,
+    "m_KeywordScope": 0,
+    "m_KeywordStages": 2,
+    "m_Entries": [],
+    "m_Value": 1,
+    "m_IsEditable": true
+}
+
+{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.SamplerStateMaterialSlot",
     "m_ObjectId": "2a0204cf15b146afac3be6e43426a691",
@@ -1350,6 +1378,9 @@
         },
         {
             "m_Id": "f9a88ff59add4b56a8268fde377af334"
+        },
+        {
+            "m_Id": "28e3f6d8b64641878935fcf448b2f567"
         }
     ]
 }

@@ -5,6 +5,8 @@ public class BreakableMesh : MonoBehaviour, IEventTrigger
 {
     [SerializeField] Rigidbody[] _fractureRigidBodies;
     [SerializeField] MeshRenderer[] _dummyWallMeshRenderers;
+    [SerializeField] Transform _forceAncher;
+    [SerializeField] float _delayTimeInSec = 0.0f;
     [SerializeField] float _forceScale;
     [SerializeField] AudioClip _audioClip;
 
@@ -16,19 +18,26 @@ public class BreakableMesh : MonoBehaviour, IEventTrigger
 
     public void OnEventTriggered()
     {
-        StartCoroutine(HideDummyWall());
+        StartCoroutine(PlayEvents());
+    }
 
-        Vector3 forceVelocity = -transform.up * _forceScale;
+    private IEnumerator PlayEvents()
+    {
+        yield return new WaitForSeconds(_delayTimeInSec);
+
+        Vector3 forceVelocity = -transform.up;
         foreach (var rigidBody in _fractureRigidBodies)
         {
             rigidBody.isKinematic = false;
-            rigidBody.AddForce(forceVelocity);
-        }
-    }
 
-    private IEnumerator HideDummyWall()
-    {
-        for(int i = 0; i < 3; ++i)
+            if (_forceAncher != null)
+            {
+                forceVelocity = (rigidBody.transform.position - _forceAncher.position).normalized;
+            }
+            rigidBody.AddForce(forceVelocity * _forceScale);
+        }
+
+        for (int i = 0; i < 3; ++i)
         {
             yield return null;
         }

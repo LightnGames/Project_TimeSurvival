@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class DeadlineEnemy : MonoBehaviour
 {
+    [SerializeField] private DeadlineEnemyScriptableObject _scriptableObject;
+    [SerializeField] private AudioSource _footAudioSourceL;
+    [SerializeField] private AudioSource _footAudioSourceR;
     private Renderer[] _renderers;
     private Animator _animator;
     private readonly int DeadlinePositionZId = Shader.PropertyToID("_DeadlinePositionZ");
@@ -16,13 +19,28 @@ public class DeadlineEnemy : MonoBehaviour
 
     private void Update()
     {
-        _animator.speed = (1.0f / Time.timeScale) * 0.25f;
+        _animator.speed = (1.0f / Time.timeScale);
         Shader.SetGlobalFloat(DeadlinePositionZId, transform.position.z);
     }
 
     private void OnDisable()
     {
         Shader.SetGlobalFloat(DeadlinePositionZId, -10.0f);
+    }
+
+    public void PlayOneShotFootL()
+    {
+        _footAudioSourceL.PlayOneShot(_scriptableObject.GetRandomFootStepAudioClip());
+    }
+
+    public void PlayOneShotFootR()
+    {
+        _footAudioSourceR.PlayOneShot(_scriptableObject.GetRandomFootStepAudioClip());
+    }
+
+    public void PlayOneShotSmallImpact()
+    {
+        _footAudioSourceL.PlayOneShot(_scriptableObject.GetRandomSmallImpactAudioClip());
     }
 
     private void SwitchMeshVisibility(bool visibility)
