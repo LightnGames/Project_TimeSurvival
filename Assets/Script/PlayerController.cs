@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR.Management;
 
@@ -16,6 +17,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     private Material[] _fadeMaterials;
     private float _prevFade = 0.0f;
     private bool _dead = false;
+    PlayerControlInput _input;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     static void Init()
@@ -26,6 +28,8 @@ public class PlayerController : MonoBehaviour, IDamageable
     private void Awake()
     {
         _characterController = GetComponent<CharacterController>();
+        _input = new PlayerControlInput();
+        _input.Enable();
         _fadeMaterials = new Material[_fadeRenderer.sharedMaterials.Length];
         for (int i = 0; i < _fadeMaterials.Length; i++)
         {
@@ -42,15 +46,10 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void Update()
     {
-        Vector2 stick = OVRInput.Get(OVRInput.RawAxis2D.LThumbstick);
-        stick += OVRInput.Get(OVRInput.RawAxis2D.RThumbstick);
-#if UNITY_EDITOR
-        stick.x = Input.GetAxisRaw("Horizontal");
-        stick.y = Input.GetAxisRaw("Vertical");
-#endif
-        float inputRawLength = stick.magnitude;
+        var inputMoveVec2 = _input.Player.Move.ReadValue<Vector2>();
+        float inputRawLength = inputMoveVec2.magnitude;
         float inputLength = Mathf.Min(inputRawLength, 1.0f);
-        Vector2 inputDirection = stick / inputRawLength;
+        Vector2 inputDirection = inputMoveVec2 / inputRawLength;
 
 #if APP_MODE_ANDROID_STAND_ALONE
         TouchPadController touchPadController = TouchPadController.Get();
@@ -90,6 +89,17 @@ public class PlayerController : MonoBehaviour, IDamageable
             _audioSource.PlayOneShot(_playerScriptableObject.FootStepConcreteAudioClips[footStepIndex]);
             _moveLengthFromFootStepStart -= _playerScriptableObject.FootStepRateInMeeter;
         }
+
+        UpdateCameraLook();
+    }
+
+    private void UpdateCameraLook() {
+        var inputVec2 = _input.Player.Camera.ReadValue<Vector2>();
+        float x = inputVec2.x;
+        float y = inputVec2.y;
+                
+        gameObject.transform.Rotate(Vector3.up, x);
+        _headTransfrom.Rotate(Vector3.left, y);
     }
 
     private void UpdateFade(float fadeTarget)
