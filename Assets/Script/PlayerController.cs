@@ -71,6 +71,8 @@ public class PlayerController : MonoBehaviour, IDamageable
             return;
         }
 
+        UpdateCameraLook();
+
         // Note: カメラ向いてるほうに移動を試すやつ
         // スマホ版はこれでよい
 #if APP_MODE_ANDROID_STAND_ALONE
@@ -94,8 +96,8 @@ public class PlayerController : MonoBehaviour, IDamageable
         Vector3 moveDirection = Vector3.down;
         if (inputLength > 0.001f)
         {
-            moveDirection.x = inputDirection.x * inputLength;
-            moveDirection.z = inputDirection.y * inputLength;
+            moveDirection += transform.forward * inputDirection.y * inputLength;
+            moveDirection += transform.right * inputDirection.x * inputLength;
         }
         float invTimeScale = 1.0f / Time.timeScale;
         float moveLength = moveSpeed * invTimeScale * Time.deltaTime;
@@ -109,17 +111,15 @@ public class PlayerController : MonoBehaviour, IDamageable
             _audioSource.PlayOneShot(_playerScriptableObject.FootStepConcreteAudioClips[footStepIndex]);
             _moveLengthFromFootStepStart -= _playerScriptableObject.FootStepRateInMeeter;
         }
-
-        UpdateCameraLook();
     }
 
     private void UpdateCameraLook() {
         var inputVec2 = _input.Player.Camera.ReadValue<Vector2>();
-        float x = inputVec2.x;
-        float y = inputVec2.y;
-                
-        gameObject.transform.Rotate(Vector3.up, x);
-        _headTransfrom.Rotate(Vector3.left, y);
+        float inputYaw = inputVec2.x;
+        float inputPitch = -inputVec2.y;
+
+        transform.Rotate(Vector3.up, inputYaw, Space.World);
+        _headTransfrom.Rotate(Vector3.right, inputPitch);
     }
 
     private void UpdateFade(float fadeTarget)
