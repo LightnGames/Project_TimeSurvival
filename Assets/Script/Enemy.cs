@@ -3,6 +3,43 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
 
+static public class EnemyUtil
+{
+    static public IEnumerator FitKilledPlayerTransform(Transform transform, float enemyToPlayerDistance = 1.0f)
+    {
+        Transform playerCameraTransform = GameSceneManager.Instance.CameraTransform;
+        Transform playerTransform = GameSceneManager.Instance.PlayerTransform;
+        Quaternion startRotation = transform.rotation;
+
+        Vector3 startPosition = transform.position;
+        float animationTime = 0.0f;
+        float animationLength = 0.1f;
+        while (true)
+        {
+            Vector3 playerCameraPositionXZ = playerCameraTransform.position;
+            playerCameraPositionXZ.y = transform.position.y;
+
+            Vector3 playerPositionXZ = playerTransform.position;
+            playerPositionXZ.y = transform.position.y;
+
+            Vector3 cameraToPlayerOffset = (transform.position - playerCameraPositionXZ).normalized;
+            Vector3 endPosition = playerPositionXZ + cameraToPlayerOffset * enemyToPlayerDistance;
+            Vector3 position = Vector3.Lerp(startPosition, endPosition, animationTime);
+
+            Quaternion endRotation = Quaternion.LookRotation(playerPositionXZ - transform.position);
+            Quaternion rotation = Quaternion.Lerp(startRotation, endRotation, animationTime);
+            transform.SetPositionAndRotation(position, rotation);
+
+            if (animationTime >= 1.0f)
+            {
+                break;
+            }
+            animationTime = Mathf.Min(Time.deltaTime / Time.timeScale / animationLength, 1.0f);
+            yield return null;
+        }
+    }
+}
+
 public class Enemy : MonoBehaviour, IDamageable, IEventTrigger
 {
     [SerializeField] private int _spawnType;
@@ -101,36 +138,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEventTrigger
         IDamageable damageable = GameSceneManager.Instance.PlayerTransform.GetComponent<IDamageable>();
         damageable.Damage(1, transform);
         _navMeshAgent.enabled = false;
-        StartCoroutine(FitKilledPlayerTransform());
-    }
-
-    private IEnumerator FitKilledPlayerTransform()
-    {
-        Transform playerCameraTransform = GameSceneManager.Instance.CameraTransform;
-        Transform playerTransform = GameSceneManager.Instance.PlayerTransform;
-        Quaternion startRotation = transform.rotation;
-
-        Vector3 startPosition = transform.position;
-        float animationTime = 0.0f;
-        float animationLength = 0.1f;
-        while (animationTime < 1.0f)
-        {
-            Vector3 playerCameraPositionXZ = playerCameraTransform.position;
-            playerCameraPositionXZ.y = transform.position.y;
-
-            Vector3 playerPositionXZ = playerTransform.position;
-            playerPositionXZ.y = transform.position.y;
-
-            Vector3 cameraToPlayerOffset = (transform.position - playerCameraPositionXZ).normalized;
-            Vector3 endPosition = playerPositionXZ + cameraToPlayerOffset;
-            Vector3 position = Vector3.Lerp(startPosition, endPosition, animationTime);
-
-            Quaternion endRotation = Quaternion.LookRotation(playerPositionXZ - transform.position);
-            Quaternion rotation = Quaternion.Lerp(startRotation, endRotation, animationTime);
-            transform.SetPositionAndRotation(position, rotation);
-            animationTime += Time.deltaTime / Time.timeScale / animationLength;
-            yield return null;
-        }
+        StartCoroutine(EnemyUtil.FitKilledPlayerTransform(transform));
     }
 
     public void Damage(int damageAmount, Transform damageSource)
