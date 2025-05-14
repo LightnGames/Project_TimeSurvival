@@ -75,7 +75,7 @@ public class Weapon : MonoBehaviour
             return;
         }
 
-        float newDisplayNumber = currentDisplayNumber + (_ammo - currentDisplayNumber) / 100.0f;
+        float newDisplayNumber = currentDisplayNumber + (_ammo - currentDisplayNumber) / 30.0f;
         if (displayDiff < 0.01f)
         {
             newDisplayNumber = _ammo;

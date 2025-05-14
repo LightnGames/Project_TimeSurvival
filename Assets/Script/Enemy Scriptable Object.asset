@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eb366873f9acf842a492ad8b95e20bf, type: 3}
   m_Name: Enemy Scriptable Object
   m_EditorClassIdentifier: 
-  _maxHealth: 5
+  _maxHealth: 8
   _footStepAudioClips:
   - {fileID: 8300000, guid: e119777e577e4d24c9f0cdde4dd74c80, type: 3}
   - {fileID: 8300000, guid: 5a5be17d9522c554bae77f01aa462c25, type: 3}

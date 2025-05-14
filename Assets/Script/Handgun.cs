@@ -31,7 +31,8 @@ public class Handgun : Weapon
     public override void MainGripCatchedUpdate(in CatchableItem.GrabableItemInputData input, Transform mainGripTransform)
     {
         base.MainGripCatchedUpdate(input, mainGripTransform);
-        transform.SetLocalPositionAndRotation(mainGripTransform.position, mainGripTransform.rotation);
+        transform.SetPositionAndRotation(mainGripTransform.position, mainGripTransform.rotation);
+        print(mainGripTransform.position);
     }
 
     public override void MainGripCatched(CatchableItem.VibrateEvent vibrateEvent, CatchableItem.XrHandAnimationTransformEvent transformEvent)
