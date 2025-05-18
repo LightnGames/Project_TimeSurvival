@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Windows;
 using UnityEngine.Animations;
+using Oculus.Haptics;
 
 public class XrHandController : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class XrHandController : MonoBehaviour
     private Coroutine _catchTransformAnimationCoroutine = null;
     private float _prevIndexTriggerAmount = 0.0f;
     private ConstraintSource _constraintSource;
+    private HapticClipPlayer _haptipicClipPlayer;
 
     private void Awake()
     {
@@ -151,6 +153,12 @@ public class XrHandController : MonoBehaviour
         {
             _catchableItems.Remove(item);
         }
+    }
+
+    private void OnXrHandHaptipics(HapticClip hapticClip)
+    {
+        _haptipicClipPlayer = new HapticClipPlayer(hapticClip);
+        _haptipicClipPlayer.Play(_handType == HandType.Left ? Controller.Left : Controller.Right);
     }
 
     private void OnXrHandVibrated(float frequency, float amplitude, float duration)
