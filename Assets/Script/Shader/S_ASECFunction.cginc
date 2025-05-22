@@ -199,7 +199,7 @@ half3 AcesTonemap_Unity(half3 aces)
 }
 
 void ACES_half(in half3 Color, out half3 Out)
-{    
+{
 #ifndef SHADERGRAPH_PREVIEW
     half3 colorACES = unity_to_ACES(Color);
     //Out = AcesTonemap_UE4(colorACES);

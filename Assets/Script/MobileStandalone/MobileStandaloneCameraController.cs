@@ -2,34 +2,29 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Windows;
 
-public class AndroidStandaloneCameraController : MonoBehaviour
+public class MobileStandaloneCameraController : MonoBehaviour
 {
     private Vector2 _input = Vector2.zero;
-    private void Awake()
-    {
-#if !APP_MODE_ANDROID_STAND_ALONE
+    private void Awake() {
+#if !APP_MODE_MOBILE_STAND_ALONE
         enabled = false;
         return;
 #endif
     }
 
-    private void Start()
-    {
+    private void Start() {
         GetComponent<Camera>().fieldOfView = 60;
         TouchInputSystem.Get()._moveEvent += UpdateInputEvent;
         TouchInputSystem.Get()._endEvent += EndInputEvent;
     }
 
-    void EndInputEvent(TouchInputSystem input)
-    {
+    void EndInputEvent(TouchInputSystem input) {
     }
 
-    void UpdateInputEvent(TouchInputSystem input)
-    {
+    void UpdateInputEvent(TouchInputSystem input) {
         bool invalidTouchZone = input.GetCurrentInputPosition().x < TouchInputSystem.ResolutionSourceRateHeight / 2.0f;
         bool notMoveTouched = input.GetInputMoveLength() < 0.01f;
-        if (invalidTouchZone || notMoveTouched)
-        {
+        if (invalidTouchZone || notMoveTouched) {
             return;
         }
 

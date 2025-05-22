@@ -19,8 +19,7 @@ public class Shotgun : Weapon
     private Quaternion _pumpInverseRotation;
     private Quaternion _pumpCatchedInverseRotation;
 
-    protected override void Awake()
-    {
+    protected override void Awake() {
         base.Awake();
 
         _pumpDefaultLocalPosition = _pumpMeshTransform.localPosition;
@@ -28,39 +27,32 @@ public class Shotgun : Weapon
         _pumpState = PumpState.ShotReady;
     }
 
-    protected override void Update()
-    {
+    protected override void Update() {
         base.Update();
     }
 
-    protected override void LateUpdate()
-    {
+    protected override void LateUpdate() {
         base.LateUpdate();
     }
 
-    private bool IsPumpCatched()
-    {
+    private bool IsPumpCatched() {
         return _pumpAnimationTransformEvent != null;
     }
 
-    public void PumpCatchedUpdate(in CatchableItem.GrabableItemInputData input, Transform pumpTransform)
-    {
+    public void PumpCatchedUpdate(in CatchableItem.GrabableItemInputData input, Transform pumpTransform) {
         // メイングリップをつかんでいないときはポンプを動かさない
-        if (!IsMainGripCatched())
-        {
-            Quaternion rotationOffset = pumpTransform.rotation* _pumpInverseRotation * _pumpCatchedInverseRotation;
+        if (!IsMainGripCatched()) {
+            Quaternion rotationOffset = pumpTransform.rotation * _pumpInverseRotation * _pumpCatchedInverseRotation;
             Vector3 positionOffset = (pumpTransform.rotation * _pumpInverseRotation) * _pumpInversePosition;
-            transform.SetPositionAndRotation(pumpTransform.position+positionOffset, rotationOffset);
+            transform.SetPositionAndRotation(pumpTransform.position + positionOffset, rotationOffset);
             return;
         }
 
         float pumpLimitRange = -0.1f;
         float pumpMovementHeight = Vector3.Dot(_pumpMeshTransform.forward, pumpTransform.position - _pumpDefaultAncherTransform.position);
         // ポンプされているか
-        if (pumpMovementHeight < pumpLimitRange && IsReadyToShotTimer())
-        {
-            if (_pumpState == PumpState.NeedPump)
-            {
+        if (pumpMovementHeight < pumpLimitRange && IsReadyToShotTimer()) {
+            if (_pumpState == PumpState.NeedPump) {
                 _pumpState = PumpState.ShotReady;
                 _pumpVibrationEvent(0.7f, 0.5f, 0.1f);
             }
@@ -76,49 +68,41 @@ public class Shotgun : Weapon
         _pumpCatchedInverseRotation = transform.rotation;
     }
 
-    public override void MainGripCatchedUpdate(in CatchableItem.GrabableItemInputData input, Transform mainGripTransform)
-    {
+    public override void MainGripCatchedUpdate(in CatchableItem.GrabableItemInputData input, Transform mainGripTransform) {
         base.MainGripCatchedUpdate(input, mainGripTransform);
 
-        if (IsPumpCatched())
-        {
+        if (IsPumpCatched()) {
             transform.position = mainGripTransform.position;
             return;
         }
         transform.SetPositionAndRotation(mainGripTransform.position, mainGripTransform.rotation);
     }
 
-    protected override bool IsReadyToShot()
-    {
+    protected override bool IsReadyToShot() {
         return base.IsReadyToShot() && _pumpState == PumpState.ShotReady;
     }
 
-    protected override void Shot()
-    {
+    protected override void Shot() {
         base.Shot();
 
         _pumpState = PumpState.NeedPump;
     }
 
-    public override void MainGripCatched(CatchableItem.VibrateEvent vibrateEvent, CatchableItem.XrHandAnimationTransformEvent transformEvent)
-    {
-        base.MainGripCatched(vibrateEvent, transformEvent);
+    public override void MainGripCatched(CatchableItem.VibrateEvent vibrateEvent, CatchableItem.XrHandHapticEvent hapticEvent, CatchableItem.XrHandAnimationTransformEvent transformEvent) {
+        base.MainGripCatched(vibrateEvent, hapticEvent, transformEvent);
     }
 
-    public override void MainGripReleased()
-    {
+    public override void MainGripReleased() {
         base.MainGripReleased();
         CheckReleaseWeapon();
     }
 
-    public void PumpCatched(CatchableItem.VibrateEvent vibrateEvent, CatchableItem.XrHandAnimationTransformEvent transformEvent)
-    {
+    public void PumpCatched(CatchableItem.VibrateEvent vibrateEvent, CatchableItem.XrHandAnimationTransformEvent transformEvent) {
         _pumpVibrationEvent = vibrateEvent;
         _pumpAnimationTransformEvent = transformEvent;
     }
 
-    public void PumpReleased()
-    {
+    public void PumpReleased() {
         _pumpMeshTransform.localPosition = _pumpDefaultLocalPosition;
         _pumpMeshTransform.localRotation = _pumpDefaultRotation;
         _pumpVibrationEvent = null;
@@ -126,10 +110,8 @@ public class Shotgun : Weapon
         CheckReleaseWeapon();
     }
 
-    private void CheckReleaseWeapon()
-    {
-        if(IsPumpCatched() || IsMainGripCatched())
-        {
+    private void CheckReleaseWeapon() {
+        if (IsPumpCatched() || IsMainGripCatched()) {
             return;
         }
 

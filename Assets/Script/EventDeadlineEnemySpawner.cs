@@ -4,13 +4,11 @@ public class EventDeadlineEnemySpawner : MonoBehaviour, IEventTrigger
 {
     [SerializeField] private DeadlineEnemy _deadlineEnemy;
 
-    private void Awake()
-    {
-        
+    private void Awake() {
+
     }
 
-    public void OnEventTriggered()
-    {
+    public void OnEventTriggered() {
         _deadlineEnemy.Spawn();
     }
 }

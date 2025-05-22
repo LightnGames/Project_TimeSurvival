@@ -21,8 +21,7 @@ public class SniperRifle : Weapon
     private Quaternion _subGripInverseRotation;
     private Quaternion _subGripCatchedInverseRotation;
 
-    protected override void Awake()
-    {
+    protected override void Awake() {
         base.Awake();
 
         _boltDefaultLocalPosition = _boltMeshTransform.localPosition;
@@ -30,95 +29,78 @@ public class SniperRifle : Weapon
         _pumpState = PumpState.ShotReady;
     }
 
-    protected override void Update()
-    {
+    protected override void Update() {
         base.Update();
     }
 
-    protected override void LateUpdate()
-    {
+    protected override void LateUpdate() {
         base.LateUpdate();
     }
 
-    private bool IsBoltCatched()
-    {
+    private bool IsBoltCatched() {
         return _boltAnimationTransformEvent != null;
     }
 
-    private bool IsSubGripCatched()
-    {
+    private bool IsSubGripCatched() {
         return _subGripAnimationTransformEvent != null;
     }
 
-    public override void MainGripCatched(CatchableItem.VibrateEvent vibrateEvent, CatchableItem.XrHandAnimationTransformEvent transformEvent)
-    {
-        base.MainGripCatched(vibrateEvent, transformEvent);
+    public override void MainGripCatched(CatchableItem.VibrateEvent vibrateEvent, CatchableItem.XrHandHapticEvent hapticEvent, CatchableItem.XrHandAnimationTransformEvent transformEvent) {
+        base.MainGripCatched(vibrateEvent, hapticEvent, transformEvent);
         _scopeCamera.enabled = true;
     }
 
-    public override void MainGripCatchedUpdate(in CatchableItem.GrabableItemInputData input, Transform mainGripTransform)
-    {
+    public override void MainGripCatchedUpdate(in CatchableItem.GrabableItemInputData input, Transform mainGripTransform) {
         base.MainGripCatchedUpdate(input, mainGripTransform);
 
-        if (IsSubGripCatched())
-        {
+        if (IsSubGripCatched()) {
             transform.position = mainGripTransform.position;
             return;
         }
         transform.SetPositionAndRotation(mainGripTransform.position, mainGripTransform.rotation);
     }
 
-    public override void MainGripReleased()
-    {
+    public override void MainGripReleased() {
         base.MainGripReleased();
         _scopeCamera.enabled = false;
         CheckReleaseWeapon();
     }
 
-    public void BoltCatched(CatchableItem.VibrateEvent vibrateEvent, CatchableItem.XrHandAnimationTransformEvent transformEvent)
-    {
+    public void BoltCatched(CatchableItem.VibrateEvent vibrateEvent, CatchableItem.XrHandAnimationTransformEvent transformEvent) {
         _boltVibrationEvent = vibrateEvent;
         _boltAnimationTransformEvent = transformEvent;
     }
 
-    public void BoltReleased()
-    {
+    public void BoltReleased() {
         _boltMeshTransform.localPosition = _boltDefaultLocalPosition;
         _boltVibrationEvent = null;
         _boltAnimationTransformEvent = null;
     }
 
-    public void SubGripCatched(CatchableItem.VibrateEvent vibrateEvent, CatchableItem.XrHandAnimationTransformEvent transformEvent)
-    {
+    public void SubGripCatched(CatchableItem.VibrateEvent vibrateEvent, CatchableItem.XrHandAnimationTransformEvent transformEvent) {
         _subGripVibrationEvent = vibrateEvent;
         _subGripAnimationTransformEvent = transformEvent;
     }
 
-    public void SubGripReleased()
-    {
+    public void SubGripReleased() {
         _subGripVibrationEvent = null;
         _subGripAnimationTransformEvent = null;
         CheckReleaseWeapon();
     }
 
-    private void CheckReleaseWeapon()
-    {
-        if (IsMainGripCatched() || IsSubGripCatched())
-        {
+    private void CheckReleaseWeapon() {
+        if (IsMainGripCatched() || IsSubGripCatched()) {
             return;
         }
 
         ReleasedWeapon();
     }
 
-    public void BoltCatchedUpdate(in CatchableItem.GrabableItemInputData input, Transform boltTransform)
-    {
+    public void BoltCatchedUpdate(in CatchableItem.GrabableItemInputData input, Transform boltTransform) {
         float pumpLimitRange = -0.1f;
         float pumpMovementHeight = Vector3.Dot(_boltMeshTransform.forward, boltTransform.position - _boltDefaultAncherTransform.position);
-        if (pumpMovementHeight < pumpLimitRange && IsReadyToShotTimer())
-        {
-            if (_pumpState == PumpState.NeedBoltAction)
-            {
+        if (pumpMovementHeight < pumpLimitRange && IsReadyToShotTimer()) {
+            if (_pumpState == PumpState.NeedBoltAction) {
                 _pumpState = PumpState.ShotReady;
                 _boltVibrationEvent(0.3f, 1.5f, 0.2f);
             }
@@ -128,10 +110,8 @@ public class SniperRifle : Weapon
         _boltMeshTransform.localPosition = _boltDefaultLocalPosition + Vector3.forward * pumpMovementClampedHeight;
     }
 
-    public void SubGripCatchedUpdate(in CatchableItem.GrabableItemInputData input, Transform subGripTransform)
-    {
-        if (!IsMainGripCatched())
-        {
+    public void SubGripCatchedUpdate(in CatchableItem.GrabableItemInputData input, Transform subGripTransform) {
+        if (!IsMainGripCatched()) {
             Quaternion rotationOffset = subGripTransform.rotation * _subGripInverseRotation * _subGripCatchedInverseRotation;
             Vector3 positionOffset = (subGripTransform.rotation * _subGripInverseRotation) * _subGripInversePosition;
             transform.SetPositionAndRotation(subGripTransform.position + positionOffset, rotationOffset);
@@ -144,13 +124,11 @@ public class SniperRifle : Weapon
         _subGripCatchedInverseRotation = transform.rotation;
     }
 
-    protected override bool IsReadyToShot()
-    {
+    protected override bool IsReadyToShot() {
         return base.IsReadyToShot() && _pumpState == PumpState.ShotReady;
     }
 
-    protected override void Shot()
-    {
+    protected override void Shot() {
         base.Shot();
 
         _pumpState = PumpState.NeedBoltAction;

@@ -113,3 +113,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 55e8c4563432a444a9400fc2320cee9c, type: 3}
   - {fileID: 8300000, guid: b4db6228bd3d2374da330cc620627bc3, type: 3}
   - {fileID: 8300000, guid: 260ec164f4d976645b14726ea5aed821, type: 3}
+  _equipHapticClips:
+  - {fileID: 2460798210113038985, guid: b58d0ab61f131484c9699a0cebb1cb10, type: 3}
+  _shotHapticClips:
+  - {fileID: 2460798210113038985, guid: 91d2c9e6766ddb74ab724ffccf9933e0, type: 3}

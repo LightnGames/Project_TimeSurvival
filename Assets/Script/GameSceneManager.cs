@@ -10,13 +10,12 @@ public class GameSceneManager : MonoBehaviour
     private Transform _cameraTransform;
     private bool _isGameOver = false;
 
-    public static GameSceneManager Instance {  get { return _instance; } }
+    public static GameSceneManager Instance { get { return _instance; } }
     public Transform PlayerTransform { get { return _playerTransform; } }
     public Transform CameraTransform { get { return _cameraTransform; } }
     public bool IsGameOver { get { return _isGameOver; } }
 
-    private void Awake()
-    {
+    private void Awake() {
         OVRManager.SetSpaceWarp(true);
 
         OVRPlugin.systemDisplayFrequency = 90.0f;
@@ -26,19 +25,16 @@ public class GameSceneManager : MonoBehaviour
         _instance = this;
     }
 
-    private void OnDestroy()
-    {
+    private void OnDestroy() {
         _instance = null;
     }
 
-    private void LateUpdate()
-    {
+    private void LateUpdate() {
         Time.fixedDeltaTime = _defaultFixedDeltaTime * Time.timeScale;
         _audioMixer.SetFloat("Pitch", Time.timeScale);
     }
 
-    public void GameOver()
-    {
+    public void GameOver() {
         _isGameOver = true;
     }
 }

@@ -74,7 +74,7 @@ void SdfStep_half(in UnityTexture3D SdfTexture, in UnityTextureCube ProbeTexture
     //Out = SAMPLE_TEXTURE3D(SdfTexture, Sampler, ((PositionWS + centerOffset + boxExtent * 0.5) / boxExtent)).rrr;
     half3 cubeMapSpaceWS = currentPosition - unity_SpecCube0_ProbePosition.xyz;
     half3 probeSize = unity_SpecCube0_BoxMax.xyz - unity_SpecCube0_BoxMin.xyz;
-    half3 cubeMapUvw = cubeMapSpaceWS;// / probeSize;
+    half3 cubeMapUvw = cubeMapSpaceWS; // / probeSize;
     //half3 reflectVector = BoxProjectedCubemapDirection(normal, currentPosition, unity_SpecCube0_ProbePosition, unity_SpecCube0_BoxMin, unity_SpecCube0_BoxMax);
     half mip = PerceptualRoughnessToMipmapLevel(PerceptualRoughness);
     half4 encodedIrradiance = half4(SAMPLE_TEXTURECUBE_LOD(unity_SpecCube0, samplerunity_SpecCube0, cubeMapUvw, mip));

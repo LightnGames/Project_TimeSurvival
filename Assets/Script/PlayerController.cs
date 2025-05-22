@@ -20,45 +20,42 @@ public class PlayerController : MonoBehaviour, IDamageable
     PlayerControlInput _input;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-    static void Init()
-    {
+    static void Init() {
 
     }
 
-    private void Awake()
-    {
+    private void Awake() {
         _characterController = GetComponent<CharacterController>();
         _input = new PlayerControlInput();
         _input.Enable();
         _fadeMaterials = new Material[_fadeRenderer.sharedMaterials.Length];
-        for (int i = 0; i < _fadeMaterials.Length; i++)
-        {
+        for (int i = 0; i < _fadeMaterials.Length; i++) {
             _fadeMaterials[i] = _fadeRenderer.materials[i];
             _fadeRenderer.sharedMaterials[i] = _fadeMaterials[i];
         }
 
-#if UNITY_EDITOR || APP_MODE_ANDROID_STAND_ALONE
+#if UNITY_EDITOR || APP_MODE_MOBILE_STAND_ALONE
         _headTransfrom.localPosition = Vector3.up * 1.6f;
         Application.targetFrameRate = 60;
 #endif
+        OVRPlugin.foveatedRenderingLevel = OVRPlugin.FoveatedRenderingLevel.Medium
+            ;
         print("Game Started");
     }
 
-    private void Update()
-    {
+    private void Update() {
         var inputMoveVec2 = _input.Player.Move.ReadValue<Vector2>();
         float inputRawLength = inputMoveVec2.magnitude;
         float inputLength = Mathf.Min(inputRawLength, 1.0f);
         Vector2 inputDirection = inputMoveVec2 / inputRawLength;
 
-#if APP_MODE_ANDROID_STAND_ALONE
+#if APP_MODE_MOBILE_STAND_ALONE
         TouchPadController touchPadController = TouchPadController.Get();
         inputLength = touchPadController.TouchPadInputAmount;
         inputDirection = touchPadController.TouchPadDirection;
 #endif
 
-        if (!_dead)
-        {
+        if (!_dead) {
             UpdateFade(inputLength);
         }
 
@@ -66,8 +63,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         ApplyTimeScaleFade();
         ApplyEnvTimeScaleFade();
 
-        if (_dead)
-        {
+        if (_dead) {
             return;
         }
 
@@ -75,7 +71,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
         // Note: カメラ向いてるほうに移動を試すやつ
         // スマホ版はこれでよい
-#if APP_MODE_ANDROID_STAND_ALONE
+#if APP_MODE_MOBILE_STAND_ALONE
         float moveSpeed = 1.0f;
         Vector3 cameraSpaceMoveDirection = Camera.main.transform.TransformVector(new Vector3(inputDirection.x, 0, inputDirection.y));
         cameraSpaceMoveDirection.y = 0.0f;
@@ -94,8 +90,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 #else
         float moveSpeed = 1.0f;
         Vector3 moveDirection = Vector3.down;
-        if (inputLength > 0.001f)
-        {
+        if (inputLength > 0.001f) {
             moveDirection += transform.forward * inputDirection.y * inputLength;
             moveDirection += transform.right * inputDirection.x * inputLength;
         }
@@ -105,8 +100,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 #endif
         _moveLengthFromFootStepStart += moveLength * inputLength;
 
-        if (_moveLengthFromFootStepStart > _playerScriptableObject.FootStepRateInMeeter)
-        {
+        if (_moveLengthFromFootStepStart > _playerScriptableObject.FootStepRateInMeeter) {
             int footStepIndex = Random.Range(0, _playerScriptableObject.FootStepConcreteAudioClips.Length);
             _audioSource.PlayOneShot(_playerScriptableObject.FootStepConcreteAudioClips[footStepIndex]);
             _moveLengthFromFootStepStart -= _playerScriptableObject.FootStepRateInMeeter;
@@ -122,53 +116,44 @@ public class PlayerController : MonoBehaviour, IDamageable
         _headTransfrom.Rotate(Vector3.right, inputPitch);
     }
 
-    private void UpdateFade(float fadeTarget)
-    {
+    private void UpdateFade(float fadeTarget) {
         _prevFade = _prevFade + (fadeTarget - _prevFade) / _playerScriptableObject.FadeTime;
     }
 
-    private void ApplyTimeScaleFade()
-    {
+    private void ApplyTimeScaleFade() {
         float fade = _dead ? 1.0f - _prevFade : _prevFade;
-        foreach (Material material in _fadeMaterials)
-        {
+        foreach (Material material in _fadeMaterials) {
             float remapedFade = _playerScriptableObject.GetRemapedFade(fade);
             material.SetFloat(FadeId, remapedFade);
         }
     }
 
-    private void ApplyEnvTimeScaleFade()
-    {
+    private void ApplyEnvTimeScaleFade() {
         Shader.SetGlobalFloat(GlobalTimeScaleId, 1.0f - _prevFade);
     }
 
-    private void UpdateTimeScale()
-    {
+    private void UpdateTimeScale() {
         Time.timeScale = _playerScriptableObject.GetRemapedTimeScale(_prevFade);
     }
 
-    private void OnDisable()
-    {
+    private void OnDisable() {
         Shader.SetGlobalFloat(GlobalTimeScaleId, 0.0f);
     }
 
-    public void Damage(int damageAmount, Transform damageSource)
-    {
+    public void Damage(int damageAmount, Transform damageSource) {
         _dead = true;
         StartCoroutine(KilledLookat(damageSource));
         StartCoroutine(RequestForGameRestart());
         GameSceneManager.Instance.GameOver();
     }
 
-    private IEnumerator KilledLookat(Transform sourceTransform)
-    {
+    private IEnumerator KilledLookat(Transform sourceTransform) {
         Quaternion startRotation = transform.rotation;
         Quaternion endRotation = Quaternion.LookRotation(sourceTransform.position - transform.position);
         float startFade = _prevFade;
         float animationTime = 0.0f;
         float animationLength = 0.1f;
-        while (animationTime < 1.0f)
-        {
+        while (animationTime < 1.0f) {
             _prevFade = Mathf.Lerp(startFade, 1.0f, animationTime);
             transform.rotation = Quaternion.Lerp(startRotation, endRotation, animationTime);
             animationTime += Time.deltaTime / Time.timeScale / animationLength;
@@ -176,8 +161,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         }
     }
 
-    private IEnumerator RequestForGameRestart()
-    {
+    private IEnumerator RequestForGameRestart() {
         yield return new WaitForSeconds(6.0f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

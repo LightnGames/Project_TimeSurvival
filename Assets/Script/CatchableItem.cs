@@ -1,3 +1,4 @@
+using Oculus.Haptics;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -20,14 +21,15 @@ public class CatchableItem : MonoBehaviour
     private ParentConstraint _constraints;
     public delegate void VibrateEvent(float frequency, float amplitude, float duration);
     public delegate void XrHandAnimationTransformEvent(Vector3 localPosition, Quaternion localRotation);
+    public delegate void XrHandHapticEvent(HapticClip hapticClip);
     protected event VibrateEvent _vibrationEvent = null;
     protected event XrHandAnimationTransformEvent _xrHandAnimationTransformEvent = null;
+    protected event XrHandHapticEvent _xrHandHapticEvent = null;
     public int GrabItemIndex { get { return _grabItemIndex; } }
     public Transform CatchAncherTransform { get { return _catchAncherTransform; } }
     public bool IsCatched { get { return _vibrationEvent != null; } }
 
-    protected virtual void Awake()
-    {
+    protected virtual void Awake() {
         _constraints = GetComponent<ParentConstraint>();
     }
 
@@ -35,26 +37,25 @@ public class CatchableItem : MonoBehaviour
 
     public virtual void OnIndexTriggered() { }
 
-    public void Catched(VibrateEvent vibrateEvent, XrHandAnimationTransformEvent transformEvent, in ConstraintSource constraintSource)
-    {
+    protected virtual void OnCatchedAnimationCompleted() { }
+
+    public void Catched(VibrateEvent vibrateEvent, XrHandHapticEvent haptipicEvent, XrHandAnimationTransformEvent transformEvent, in ConstraintSource constraintSource) {
         transform.GetLocalPositionAndRotation(out _defaultLocalPosition, out _defaultLocalRotation);
         _constraints.constraintActive = true;
         _constraints.AddSource(constraintSource);
-        if (!_unuseLocalOffset)
-        {
+        if (!_unuseLocalOffset) {
             _constraints.SetTranslationOffset(0, CatchAncherTransform.localPosition);
         }
-        OnCatched(vibrateEvent, transformEvent);
+        OnCatched(vibrateEvent, haptipicEvent, transformEvent);
     }
 
-    protected virtual void OnCatched(VibrateEvent vibrateEvent, XrHandAnimationTransformEvent transformEvent)
-    {
+    protected virtual void OnCatched(VibrateEvent vibrateEvent, XrHandHapticEvent haptipicEvent, XrHandAnimationTransformEvent transformEvent) {
         _vibrationEvent = vibrateEvent;
         _xrHandAnimationTransformEvent = transformEvent;
+        _xrHandHapticEvent = haptipicEvent;
     }
 
-    public virtual void Released()
-    {
+    public virtual void Released() {
         _constraints.constraintActive = false;
         _constraints.RemoveSource(0);
         _vibrationEvent = null;
@@ -62,27 +63,25 @@ public class CatchableItem : MonoBehaviour
         transform.SetLocalPositionAndRotation(_defaultLocalPosition, _defaultLocalRotation);
     }
 
-    public virtual bool IsCatcheable()
-    {
+    public virtual bool IsCatcheable() {
         return true;
     }
 
-    public IEnumerator PlayCatchTransformAnimation()
-    {
-        if (_unuseCatchedAnimation)
-        {
+    public IEnumerator PlayCatchTransformAnimation() {
+        if (_unuseCatchedAnimation) {
             _constraints.weight = 1.0f;
             yield break;
         }
 
         const float AnimationLength = 0.1f;
         float animationTime = 0.0f;
-        while (animationTime < 1.0f)
-        {
+        while (animationTime < 1.0f) {
             _constraints.weight = animationTime;
             animationTime += Time.deltaTime / AnimationLength;
             yield return null;
         }
         _constraints.weight = 1.0f;
+
+        OnCatchedAnimationCompleted();
     }
 }

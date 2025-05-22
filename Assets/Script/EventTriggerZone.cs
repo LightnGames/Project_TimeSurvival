@@ -5,17 +5,13 @@ public class EventTriggerZone : MonoBehaviour
     [SerializeField]
     Transform[] _targets;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.tag != "Player")
-        {
+    private void OnTriggerEnter(Collider other) {
+        if (other.tag != "Player") {
             return;
         }
 
-        foreach (Transform t in _targets)
-        {
-            foreach (IEventTrigger i in t.GetComponents<IEventTrigger>())
-            {
+        foreach (Transform t in _targets) {
+            foreach (IEventTrigger i in t.GetComponents<IEventTrigger>()) {
                 i.OnEventTriggered();
             }
         }
@@ -23,8 +19,7 @@ public class EventTriggerZone : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void OnDrawGizmos()
-    {
+    private void OnDrawGizmos() {
         BoxCollider bc = GetComponent<BoxCollider>();
         Color color = Color.yellow;
         color.a = 0.2f;

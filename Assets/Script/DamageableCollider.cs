@@ -17,8 +17,7 @@ public class DamageableCollider : MonoBehaviour
     [SerializeField] private Transform _parent;
     [SerializeField] private DamagePartType _partType;
 
-    public void Damage(int damageAmount, Transform damageSource)
-    {
+    public void Damage(int damageAmount, Transform damageSource) {
         IDamageable damageable = _parent.GetComponent<IDamageable>();
         damageable.Damage(damageAmount, damageSource);
     }

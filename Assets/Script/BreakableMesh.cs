@@ -11,39 +11,32 @@ public class BreakableMesh : MonoBehaviour, IEventTrigger
     [SerializeField] AudioClip _audioClip;
 
     private AudioSource _audioSource;
-    private void Awake()
-    {
+    private void Awake() {
         _audioSource = GetComponent<AudioSource>();
     }
 
-    public void OnEventTriggered()
-    {
+    public void OnEventTriggered() {
         StartCoroutine(PlayEvents());
     }
 
-    private IEnumerator PlayEvents()
-    {
+    private IEnumerator PlayEvents() {
         yield return new WaitForSeconds(_delayTimeInSec);
 
         Vector3 forceVelocity = -transform.up;
-        foreach (var rigidBody in _fractureRigidBodies)
-        {
+        foreach (var rigidBody in _fractureRigidBodies) {
             rigidBody.isKinematic = false;
 
-            if (_forceAncher != null)
-            {
+            if (_forceAncher != null) {
                 forceVelocity = (rigidBody.transform.position - _forceAncher.position).normalized;
             }
             rigidBody.AddForce(forceVelocity * _forceScale);
         }
 
-        for (int i = 0; i < 3; ++i)
-        {
+        for (int i = 0; i < 3; ++i) {
             yield return null;
         }
 
-        foreach(MeshRenderer meshRenderer in _dummyWallMeshRenderers)
-        {
+        foreach (MeshRenderer meshRenderer in _dummyWallMeshRenderers) {
             meshRenderer.enabled = false;
         }
 

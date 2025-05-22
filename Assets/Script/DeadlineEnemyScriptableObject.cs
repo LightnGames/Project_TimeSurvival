@@ -15,28 +15,23 @@ public class DeadlineEnemyScriptableObject : ScriptableObject
     public AudioClip[] DeadAudioClips { get { return _takeDamageAudioClips; } }
     public AudioClip[] SmallImpactAudioClips { get { return _smallImpactAudioClips; } }
 
-    public AudioClip GetRandomFootStepAudioClip()
-    {
+    public AudioClip GetRandomFootStepAudioClip() {
         return FootStepAudioClips[Random.Range(0, FootStepAudioClips.Length)];
     }
 
-    public AudioClip GetRandomIntimidationAudioClip()
-    {
+    public AudioClip GetRandomIntimidationAudioClip() {
         return IntimidationAudioClips[Random.Range(0, IntimidationAudioClips.Length)];
     }
 
-    public AudioClip GetRandomTakeDamageAudioClip()
-    {
+    public AudioClip GetRandomTakeDamageAudioClip() {
         return TakeDamageAudioClips[Random.Range(0, TakeDamageAudioClips.Length)];
     }
 
-    public AudioClip GetRandomDeadAudioClip()
-    {
+    public AudioClip GetRandomDeadAudioClip() {
         return DeadAudioClips[Random.Range(0, DeadAudioClips.Length)];
     }
 
-    public AudioClip GetRandomSmallImpactAudioClip()
-    {
+    public AudioClip GetRandomSmallImpactAudioClip() {
         return SmallImpactAudioClips[Random.Range(0, SmallImpactAudioClips.Length)];
     }
 }

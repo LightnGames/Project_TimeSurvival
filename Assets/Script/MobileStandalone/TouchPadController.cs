@@ -14,9 +14,8 @@ public class TouchPadController : MonoBehaviour
     public Vector2 TouchPadDirection { get { return _touchPadDirection; } }
     public float TouchPadInputAmount { get { return _touchPadInputAmount; } }
 
-    private void Awake()
-    {
-#if !APP_MODE_ANDROID_STAND_ALONE
+    private void Awake() {
+#if !APP_MODE_MOBILE_STAND_ALONE
         Destroy(transform.parent.gameObject);
         return;
 #endif
@@ -24,13 +23,11 @@ public class TouchPadController : MonoBehaviour
         _touchPadController = this;
     }
 
-    private void LateUpdate()
-    {
+    private void LateUpdate() {
         TouchInputSystem touchInputSystem = TouchInputSystem.Get();
         bool invalidTouchZone = touchInputSystem.GetCurrentInputPosition().x > TouchInputSystem.ResolutionSourceRateHeight / 2.0f;
         bool noTouched = touchInputSystem.GetCurrentRawInputPosition().sqrMagnitude < 0.01f;
-        if (invalidTouchZone || noTouched)
-        {
+        if (invalidTouchZone || noTouched) {
             _touchPadDirection = Vector2.zero;
             _touchPadInputAmount = 0.0f;
             _touchPadRectTransform.anchoredPosition = Vector2.zero;
@@ -47,16 +44,14 @@ public class TouchPadController : MonoBehaviour
 
         _touchPadDirection = touchPadDirection;
         _touchPadInputAmount = touchPadInputClampedLength / _touchPadLimitLength;
-        _touchPadRectTransform.anchoredPosition =  touchPadDirection * touchPadInputClampedLength;
+        _touchPadRectTransform.anchoredPosition = touchPadDirection * touchPadInputClampedLength;
     }
 
-    private void OnDestroy()
-    {
+    private void OnDestroy() {
         _touchPadController = null;
     }
 
-    static public TouchPadController Get()
-    {
+    static public TouchPadController Get() {
         return _touchPadController;
     }
 }

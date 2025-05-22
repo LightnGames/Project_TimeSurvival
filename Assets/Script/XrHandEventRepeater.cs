@@ -9,35 +9,28 @@ public class XrHandEventRepeater : MonoBehaviour
     public Transform HandTransformAncher { get { return _handTransformAncher; } }
     public Action<CatchableItem, bool> OnTriggerEnterEvent { get; set; }
 
-    private void Awake()
-    {
+    private void Awake() {
         HandAnimator = GetComponent<Animator>();
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
+    private void OnTriggerEnter(Collider other) {
         CatchableItem item = other.gameObject.GetComponent<CatchableItem>();
-        if (item == null)
-        {
+        if (item == null) {
             return;
         }
 
-        if(OnTriggerEnterEvent != null)
-        {
+        if (OnTriggerEnterEvent != null) {
             OnTriggerEnterEvent(item, true);
         }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
+    private void OnTriggerExit(Collider other) {
         CatchableItem item = other.gameObject.GetComponent<CatchableItem>();
-        if (item == null)
-        {
+        if (item == null) {
             return;
         }
 
-        if (OnTriggerEnterEvent != null)
-        {
+        if (OnTriggerEnterEvent != null) {
             OnTriggerEnterEvent(item, false);
         }
     }

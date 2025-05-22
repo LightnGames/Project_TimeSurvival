@@ -5,8 +5,7 @@ using UnityEngine.UIElements;
 
 static public class EnemyUtil
 {
-    static public IEnumerator FitKilledPlayerTransform(Transform transform, float enemyToPlayerDistance = 1.0f)
-    {
+    static public IEnumerator FitKilledPlayerTransform(Transform transform, float enemyToPlayerDistance = 1.0f) {
         Transform playerCameraTransform = GameSceneManager.Instance.CameraTransform;
         Transform playerTransform = GameSceneManager.Instance.PlayerTransform;
         Quaternion startRotation = transform.rotation;
@@ -14,8 +13,7 @@ static public class EnemyUtil
         Vector3 startPosition = transform.position;
         float animationTime = 0.0f;
         float animationLength = 0.1f;
-        while (true)
-        {
+        while (true) {
             Vector3 playerCameraPositionXZ = playerCameraTransform.position;
             playerCameraPositionXZ.y = transform.position.y;
 
@@ -30,8 +28,7 @@ static public class EnemyUtil
             Quaternion rotation = Quaternion.Lerp(startRotation, endRotation, animationTime);
             transform.SetPositionAndRotation(position, rotation);
 
-            if (animationTime >= 1.0f)
-            {
+            if (animationTime >= 1.0f) {
                 break;
             }
             animationTime = Mathf.Min(Time.deltaTime / Time.timeScale / animationLength, 1.0f);
@@ -58,8 +55,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEventTrigger
     private readonly int KillPlayerHash = Animator.StringToHash("KillPlayer");
     private int _health = 0;
 
-    private void Awake()
-    {
+    private void Awake() {
         _animator = GetComponent<Animator>();
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _navMeshAgent.updatePosition = false;
@@ -68,55 +64,44 @@ public class Enemy : MonoBehaviour, IDamageable, IEventTrigger
         _animator.SetInteger(SpawnTypeHash, _spawnType);
     }
 
-    public void OnEventTriggered()
-    {
+    public void OnEventTriggered() {
         _animator.SetInteger(SpawnTypeHash, 0);
     }
 
-    public void PlayOneShotVoice()
-    {
+    public void PlayOneShotVoice() {
         _voiceAudioSource.PlayOneShot(_enemyScriptableObject.GetRandomIntimidationAudioClip());
     }
 
-    public void PlayOneShotSmallImpact()
-    {
+    public void PlayOneShotSmallImpact() {
         _voiceAudioSource.PlayOneShot(_enemyScriptableObject.GetRandomSmallImpactAudioClip());
     }
 
-    public void PlayOneShotFenceRampage()
-    {
+    public void PlayOneShotFenceRampage() {
         _voiceAudioSource.PlayOneShot(_enemyScriptableObject.GetRandomFenceRampageAudioClip());
     }
 
-    public void PlayOneShotFootL()
-    {
+    public void PlayOneShotFootL() {
         _footAudioSourceL.PlayOneShot(_enemyScriptableObject.GetRandomFootStepAudioClip());
     }
 
-    public void PlayOneShotFootR()
-    {
+    public void PlayOneShotFootR() {
         _footAudioSourceR.PlayOneShot(_enemyScriptableObject.GetRandomFootStepAudioClip());
     }
 
-    public void PlayOneShotBodyRip()
-    {
+    public void PlayOneShotBodyRip() {
         _voiceAudioSource.PlayOneShot(_enemyScriptableObject.GetRandomBodyRipAudioClip());
     }
 
-    public void EndSpawn()
-    {
+    public void EndSpawn() {
         _navMeshAgent.enabled = true;
     }
 
-    private void Update()
-    {
-        if (!_navMeshAgent.enabled)
-        {
+    private void Update() {
+        if (!_navMeshAgent.enabled) {
             return;
         }
 
-        if (GameSceneManager.Instance.IsGameOver)
-        {
+        if (GameSceneManager.Instance.IsGameOver) {
             _navMeshAgent.enabled = false;
             return;
         }
@@ -126,14 +111,12 @@ public class Enemy : MonoBehaviour, IDamageable, IEventTrigger
         bool isWalking = _navMeshAgent.velocity.sqrMagnitude > 0.05f;
         _animator.SetBool(IsWalingHash, isWalking);
 
-        if (Vector3.Distance(_navMeshAgent.destination, transform.position) < _navMeshAgent.stoppingDistance + 0.2f)
-        {
+        if (Vector3.Distance(_navMeshAgent.destination, transform.position) < _navMeshAgent.stoppingDistance + 0.2f) {
             KillPlayer();
         }
     }
 
-    private void KillPlayer()
-    {
+    private void KillPlayer() {
         _animator.SetTrigger(KillPlayerHash);
         IDamageable damageable = GameSceneManager.Instance.PlayerTransform.GetComponent<IDamageable>();
         damageable.Damage(1, transform);
@@ -141,16 +124,13 @@ public class Enemy : MonoBehaviour, IDamageable, IEventTrigger
         StartCoroutine(EnemyUtil.FitKilledPlayerTransform(transform));
     }
 
-    public void Damage(int damageAmount, Transform damageSource)
-    {
-        if (IsDead())
-        {
+    public void Damage(int damageAmount, Transform damageSource) {
+        if (IsDead()) {
             return;
         }
 
         _health = Mathf.Max(_health - damageAmount, 0);
-        if (_health == 0)
-        {
+        if (_health == 0) {
             _animator.SetTrigger(DeadHash);
             _voiceAudioSource.PlayOneShot(_enemyScriptableObject.GetRandomDeadAudioClip());
             _navMeshAgent.enabled = false;
@@ -158,16 +138,14 @@ public class Enemy : MonoBehaviour, IDamageable, IEventTrigger
         }
 
         // ダメージ量が体力の半分を超えていたら必ずダメージリアクションする。
-        if (damageAmount > _enemyScriptableObject.MaxHealth / 2)
-        {
+        if (damageAmount > _enemyScriptableObject.MaxHealth / 2) {
             _animator.SetTrigger(DamageHash);
         }
 
         _voiceAudioSource.PlayOneShot(_enemyScriptableObject.GetRandomTakeDamageAudioClip());
     }
 
-    public bool IsDead()
-    {
+    public bool IsDead() {
         return _health == 0;
     }
 }

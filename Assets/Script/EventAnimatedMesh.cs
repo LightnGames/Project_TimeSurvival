@@ -9,20 +9,16 @@ public class EventAnimatedMesh : MonoBehaviour, IEventTrigger
     [SerializeField] AudioClip[] _idleAudioClips;
     private AudioSource _audioSource;
 
-    private void Awake()
-    {
+    private void Awake() {
         _audioSource = GetComponent<AudioSource>();
-        if (_dummyMeshRenderer != null)
-        {
+        if (_dummyMeshRenderer != null) {
             _animatedMeshRender.enabled = false;
             _dummyMeshRenderer.enabled = true;
         }
     }
 
-    public void OnEventTriggered()
-    {
-        if (_dummyMeshRenderer != null)
-        {
+    public void OnEventTriggered() {
+        if (_dummyMeshRenderer != null) {
             _animatedMeshRender.enabled = true;
             _dummyMeshRenderer.enabled = false;
         }

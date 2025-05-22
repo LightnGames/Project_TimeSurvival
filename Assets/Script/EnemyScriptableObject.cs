@@ -21,38 +21,31 @@ public class EnemyScriptableObject : ScriptableObject
     public AudioClip[] FenceRampageAudioClips { get { return _fenceRampageAudioClips; } }
     public AudioClip[] BodyRipAudioClips { get { return _bodyRipAudioClips; } }
 
-    public AudioClip GetRandomFootStepAudioClip()
-    {
+    public AudioClip GetRandomFootStepAudioClip() {
         return FootStepAudioClips[Random.Range(0, FootStepAudioClips.Length)];
     }
 
-    public AudioClip GetRandomIntimidationAudioClip()
-    {
+    public AudioClip GetRandomIntimidationAudioClip() {
         return IntimidationAudioClips[Random.Range(0, IntimidationAudioClips.Length)];
     }
 
-    public AudioClip GetRandomTakeDamageAudioClip()
-    {
+    public AudioClip GetRandomTakeDamageAudioClip() {
         return TakeDamageAudioClips[Random.Range(0, TakeDamageAudioClips.Length)];
     }
 
-    public AudioClip GetRandomDeadAudioClip()
-    {
+    public AudioClip GetRandomDeadAudioClip() {
         return DeadAudioClips[Random.Range(0, DeadAudioClips.Length)];
     }
 
-    public AudioClip GetRandomSmallImpactAudioClip()
-    {
+    public AudioClip GetRandomSmallImpactAudioClip() {
         return SmallImpactAudioClips[Random.Range(0, SmallImpactAudioClips.Length)];
     }
 
-    public AudioClip GetRandomFenceRampageAudioClip()
-    {
+    public AudioClip GetRandomFenceRampageAudioClip() {
         return FenceRampageAudioClips[Random.Range(0, FenceRampageAudioClips.Length)];
     }
 
-    public AudioClip GetRandomBodyRipAudioClip()
-    {
+    public AudioClip GetRandomBodyRipAudioClip() {
         return BodyRipAudioClips[Random.Range(0, BodyRipAudioClips.Length)];
     }
 }

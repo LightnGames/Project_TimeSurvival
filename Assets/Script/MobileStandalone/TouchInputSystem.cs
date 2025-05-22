@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TouchInputSystem : MonoBehaviour {
+public class TouchInputSystem : MonoBehaviour
+{
     private static TouchInputSystem _inputSystem;
     private Vector2 _currentInputPosition = Vector2.zero;
     private Vector2 _prevInputPosition = Vector2.zero;
@@ -28,8 +29,7 @@ public class TouchInputSystem : MonoBehaviour {
         return _prevInputPosition;
     }
 
-    public Vector2 GetCurrentRawInputPosition()
-    {
+    public Vector2 GetCurrentRawInputPosition() {
         return _currentRawInputPosition;
     }
 
@@ -53,8 +53,7 @@ public class TouchInputSystem : MonoBehaviour {
         bool isStart = Input.GetMouseButtonDown(0);
         bool isMove = Input.GetMouseButton(0);
         bool isEnd = Input.GetMouseButtonUp(0);
-        if (Input.GetMouseButton(0))
-        {
+        if (Input.GetMouseButton(0)) {
             inputRawPosition = Input.mousePosition;
         }
 #else
@@ -78,22 +77,19 @@ public class TouchInputSystem : MonoBehaviour {
         _inputMoveLength = (_currentInputPosition - _prevInputPosition).magnitude;
 
         if (isStart) {
-            if (_beginEvent != null)
-            {
+            if (_beginEvent != null) {
                 _beginEvent(this);
             }
         }
 
         if (isMove) {
-            if (_moveEvent != null)
-            {
+            if (_moveEvent != null) {
                 _moveEvent(this);
             }
         }
 
         if (isEnd) {
-            if (_endEvent != null)
-            {
+            if (_endEvent != null) {
                 _endEvent(this);
             }
         }
