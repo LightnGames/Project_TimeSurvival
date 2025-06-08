@@ -1,8 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+public abstract class WeaponBase : MonoBehaviour
+{
+    private readonly int FresnelEffectId = Shader.PropertyToID("_FresnelEffect");
+    protected List<Material> _materials = new List<Material>();
 
-public class Weapon : MonoBehaviour
+    protected void CollectMeshMaterials() {
+        MeshRenderer[] meshRenderers = GetComponentsInChildren<MeshRenderer>();
+        foreach (MeshRenderer renderer in meshRenderers) {
+            foreach (Material material in renderer.materials) {
+                _materials.Add(material);
+            }
+        }
+    }
+
+    protected void SwitchFresnelEffect(bool visibility) {
+        foreach (Material material in _materials) {
+            material.SetFloat(FresnelEffectId, visibility ? 1.0f : 0.0f);
+        }
+    }
+}
+
+public abstract class GunBase : WeaponBase
 {
     [SerializeField] private WeaponScriptableObject _weaponScriptableObject;
     [SerializeField] private Animator _animator;
@@ -15,7 +35,6 @@ public class Weapon : MonoBehaviour
     private readonly int ShotHash = Animator.StringToHash("Shot");
     private readonly int TrailLengthId = Shader.PropertyToID("_TrailLength");
     private readonly int TrailStartTimeId = Shader.PropertyToID("_TrailStartTime");
-    private readonly int FresnelEffectId = Shader.PropertyToID("_FresnelEffect");
     private readonly int DisplayNumberId = Shader.PropertyToID("_DisplayNumber");
     private readonly int OutlineEffectStartTimeId = Shader.PropertyToID("_OutlineEffectStartTime");
     private float _triggerPitchAngleEuler = 0.0f;
@@ -25,7 +44,6 @@ public class Weapon : MonoBehaviour
     private AudioSource _audioSource;
     private Rigidbody _rigidbody;
     private Collider _collider;
-    private List<Material> _materials = new List<Material>();
     private event CatchableItem.VibrateEvent _mainGripVibrationEvent = null;
     private event CatchableItem.XrHandHapticEvent _mainGripHapticEvent = null;
     private event CatchableItem.XrHandAnimationTransformEvent _mainGripAnimationTransformEvent = null;
@@ -37,21 +55,9 @@ public class Weapon : MonoBehaviour
         _ammo = _weaponScriptableObject.MaxAmmo;
         _remainingBulletNumberMaterial = _remainingBulletTextMeshRenderer.material;
         _remainingBulletTextMeshRenderer.enabled = false;
-        ;
-        MeshRenderer[] meshRenderers = GetComponentsInChildren<MeshRenderer>();
-        foreach (MeshRenderer renderer in meshRenderers) {
-            foreach (Material material in renderer.materials) {
-                _materials.Add(material);
-            }
-        }
 
+        CollectMeshMaterials();
         SwitchFresnelEffect(true);
-    }
-
-    protected void SwitchFresnelEffect(bool visibility) {
-        foreach (Material material in _materials) {
-            material.SetFloat(FresnelEffectId, visibility ? 1.0f : 0.0f);
-        }
     }
 
     protected virtual void Update() {

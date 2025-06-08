@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Shotgun : Weapon
+public class Shotgun : GunBase
 {
     private enum PumpState
     {

@@ -1,5 +1,5 @@
 using UnityEngine;
-public class Handgun : Weapon
+public class Handgun : GunBase
 {
 
     protected override void Awake() {

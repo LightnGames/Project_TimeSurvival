@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class WeaponMainGrip : CatchableItem
 {
-    [SerializeField] private Weapon _weapon;
+    [SerializeField] private GunBase _weapon;
 
     protected override void Awake() {
         base.Awake();

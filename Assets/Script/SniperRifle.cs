@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SniperRifle : Weapon
+public class SniperRifle : GunBase
 {
     private enum PumpState
     {
